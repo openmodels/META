@@ -2,6 +2,9 @@ include("../lib/gdppc.jl")
 include("../lib/damages.jl")
 include("../lib/saverate.jl")
 
+# Must match line in basemodel.jl
+isos = CSV.read("../data/pattern-scaling_new.csv", DataFrame).Country
+
 @defcomp Consumption begin
     # Variables
     gdppc_region = Variable(index=[time, region], unit="2010 USD PPP")
@@ -47,19 +50,15 @@ include("../lib/saverate.jl")
     SLR = Parameter(index=[time], unit="m")
 
     function init(pp, vv, dd)
-        isos = dim_keys(model, :country)
-
         if pp.slrdamageconfig == "distribution"
             pp.slrcoeff = [getslrcoeff_distribution(isos[cc], slrdamage, pp.slruniforms[cc]) for cc in 1:length(isos)]
         end
     end
 
     function run_timestep(pp, vv, dd, tt)
-        isos = dim_keys(model, :country)
-
         if is_first(tt)
             for rr in dd.region
-                vv.gdppc_region[tt, rr] = getgdppc_ssp(dim_keys(model, :region)[rr], pp.ssp, 2010)
+                vv.gdppc_region[tt, rr] = getgdppc_ssp(unique(gdps_ssp.REGION_SHORT)[rr], pp.ssp, 2010)
                 if ismissing(vv.gdppc_region[tt, rr])
                     vv.gdppc_region[tt, rr] = 0
                 end
@@ -84,11 +83,11 @@ include("../lib/saverate.jl")
                 vv.conspc_preadj[tt, cc] = (1-pp.saverate[cc])*pp.gdppc_2009[cc]
 
                 region = getregion(isos[cc])
-                vv.country2region[cc] = (ismissing(region) ? 0 : findfirst(dim_keys(model, :region) .== region))
+                vv.country2region[cc] = (ismissing(region) ? 0 : findfirst(unique(gdps_ssp.REGION_SHORT) .== region))
             end
         else
             for rr in dd.region
-                vv.gdppc_region[tt, rr] = getgdppc_ssp(dim_keys(model, :region)[rr], pp.ssp, gettime(tt))
+                vv.gdppc_region[tt, rr] = getgdppc_ssp(unique(gdps_ssp.REGION_SHORT)[rr], pp.ssp, gettime(tt))
                 vv.gdppc_ratio_region[tt, rr] = vv.gdppc_region[tt, rr] / vv.gdppc_region[TimestepIndex(1), rr]
                 if gettime(tt) <= 2100
                     vv.gdppc_growth_region[tt, rr] = vv.gdppc_ratio_region[tt, rr] / vv.gdppc_ratio_region[tt-1, rr] - 1
@@ -145,9 +144,7 @@ function addConsumption(model, tdamage, slrdamage, ssp)
     cons[:convergerate_gdppc] = sspextend[sspextend.SSP .== ssp, "Convergence rate"][1]
     cons[:decayrate_gdppc] = sspextend[sspextend.SSP .== ssp, "Decay rate"][1]
 
-    cons[:popweights_region] = [getpopweight_ssp(region, ssp) for region in dim_keys(model, :region)]
-
-    isos = dim_keys(model, :country)
+    cons[:popweights_region] = [getpopweight_ssp(region, ssp) for region in unique(gdps_ssp.REGION_SHORT)]
 
     if tdamage == "none"
         cons[:beta1] = cons[:beta2] = 0.

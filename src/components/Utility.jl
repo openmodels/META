@@ -1,5 +1,8 @@
 include("../lib/gdppc.jl")
 
+# Must match line in basemodel.jl
+isos = CSV.read("../data/pattern-scaling_new.csv", DataFrame).Country
+
 @defcomp Utility begin
 
     # Variables
@@ -34,11 +37,9 @@ include("../lib/gdppc.jl")
 
     function run_timestep(pp, vv, dd, tt)
         # Determine populations
-        isos = dim_keys(model, :country)
-
         if is_first(tt)
             for rr in dd.region
-                vv.pop_region[tt, rr] = getpop_ssp(dim_keys(model, :region)[rr], pp.ssp, 2010)
+                vv.pop_region[tt, rr] = getpop_ssp(unique(gdps_ssp.REGION_SHORT)[rr], pp.ssp, 2010)
                 vv.pop_ratio_region[tt, rr] = 1
                 vv.pop_growth_region[tt, rr] = 0 # ignored
             end
@@ -52,11 +53,11 @@ include("../lib/gdppc.jl")
                 end
 
                 region = getregion(isos[cc])
-                vv.country2region[cc] = (ismissing(region) ? 0 : findfirst(dim_keys(model, :region) .== region))
+                vv.country2region[cc] = (ismissing(region) ? 0 : findfirst(unique(gdps_ssp.REGION_SHORT) .== region))
             end
         else
             for rr in dd.region
-                vv.pop_region[tt, rr] = getpop_ssp(dim_keys(model, :region)[rr], pp.ssp, gettime(tt))
+                vv.pop_region[tt, rr] = getpop_ssp(unique(gdps_ssp.REGION_SHORT)[rr], pp.ssp, gettime(tt))
                 vv.pop_ratio_region[tt, rr] = vv.pop_region[tt, rr] / vv.pop_region[TimestepIndex(1), rr]
                 if gettime(tt) <= 2100
                     vv.pop_growth_region[tt, rr] = vv.pop_ratio_region[tt, rr] / vv.pop_ratio_region[tt-1, rr] - 1

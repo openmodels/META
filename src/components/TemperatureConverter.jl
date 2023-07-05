@@ -1,3 +1,5 @@
+MAX_YEAR = 2200
+
 @defcomp TemperatureConverter begin
     # Variables
     T_AT = Variable(index=[time]) # after bias-correction
@@ -19,7 +21,7 @@
             vv.T_AT_tminus100[tt + 100] = vv.T_AT[tt]
         elseif gettime(tt) > 2010
             vv.T_AT[tt] = pp.T[tt] + vv.biascorrection
-            if gettime(tt) + 100 < maximum(dim_keys(model, :time))
+            if gettime(tt) + 100 < MAX_YEAR # maximum(dim_keys(model, :time))
                 vv.T_AT_tminus100[tt + 100] = vv.T_AT[tt]
             end
         else

@@ -42,7 +42,6 @@ function calculate_scch4_marginal_national(mm::Union{MarginalModel, MarginalInst
     pulse_index = findfirst(dim_keys(model, :time) .== pulse_year)
 
     #Loop over countries
-    #results = Float64[]
     results = DataFrame(country=String[], scch4=Float64[])
     for (cc, strcc) in zip((1:dim_count(model, :country)), (dim_keys(model, :country)))
         #Calculate marginal welfare for each country

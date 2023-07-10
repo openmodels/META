@@ -75,3 +75,11 @@ src/SC-X_baseTPs.csv
 src/Results.jl
 src/bge_oldresults.jl
 .gitignore
+src/Results_loop_all TPs.jl
+src/Results_loop_baseTPs.jl
+src/Results.jl
+src/archived results code/Results_loop_all TPs.jl
+src/archived results code/Results_loop_baseTPs.jl
+src/archived results code/Results_loop_temperature graph.jl
+src/archived results code/Results_single scenario.jl
+src/archived results code/Results.jl

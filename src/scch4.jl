@@ -42,24 +42,22 @@ function calculate_scch4_marginal_national(mm::Union{MarginalModel, MarginalInst
     pulse_index = findfirst(dim_keys(model, :time) .== pulse_year)
 
     #Loop over countries
-    results = Float64[]
-    for cc in 1:dim_count(model, :country)
+    #results = Float64[]
+    results = DataFrame(country=String[], scch4=Float64[])
+    for (cc, strcc) in zip((1:dim_count(model, :country)), (dim_keys(model, :country)))
         #Calculate marginal welfare for each country
-        nationalwelfare_marginal = sum(mm[:Utility, :disc_utility][pulse_index:dim_count(model, :time), cc]) # What kind of object is this? Just a Julia variable, but not a Mimi one, correct? -> It's a number.
+        nationalwelfare_marginal = sum(mm[:Utility, :disc_utility][pulse_index:dim_count(model, :time), cc])
 
         #Calculate consumption per capita for each country
         national_conspc = mm.base[:Consumption, :conspc][pulse_index, cc]
 
+        subres = [strcc, -(nationalwelfare_marginal / (national_conspc^-emuc)) / 1e6] #CH4 in Mt rather than Gt
+
         #Calculate SC-CH4 for each country
-        push!(results, -(nationalwelfare_marginal / (national_conspc^-emuc)) / 1e6) #CH4 in Mt rather than Gt
+        push!(results, subres)
     end
 
     results
-
-    #=Questions:
-    -How to store output for each country? the global function just returns a scalar. -> Put them in a vector.
-    -How to loop over countries since these objects are not Mimi objects and therefore don't understand cc indexing, I think -> Loop over the indexes.
-    =#
 end
 
 ## Monte Carlo SCC calculations

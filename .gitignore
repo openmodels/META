@@ -83,3 +83,8 @@ src/archived results code/Results_loop_baseTPs.jl
 src/archived results code/Results_loop_temperature graph.jl
 src/archived results code/Results_single scenario.jl
 src/archived results code/Results.jl
+src/national_marginal damages.csv
+src/Result_Tests.jl
+src/TS playfile.jl
+src/TS_playfile.jl
+src/Result_Tests.jl

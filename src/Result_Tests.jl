@@ -1,4 +1,5 @@
 using Mimi
+using CSV
 include("../src/MimiMETA.jl")
 include("../src/montecarlo.jl")
 include("../src/scch4.jl")
@@ -25,3 +26,12 @@ scch4 = calculate_scch4_national(model,
     2020, # pulse year
     0.06, # pulse size
     1.5) # EMUC
+
+scco2 = calculate_scc_national(model,
+    2020, # pulse year
+    10., # pulse size
+    1.5) # EMUC
+
+national_results = innerjoin(scch4, scco2, on = :country) # 'innerjoin' is similar to Stata's 'merge'
+
+CSV.write("national_marginal damages.csv", national_results)

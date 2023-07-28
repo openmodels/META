@@ -303,6 +303,22 @@ end
 function simdataframe(model::Union{Model, MarginalModel}, results::Dict{Symbol, Array}, comp::Symbol, name::Symbol)
     if comp == :FAIR
         return results[name]
+    elseif comp == :other
+        @assert isa(results[:other][1], DataFrame) "simdataframe(..., :other) is not defined for $(typeof(scch4s[:other][1]))"
+
+        ## combine all dataframes together
+        df = nothing
+        for ii in 1:length(results[:other])
+            mcdf = copy(results[:other][ii])
+            mcdf.trialnum .= ii
+            if df == nothing
+                df = mcdf
+            else
+                df = vcat(df, mcdf)
+            end
+        end
+
+        return df
     else
         return simdataframe(model, convert(Vector{Dict{Symbol, Any}}, results[:other]), comp, name)
     end

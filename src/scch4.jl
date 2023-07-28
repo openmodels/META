@@ -32,7 +32,7 @@ end
 function calculate_scch4_marginal(mm::Union{MarginalModel, MarginalInstance}, pulse_year::Int64, emuc::Float64)
     pulse_index = findfirst(dim_keys(model, :time) .== pulse_year)
 
-    globalwelfare_marginal = sum(mm[:Utility, :world_disc_utility][pulse_index:dim_count(model, :time)])
+    globalwelfare_marginal = sum(mm[:Utility, :world_disc_utility][pulse_index:end])
 
     global_conspc = sum(mm.base[:Consumption, :conspc][pulse_index, :] .* mm.base[:Utility, :pop][pulse_index, :]) / mm.base[:Utility, :world_population][pulse_index]
     -(globalwelfare_marginal / (global_conspc^-emuc)) / 1e6 #CH4 in Mt rather than Gt
@@ -121,22 +121,23 @@ function calculate_scch4_full_mc(model::Model, trials::Int64, pcf_calib::String,
              getsim=getsim_full_scch4)
 end
 
-#=
-model = full_model(rcp="RCP4.5", ssp="SSP2")
-calculate_scch4(model, 2020, 0.06, 1.5)
-scch4s = calculate_scch4_full_mc(model, 100,
-                              "Fit of Hope and Schaefer (2016)", # PCF
-                              "Cai et al. central value", # AMAZ
-                              "Nordhaus central value", # GIS
-                              "Distribution", # WAIS
-                              "Distribution", # SAF
-                              false, # ais_used
-                              true, # ism_used
-                              false, # omh_used
-                              true, # amoc_used
-                              false, # persist
-                              false, # emuc
-                              false, # prtp
-                              2020, 0.06, 1.5)
-[mean(scch4s[:other]), std(scch4s[:other]), median(scch4s[:other])]
+if false
+    model = full_model(rcp="RCP4.5", ssp="SSP2")
+    calculate_scch4(model, 2020, 0.06, 1.5)
+    scch4s = calculate_scch4_full_mc(model, 100,
+                                     "Fit of Hope and Schaefer (2016)", # PCF
+                                     "Cai et al. central value", # AMAZ
+                                     "Nordhaus central value", # GIS
+                                     "none", # WAIS
+                                     "Distribution", # SAF
+                                     true, # ais_used
+                                     true, # ism_used
+                                     true, # omh_used
+                                     true, # amoc_used
+                                     false, # persist
+                                     false, # emuc
+                                     false, # prtp
+                                     2020, 0.06, 1.5)
+    df = simdataframe(model, scch4s, :other, :*)
+    ## [mean(scch4s[:other]), std(scch4s[:other]), median(scch4s[:other])] # This line only works if calc_nationals = false
 =#

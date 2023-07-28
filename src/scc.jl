@@ -32,7 +32,7 @@ end
 function calculate_scc_marginal(mm::Union{MarginalModel, MarginalInstance}, pulse_year::Int64, emuc::Float64)
     pulse_index = findfirst(dim_keys(model, :time) .== pulse_year)
 
-    globalwelfare_marginal = sum(mm[:Utility, :world_disc_utility][pulse_index:dim_count(model, :time)])
+    globalwelfare_marginal = sum(mm[:Utility, :world_disc_utility][pulse_index:end])
 
     global_conspc = sum(mm.base[:Consumption, :conspc][pulse_index, :] .* mm.base[:Utility, :pop][pulse_index, :]) / mm.base[:Utility, :world_population][pulse_index]
     -(globalwelfare_marginal / (global_conspc^-emuc)) / 1e9
@@ -41,16 +41,17 @@ end
 function calculate_scc_marginal_national(mm::Union{MarginalModel, MarginalInstance}, pulse_year::Int64, emuc::Float64)
     pulse_index = findfirst(dim_keys(model, :time) .== pulse_year)
 
+    #Calculate marginal welfare for each country
+    nationalwelfare_marginals = sum(mm[:Utility, :disc_utility][pulse_index:end, :], dims=1)
+
     #Loop over countries
     results = DataFrame(country=String[], scco2=Float64[])
     for (cc, strcc) in zip((1:dim_count(model, :country)), (dim_keys(model, :country)))
-        #Calculate marginal welfare for each country
-        nationalwelfare_marginal = sum(mm[:Utility, :disc_utility][pulse_index:dim_count(model, :time), cc])
 
         #Calculate consumption per capita for each country
         national_conspc = mm.base[:Consumption, :conspc][pulse_index, cc]
 
-        subres = [strcc, -(nationalwelfare_marginal / (national_conspc^-emuc)) / 1e9]
+        subres = [strcc, -(nationalwelfare_marginals[cc] / (national_conspc^-emuc)) / 1e9]
 
         #Calculate SC-CO2 for each country
         push!(results, subres)

@@ -10,11 +10,7 @@ details. Please cite the paper when using META in your research.
 
 This version of the model is implemented in Mimi
 [https://www.mimiframework.org/], an integrated assessment modeling
-framework developed in Julia [https://julialang.org/].
-
-See the description of the Excel model for details on the
-component-based structure and parameterization, which are maintained
-in the Mimi model.
+framework developed in Julia [https://julialang.org/]. The model code consistent with the Dietz et al. (2021) paper is available at https://github.com/openmodels/META-2021/, in both Excel and Mimi formats.
 
 ## Directories in the repository
 

@@ -1,40 +1,40 @@
+import Distributions
 import Random
 
-bhmbetas = CSV.read("../data/BHMbetas.csv", DataFrame)
-amocparams = CSV.read("../data/AMOCparams.csv", DataFrame)
-
-function getbhmbetas(iso, option, seed=nothing)
-    if option == "pointestimate"
-        beta1 = bhmbetas.beta1[bhmbetas.iso .== iso][1]
-        beta2 = bhmbetas.beta2[bhmbetas.iso .== iso][1]
-    elseif option == "low"
-        beta1 = bhmbetas.beta1[bhmbetas.iso .== iso][1] - 1.96*sqrt(bhmbetas.var11[bhmbetas.iso .== iso][1])
-        beta2 = bhmbetas.beta2[bhmbetas.iso .== iso][1] - 1.96*sqrt(bhmbetas.var22[bhmbetas.iso .== iso][1])
-    elseif option == "high"
-        beta1 = bhmbetas.beta1[bhmbetas.iso .== iso][1] + 1.96*sqrt(bhmbetas.var11[bhmbetas.iso .== iso][1])
-        beta2 = bhmbetas.beta2[bhmbetas.iso .== iso][1] + 1.96*sqrt(bhmbetas.var22[bhmbetas.iso .== iso][1])
-    else
-        if seed != nothing
-            Random.seed!(seed)
-        end
-        mu1, mu2 = getbhmbetas(iso, "pointestimate")
-        var11 = bhmbetas.var11[bhmbetas.iso .== iso][1]
-        var12 = bhmbetas.var12[bhmbetas.iso .== iso][1]
-        var22 = bhmbetas.var22[bhmbetas.iso .== iso][1]
-        mvn = MvNormal([mu1, mu2], [var11 var12; var12 var22])
-        beta1, beta2 = rand(mvn)
+function getbhmbetas(tdamage::String)
+    if tdamage == "pointestimate"
+        return 0.0127183, -0.0004871
+    elseif tdamage == "low"
+        beta2 = -0.0004871 + 1.96 * 0.0001183216 # beta2 + 1.96 SE_2
+        beta1 = -2 * beta2 * 13.05512 # keep same peak
+        return beta1, beta2
+    elseif tdamage == "high"
+        beta2 = -0.0004871 - 1.96 * 0.0001183216 # beta2 + 1.96 SE_2
+        beta1 = -2 * beta2 * 13.05512 # keep same peak
+        return beta1, beta2
+    else # distribution
+        mvn = Distributions.MvNormal([0.0127183, -0.0004871], [1.43e-5 -3.76e-7; -3.76e-7 1.4e-8])
+        rand(mvn)
     end
-
-    return beta1, beta2
-end
-
-function gettemp1990(iso)
-    return amocparams[amocparams."Country code" .== iso, "1990 temp"][1]
 end
 
 slrcoeffs = CSV.read("../data/SLRcoeffs.csv", DataFrame)
 
 function getslrcoeff(iso, option::String)
+    if iso ∉ slrcoeffs.ISO
+        if iso ∈ ["KOS", "SDS", "SWZ"]
+            return 0. # land-locked new countries
+        elseif option == "mode"
+            return mean(slrcoeffs.mode)
+        elseif option == "low"
+            return mean(slrcoeffs.low)
+        elseif option == "high"
+            return mean(slrcoeffs.hig)
+        else
+            throw(ArgumentError("Distribution implemented in getslrcoeff_distribution"))
+        end
+    end
+
     if option == "mode"
         return slrcoeffs.mode[slrcoeffs.ISO .== iso][1]
     elseif option == "low"

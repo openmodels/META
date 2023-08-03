@@ -1,5 +1,8 @@
 include("../lib/gdppc.jl")
 
+# Must match line in basemodel.jl
+isos = CSV.read("../data/pattern-scaling_new.csv", DataFrame).Country
+
 @defcomp Utility begin
 
     # Variables
@@ -11,9 +14,13 @@ include("../lib/gdppc.jl")
     world_population = Variable(index=[time], unit="inhabitants")
 
     utility = Variable(index=[time, country]) # national utility
+    disc_utility = Variable(index=[time, country]) # national discounted utility
     utility_sum = Variable(index=[time]) # sum of utility across countries
     world_disc_utility = Variable(index=[time]) # world discounted utility
     equiv_conspc = Variable(index=[time]) # equivalent world consumption per capita
+
+    # Caches
+    country2region = Variable{Int64}(index=[country]) # gives region index
 
     # Parameters
 
@@ -30,11 +37,9 @@ include("../lib/gdppc.jl")
 
     function run_timestep(pp, vv, dd, tt)
         # Determine populations
-        isos = dim_keys(model, :country)
-
         if is_first(tt)
             for rr in dd.region
-                vv.pop_region[tt, rr] = getpop_ssp(dim_keys(model, :region)[rr], pp.ssp, 2010)
+                vv.pop_region[tt, rr] = getpop_ssp(unique(gdps_ssp.REGION_SHORT)[rr], pp.ssp, 2010)
                 vv.pop_ratio_region[tt, rr] = 1
                 vv.pop_growth_region[tt, rr] = 0 # ignored
             end
@@ -46,10 +51,13 @@ include("../lib/gdppc.jl")
                 else
                     vv.pop[tt, cc] = pop
                 end
+
+                region = getregion(isos[cc])
+                vv.country2region[cc] = (ismissing(region) ? 0 : findfirst(unique(gdps_ssp.REGION_SHORT) .== region))
             end
         else
             for rr in dd.region
-                vv.pop_region[tt, rr] = getpop_ssp(dim_keys(model, :region)[rr], pp.ssp, gettime(tt))
+                vv.pop_region[tt, rr] = getpop_ssp(unique(gdps_ssp.REGION_SHORT)[rr], pp.ssp, gettime(tt))
                 vv.pop_ratio_region[tt, rr] = vv.pop_region[tt, rr] / vv.pop_region[TimestepIndex(1), rr]
                 if gettime(tt) <= 2100
                     vv.pop_growth_region[tt, rr] = vv.pop_ratio_region[tt, rr] / vv.pop_ratio_region[tt-1, rr] - 1
@@ -59,11 +67,10 @@ include("../lib/gdppc.jl")
             end
 
             for cc in dd.country
-                region = getregion(isos[cc])
-                if ismissing(region)
+                rr = vv.country2region[cc]
+                if rr == 0
                     growth = 0
                 else
-                    rr = findfirst(dim_keys(model, :region) .== region)
                     growth = vv.pop_growth_region[tt, rr]
                 end
 
@@ -85,13 +92,14 @@ include("../lib/gdppc.jl")
                vv.utility[tt, cc] = (1 / (1 - pp.EMUC) * (max(pp.conspc[tt, cc], 1) * pp.lossfactor[tt, cc]) ^ (1 - pp.EMUC)) * vv.pop[tt, cc]
             end
 
+            vv.disc_utility[tt, cc] = vv.utility[tt, cc] * (1 + pp.PRTP) ^ - (gettime(tt) - 2020)
             vv.utility_sum[tt] += vv.utility[tt, cc]
             vv.world_population[tt] += vv.pop[tt, cc]
 
         end
 
-        vv.world_disc_utility[tt] = vv.utility_sum[tt] * (1 + pp.PRTP) ^ - (dim_keys(model, :time)[tt.t] - 2020) # possibly scope to improve how time is coded in exponent
-        vv.equiv_conspc[tt] = (vv.world_disc_utility[tt] * (1 - pp.EMUC) / vv.world_population[tt] ^ (1 / (1 - pp.EMUC)))
+        vv.world_disc_utility[tt] = vv.utility_sum[tt] * (1 + pp.PRTP) ^ - (gettime(tt) - 2020) # possibly scope to improve how time is coded in exponent
+        vv.equiv_conspc[tt] = (vv.world_disc_utility[tt] * (1 - pp.EMUC) / vv.world_population[tt]) ^ (1 / (1 - pp.EMUC))
     end
 end
 
@@ -99,7 +107,7 @@ function addUtility(model, ssp)
 
     params = CSV.read("../data/utilityparams.csv", DataFrame)
 
-    utility = add_comp!(model, Utility)
+    utility = add_comp!(model, Utility, first=2010)
 
     utility[:EMUC] = params.Value[params.Parameter .== "EMUC"][1]
     utility[:PRTP] = params.Value[params.Parameter .== "PRTP"][1]

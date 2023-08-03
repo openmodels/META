@@ -19,15 +19,15 @@
     T_country_base = Parameter(index=[time, country], unit="degC")
 
     function run_timestep(pp, vv, dd, tt)
-        vv.p_AMOC[tt] = min((1-exp(-pp.b_AMOC*pp.T_AT[tt]))*pp.f_AMOC[tt], 1)
-
         if is_first(tt)
+            vv.p_AMOC[tt] = min((1-exp(-pp.b_AMOC*pp.T_AT[tt]))*pp.f_AMOC[tt], 1)
             vv.I_AMOC[tt] = pp.uniforms[tt] < vv.p_AMOC[tt]
 
             for cc in dd.country
                 vv.deltaT_country_AMOC[tt, cc] = vv.I_AMOC[tt] ? pp.max_deltaT_country_AMOC[cc] / pp.Delta_AMOC : 0
             end
         else
+            vv.p_AMOC[tt] = min(((1-exp(-pp.b_AMOC*pp.T_AT[tt]))-(1-exp(-pp.b_AMOC*pp.T_AT[tt-1])))*pp.f_AMOC[tt], 1)
             vv.I_AMOC[tt] = vv.I_AMOC[tt-1] || (pp.uniforms[tt] < vv.p_AMOC[tt])
 
             for cc in dd.country
@@ -58,9 +58,10 @@ function addAMOC(model, calibration; before=nothing, after=nothing)
 
     params = CSV.read("../data/AMOCparams.csv", DataFrame)
 
-    amoc = add_comp!(model, AMOC, before=before, after=after)
+    amoc = add_comp!(model, AMOC, first=2010, before=before, after=after)
     amoc[:b_AMOC] = b_AMOC_calibs[calibration]
-    amoc[:max_deltaT_country_AMOC] = params[!, calibration]
+
+    amoc[:max_deltaT_country_AMOC] = [(iso ∈ params."Country code" ? params[params."Country code" .== iso, calibration][1] : 0.0) for iso in dim_keys(model, :country)]
 
     amoc[:f_AMOC] = ones(dim_count(model, :time))
 

@@ -2,6 +2,9 @@ include("../lib/gdppc.jl")
 include("../lib/damages.jl")
 include("../lib/saverate.jl")
 
+# Must match line in basemodel.jl
+isos = CSV.read("../data/pattern-scaling_new.csv", DataFrame).Country
+
 @defcomp Consumption begin
     # Variables
     gdppc_region = Variable(index=[time, region], unit="2010 USD PPP")
@@ -13,6 +16,9 @@ include("../lib/saverate.jl")
     conspc_preadj = Variable(index=[time, country], unit="2010 USD PPP") # previous year's
     conspc = Variable(index=[time, country], unit="2010 USD PPP")
     baseline_consumption_percap_percountry = Variable(index = [time, country], unit = "2010 USD PPP") # Counterfactual consumption per cap per country from SSPs
+
+    # Caches
+    country2region = Variable{Int64}(index=[country]) # gives region index
 
     # Parameters
     ssp = Parameter{String}()
@@ -27,11 +33,8 @@ include("../lib/saverate.jl")
     saverate = Parameter(index=[country])
 
     # Based on damage specification
-    seeds = Parameter{Int64}(index=[country])
-    beta1 = Parameter(index=[country], unit="1/degC")
-    beta2 = Parameter(index=[country], unit="1/degC^2")
-
-    T_country_1990 = Parameter(index=[country], unit="degC")
+    beta1 = Parameter(unit="1/degC")
+    beta2 = Parameter(unit="1/degC^2")
 
     slrdamageconfig = Parameter{String}()
     slruniforms = Parameter(index=[country]) # only used for MC mode
@@ -47,27 +50,15 @@ include("../lib/saverate.jl")
     SLR = Parameter(index=[time], unit="m")
 
     function init(pp, vv, dd)
-        isos = dim_keys(model, :country)
-
-        for cc in dd.country
-            if pp.seeds[cc] != 0
-                betaboths = getbhmbetas(isos[cc], "distribution", pp.seeds[cc])
-                pp.beta1[cc] = betaboths[1]
-                pp.beta2[cc] = betaboths[2]
-            end
-        end
-
         if pp.slrdamageconfig == "distribution"
             pp.slrcoeff = [getslrcoeff_distribution(isos[cc], slrdamage, pp.slruniforms[cc]) for cc in 1:length(isos)]
         end
     end
 
     function run_timestep(pp, vv, dd, tt)
-        isos = dim_keys(model, :country)
-
         if is_first(tt)
             for rr in dd.region
-                vv.gdppc_region[tt, rr] = getgdppc_ssp(dim_keys(model, :region)[rr], pp.ssp, 2010)
+                vv.gdppc_region[tt, rr] = getgdppc_ssp(unique(gdps_ssp.REGION_SHORT)[rr], pp.ssp, 2010)
                 if ismissing(vv.gdppc_region[tt, rr])
                     vv.gdppc_region[tt, rr] = 0
                 end
@@ -90,10 +81,13 @@ include("../lib/saverate.jl")
                 end
 
                 vv.conspc_preadj[tt, cc] = (1-pp.saverate[cc])*pp.gdppc_2009[cc]
+
+                region = getregion(isos[cc])
+                vv.country2region[cc] = (ismissing(region) ? 0 : findfirst(unique(gdps_ssp.REGION_SHORT) .== region))
             end
         else
             for rr in dd.region
-                vv.gdppc_region[tt, rr] = getgdppc_ssp(dim_keys(model, :region)[rr], pp.ssp, gettime(tt))
+                vv.gdppc_region[tt, rr] = getgdppc_ssp(unique(gdps_ssp.REGION_SHORT)[rr], pp.ssp, gettime(tt))
                 vv.gdppc_ratio_region[tt, rr] = vv.gdppc_region[tt, rr] / vv.gdppc_region[TimestepIndex(1), rr]
                 if gettime(tt) <= 2100
                     vv.gdppc_growth_region[tt, rr] = vv.gdppc_ratio_region[tt, rr] / vv.gdppc_ratio_region[tt-1, rr] - 1
@@ -103,11 +97,10 @@ include("../lib/saverate.jl")
             end
 
             for cc in dd.country
-                region = getregion(isos[cc])
-                if ismissing(region)
+                rr = vv.country2region[cc]
+                if rr == 0
                     growth = 0
                 else
-                    rr = findfirst(dim_keys(model, :region) .== region)
                     growth = vv.gdppc_growth_region[tt, rr]
                 end
 
@@ -123,7 +116,7 @@ include("../lib/saverate.jl")
         end
 
         for cc in dd.country
-            vv.conspc[tt, cc] = vv.conspc_preadj[tt, cc]*(1+(vv.gdppc_growth[tt, cc]-pp.beta1[cc]*(pp.T_country[tt, cc]-pp.T_country_1990[cc])-pp.beta2[cc]*(pp.T_country[tt, cc]-pp.T_country_1990[cc])^2))*(1-pp.SLR[tt]*pp.slrcoeff[cc])*(1 - pp.extradamage[tt, cc])
+            vv.conspc[tt, cc] = vv.conspc_preadj[tt, cc]*(1+(vv.gdppc_growth[tt, cc]+pp.beta1*(pp.T_country[tt, cc]-pp.T_country[TimestepIndex(1), cc])+pp.beta2*(pp.T_country[tt, cc]^2-pp.T_country[TimestepIndex(1), cc]^2)))*(1-pp.SLR[tt]*pp.slrcoeff[cc])*(1 - pp.extradamage[tt, cc])
 
             # Compute baseline consumption per capita without damages
             vv.baseline_consumption_percap_percountry[tt,cc] = (1-pp.saverate[cc])*vv.gdppc[tt, cc]
@@ -143,7 +136,7 @@ function addConsumption(model, tdamage, slrdamage, ssp)
         throw(ArgumentError("Unknown Consumption slrdamage"))
     end
 
-    cons = add_comp!(model, Consumption)
+    cons = add_comp!(model, Consumption, first=2010)
 
     cons[:ssp] = ssp
 
@@ -151,22 +144,12 @@ function addConsumption(model, tdamage, slrdamage, ssp)
     cons[:convergerate_gdppc] = sspextend[sspextend.SSP .== ssp, "Convergence rate"][1]
     cons[:decayrate_gdppc] = sspextend[sspextend.SSP .== ssp, "Decay rate"][1]
 
-    cons[:popweights_region] = [getpopweight_ssp(region, ssp) for region in dim_keys(model, :region)]
-
-    isos = dim_keys(model, :country)
+    cons[:popweights_region] = [getpopweight_ssp(region, ssp) for region in unique(gdps_ssp.REGION_SHORT)]
 
     if tdamage == "none"
-        cons[:seeds] = [0 for iso in isos]
-        cons[:beta1] = zeros(length(isos))
-        cons[:beta2] = zeros(length(isos))
-    elseif tdamage != "distribution"
-        betaboths = [getbhmbetas(iso, tdamage) for iso in isos]
-        cons[:seeds] = [0 for iso in isos]
-        cons[:beta1] = [betaboth[1] for betaboth in betaboths]
-        cons[:beta2] = [betaboth[2] for betaboth in betaboths]
+        cons[:beta1] = cons[:beta2] = 0.
     else
-        cons[:beta1] = zeros(length(isos))
-        cons[:beta2] = zeros(length(isos))
+        cons[:beta1], cons[:beta2] = getbhmbetas(tdamage)
     end
 
     if slrdamage == "none"
@@ -187,7 +170,6 @@ function addConsumption(model, tdamage, slrdamage, ssp)
     gdppc_2009[ismissing.(gdppc_2009)] .= 0
     gdppc_2009[isos .== "DJI"] .= 2700
     cons[:gdppc_2009] = gdppc_2009
-    cons[:T_country_1990] = [gettemp1990(iso) for iso in isos]
     cons[:extradamage] = zeros(dim_count(model, :time), dim_count(model, :country))
 
     cons

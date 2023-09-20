@@ -123,12 +123,6 @@ end
 function presim_full(trials::Int64, pcf_calib::String, amazon_calib::String, gis_calib::String, wais_calib::String, saf_calib::String, ais_dist::Bool, persist_dist::Bool, emuc_dist::Bool, prtp_dist::Bool)
     draws = presim_base(trials, persist_dist, emuc_dist, prtp_dist)
 
-    results
-end
-
-function getsim(trials::Int64, pcf_calib::String, amazon_calib::String, gis_calib::String, wais_calib::String, saf_calib::String, persist_dist::Bool, emuc_dist::Bool, prtp_dist::Bool)
-    draws = getsim_base(trials, persist_dist, emuc_dist, prtp_dist)
-
     # Interactions
 
     dists = allinteractrates((symbol, ratemu, ratese) -> Normal(ratemu, ratese))

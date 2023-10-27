@@ -8,8 +8,8 @@
     T_AT = Parameter(index=[time], unit="degC")
 
     calib_temp = Parameter(default=2.5, unit="degC") # WTP reference temp
-    calib_loss = Parameter(default=0.02) # WTP loss @ ref. temp
-    wtp_25k = Parameter(default=-log(0.01) / 25) # WTP 1% of GDP to avoid ref. temp at $25k pc
+    calib_loss = Parameter(default=0.038) # WTP loss @ ref. temp
+    wtp_25k = Parameter(default=0.1429636) # Calibrated so WTP 1% of GDP to avoid ref. temp at $25k pc
     temp_2010 = Parameter(default=0.413, unit="degC") # Temperature inc. in 2000
 
     function run_timestep(pp, vv, dd, tt)

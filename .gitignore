@@ -88,4 +88,12 @@ src/Result_Tests.jl
 src/TS playfile.jl
 src/TS_playfile.jl
 src/Result_Tests.jl
-src/ResultsFinal_October 2023.jl
+src/scch4 - Copy.jl
+data/utilityparams.csv
+data/utilityparams.csv
+results/analysis.csv
+results/bge-CP-Base-SSP2-NoTPs-high.csv
+results/bytime-CP-Base-SSP2-NoTPs-high.csv
+results/bytimexcountry-CP-Base-SSP2-NoTPs-high.csv
+results/bytimexcountry2-CP-Base-SSP2-NoTPs-high.csv
+results/sccs-CP-Base-SSP2-NoTPs-high_earlier.csv

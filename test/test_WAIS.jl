@@ -7,10 +7,10 @@ benchmark = CSV.read("../data/benchmark/WAIS.csv", DataFrame) #Generated with RC
 ## Set up the model
 
 model = test_model()
-WAISmodel = addWAISmodel(model, "Value")
+WAISmodel = addWAISmodel(model)
 
 #Add temperature time series from benchmark file
-WAISmodel[:T_AT] = benchmark."Temperature" 
+WAISmodel[:T_AT] = benchmark."Temperature"
 #For the non-Monte Carlo test, only compare cumulative WAIS SLR given a sequence of WAIS indicator function realizations.
 WAISmodel[:uniforms] = 1 .-benchmark."Binomial draw"
 WAISmodel[:waisrate] = 0.027112639

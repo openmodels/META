@@ -316,7 +316,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                         allscc.pulse_year .= yy
                         allsccresults = vcat(allsccresults, allscc)
 
-                        allscch4 = simdataframe(model, subscch4, :other, :scco2)
+                        allscch4 = simdataframe(model, subscch4, :other, :scch4)
                         scch4 = allscch4.scch4[allscch4.country .== "global"]
                         allscch4.pulse_year .= yy
                         allscch4results = vcat(allscch4results, allscch4)

@@ -25,6 +25,7 @@ include("../src/scch4.jl")
 include("../src/scc.jl")
 include("../src/bge.jl")
 
+calc_nationals = true
 
 # Scenarios
 for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
@@ -103,7 +104,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                 Random.seed!(26052023)
 
                 ### Update discounting parameters
-                # Done directly in 'utilityparams.csv', since no need to change that later. 
+                # Done directly in 'utilityparams.csv', since no need to change that later.
                 # EMUC=1.01 [CURRENTLY 1.5 FOR TESTING], PRTP=0.005
 
                 ### Run the model so we can run scripts
@@ -184,16 +185,18 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                 end
                 CSV.write("../results/bytime-$x$z-$y-$TP-$persistence.csv", df[(df.time .>= 2010) .& (df.time .<= 2100), :])
 
-                df = simdataframe(model, results, :TotalDamages, :total_damages_percap_peryear_percent) 
+                df = simdataframe(model, results, :TotalDamages, :total_damages_percap_peryear_percent)
                 CSV.write("../results/bytimexcountry-$x$z-$y-$TP-$persistence.csv", df[(df.time .>= 2010) .& (df.time .<= 2100), :])
 
                 # Export country-level temperatures
-                df = simdataframe(model, results, :PatternScaling, :T_country) 
+                df = simdataframe(model, results, :PatternScaling, :T_country)
                 CSV.write("../results/bytimexcountry2-$x$z-$y-$TP-$persistence.csv", df[(df.time .>= 2010) .& (df.time .<= 2100), :])
 
                 ### Calculate the SC-CO2 in MC mode
                 ## Miniloop over pulse year
                 sccresults = DataFrame(pulse_year=Int64[], scc=Float64[], scch4=Float64[])
+                allsccresults = DataFrame(pulse_year=Int64[], country=Float64[], scco2=Float64[], trialnum=Float64[])
+                allscch4results = DataFrame(pulse_year=Int64[], country=Float64[], scch4=Float64[], trialnum=Float64[])
                 for yy in 2020:10:2100
                     if TP == "TPs"
                         subscc = calculate_scc_full_mc(model,
@@ -212,9 +215,9 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                                        false, # prtp
                                                        yy, # pulse year
                                                        10.0, # pulse size
-                                                       1.5) # EMUC
+                                                       1.5; calc_nationals=calc_nationals) # EMUC
 
-                        subscch4 = calculate_scch4_full_mc(model, 
+                        subscch4 = calculate_scch4_full_mc(model,
                                                         50, # MC reps
                                                         "Fit of Hope and Schaefer (2016)", # PCF
                                                         "Cai et al. central value", # AMAZ
@@ -230,7 +233,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                                         false, # prtp
                                                         yy, # pulse year
                                                         0.06, # pulse size
-                                                        1.5) # EMUC
+                                                        1.5; calc_nationals=calc_nationals) # EMUC
                     elseif TP=="NoOMH"
                         subscc = calculate_scc_full_mc(model,
                                                         50, # MC reps
@@ -248,7 +251,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                                         false, # prtp
                                                         yy, # pulse year
                                                         10.0, # pulse size
-                                                        1.5) # EMUC
+                                                        1.5; calc_nationals=calc_nationals) # EMUC
 
                         subscch4 = calculate_scch4_full_mc(model,
                                                         50, # MC reps
@@ -266,8 +269,8 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                                         false, # prtp
                                                         yy, # pulse year
                                                         0.06, # pulse size
-                                                        1.5) # EMUC
-                    
+                                                        1.5; calc_nationals=calc_nationals) # EMUC
+
                     else
                         subscc = calculate_scc_full_mc(model,
                                                        50, # MC reps
@@ -285,7 +288,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                                        false, # prtp
                                                        yy, # pulse year
                                                        10.0, # pulse size
-                                                       1.5) # EMUC
+                                                       1.5; calc_nationals=calc_nationals) # EMUC
 
                         subscch4 = calculate_scch4_full_mc(model,
                                                            50, # MC reps
@@ -303,12 +306,25 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                                            false, # prtp
                                                            yy, # pulse year
                                                            0.06, # pulse size
-                                                           1.5) # EMUC
+                                                           1.5; calc_nationals=calc_nationals) # EMUC
                     end
 
                     #Ensure results write correctly even if an MC draw crashes
-                    scc=subscc[:other]
-                    scch4=subscch4[:other]
+                    if calc_nationals
+                        allscc = simdataframe(model, subscc, :other, :scco2)
+                        scc = allscc.scco2[allscc.country .== "global"]
+                        allscc.pulse_year .= yy
+                        allsccresults = vcat(allsccresults, allscc)
+
+                        allscch4 = simdataframe(model, subscch4, :other, :scco2)
+                        scch4 = allscch4.scch4[allscch4.country .== "global"]
+                        allscch4.pulse_year .= yy
+                        allscch4results = vcat(allscch4results, allscch4)
+                    else
+                        scc=subscc[:other]
+                        scch4=subscch4[:other]
+                    end
+
                     if length(scc) < length(scch4)
                         scc = [scc; fill(missing, length(scch4) - length(scc))]
                     elseif length(scch4) < length(scc)
@@ -319,6 +335,10 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                 end
 
                 CSV.write("../results/sccs-$x$z-$y-$TP-$persistence.csv", sccresults)
+                if calc_nationals
+                    CSV.write("../results/natsccs-$x$z-$y-$TP-$persistence.csv", allsccresults)
+                    CSV.write("../results/natscch4s-$x$z-$y-$TP-$persistence.csv", allscch4results)
+                end
             end
         end
     end

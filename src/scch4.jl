@@ -140,4 +140,4 @@ if false
                                      2020, 0.06, 1.5)
     df = simdataframe(model, scch4s, :other, :*)
     ## [mean(scch4s[:other]), std(scch4s[:other]), median(scch4s[:other])] # This line only works if calc_nationals = false
-=#
+end

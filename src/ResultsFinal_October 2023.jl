@@ -13,7 +13,6 @@ Code to use in pkg mode: add https://github.com/FrankErrickson/MimiFAIRv2.jl#d07
 
 #=
 OPEN ISSUES
--Adjust SC-CH4 data export so I can correctly grab both global and national SC-CH4s: what data structure and object does META currently create?
 -Make sure META runs with EMUC=1.02 or so
 =#
 
@@ -105,7 +104,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
 
                 ### Update discounting parameters
                 # Done directly in 'utilityparams.csv', since no need to change that later.
-                # EMUC=1.01 [CURRENTLY 1.5 FOR TESTING], PRTP=0.005
+                # EMUC=1.01 [CURRENTLY 1.02 FOR TESTING. Runs with 1.5], PRTP=0.005
 
                 ### Run the model so we can run scripts
                 run(model)

@@ -25,10 +25,10 @@ using Mimi
         total_damages_global_peryear              = Variable(index = [time], unit = "2010 USD PPP")  # Undiscounted total damages per year
         total_damages_global_peryear_percent      = Variable(index = [time]) # Undiscounted total damages per year in % of baseline consumption
         total_damages_global_cumulative           = Variable(index = [time], unit = "2010 USD PPP") # Undiscounted total damages through 2200
-        utility_equivalent_change                 = Variable(index = [time, country]) # Welfare-equivalent change from climate damages for change in consumption per capita due to climate damages per country 
+        utility_equivalent_change                 = Variable(index = [time, country]) # Welfare-equivalent change from climate damages for change in consumption per capita due to climate damages per country
         utility_equivalent_change_global          = Variable(index = [time]) # Welfare-equivalent change from climate damages population-weighted (accounts for equity weighting through utility function)
         total_damages_equiv_conspc_equity         = Variable(index = [time]) # Per period consumption-equivalent for equity-weighted climate damages
-        
+
 
         function run_timestep(pp, vv, dd, tt)
                 #Define market damages per cap per year
@@ -36,13 +36,14 @@ using Mimi
                         vv.market_damages_percap_peryear[tt,cc] = pp.baseline_consumption_percap_percountry[tt,cc] - pp.postdamage_consumption_percap_percountry[tt,cc]
                         vv.market_damages_percap_peryear_percent[tt,cc] = vv.market_damages_percap_peryear[tt,cc]/pp.baseline_consumption_percap_percountry[tt,cc]*100
                         #Utility equivalent change per country per person
+
                         vv.utility_equivalent_change[tt, cc] = ((1 / (1 - pp.EMUC)*(max(pp.baseline_consumption_percap_percountry[tt, cc],1)*pp.lossfactor[tt, cc])^(1 - pp.EMUC))) - ((1 / (1 - pp.EMUC)*(max(pp.postdamage_consumption_percap_percountry[tt,cc],1)*pp.lossfactor[tt, cc])^(1 - pp.EMUC)))
                 end
-        
+
                 # Undiscounted damages
                 vv.total_damages_percap_peryear[tt, :] = vv.market_damages_percap_peryear[tt, :] # This is not really needed, but perhaps good in case we add new damages channels at some point.
                 vv.total_damages_percap_peryear_percent[tt, :] = vv.market_damages_percap_peryear_percent[tt, :]
-              
+
                 vv.total_damages_global_peryear[tt] = 0
                 vv.population_global[tt] = 0
                 vv.total_damages_global_peryear_percent[tt] = 0
@@ -63,23 +64,23 @@ using Mimi
                 end
 
                 for cc in dd.country
-                        
+
                         #The variable below computes population-weighted percentage-change per year
                         vv.population_weights[tt, cc] = pp.population[tt, cc] / vv.population_global[tt]
                         vv.total_damages_global_peryear_percent[tt] += vv.total_damages_percap_peryear_percent[tt, cc] * vv.population_weights[tt, cc]
                         vv.utility_equivalent_change_global[tt] += vv.utility_equivalent_change[tt,cc] * vv.population_weights[tt, cc]
                         #Global consumption per capita pop-weighted
                         vv.global_conspc_counterfactual[tt] += pp.baseline_consumption_percap_percountry[tt,cc]*vv.population_weights[tt, cc]
-                
+
                 end
-                
+
                 #Transform equity-weighted number in consumption equivalent in % change
                 vv.lossfactor_global[tt] = 0
                 for cc in dd.country
                         vv.lossfactor_global[tt] += pp.lossfactor[tt, cc]*(pp.population[tt, cc]/vv.population_global[tt])
                 end
-                vv.total_damages_equiv_conspc_equity[tt] = (vv.global_conspc_counterfactual[tt]-((vv.utility_equivalent_change_global[tt]*vv.lossfactor_global[tt]*(1 - pp.EMUC)) ^ (1 / (1 - pp.EMUC))))/vv.global_conspc_counterfactual[tt]
-                
+                vv.total_damages_equiv_conspc_equity[tt] = (vv.global_conspc_counterfactual[tt]-((vv.utility_equivalent_change_global[tt]*vv.lossfactor_global[tt]*(1 - pp.EMUC)) ^ round(Int, 1 / (1 - pp.EMUC))))/vv.global_conspc_counterfactual[tt]
+
                 if is_first(tt)
                         vv.total_damages_global_cumulative[tt] = vv.total_damages_global_peryear[tt]
                         for cc in dd.country
@@ -91,7 +92,7 @@ using Mimi
                                 vv.total_damages_cumulative[tt, cc] = vv.total_damages_cumulative[tt-1, cc] + vv.total_damages_peryear[tt,cc] # Need to sum country-level total damages for country-level results
                         end
                 end
-                
+
         end
 
 end
@@ -105,6 +106,6 @@ function addTotalDamages(model)
         damages[:EMUC] = params.Value[params.Parameter .== "EMUC"][1]
         damages[:lossfactor] = reshape(ones(dim_count(model, :time) * dim_count(model, :country)),
         dim_count(model, :time), dim_count(model, :country))
-        
+
         damages
 end

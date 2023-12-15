@@ -8,7 +8,7 @@ using MimiFAIRv2
 include("../src/lib/presets.jl")
 include("../src/lib/MimiFAIR_monte_carlo.jl")
 
-import Mimi.ModelInstance
+import Mimi.ModelInstance, Mimi.has_comp
 
 aisgcms = CSV.read("../data/Basal_melt_models.csv", DataFrame)
 aisresponse_EAIS = CSV.read("../data/Response functions - EAIS.csv", DataFrame)
@@ -102,14 +102,17 @@ function getsim_base(inst::Union{ModelInstance, MarginalInstance}, draws::DataFr
 end
 
 function sim_full(model::Union{Model, MarginalModel}, trials::Int64, pcf_calib::String, amazon_calib::String, gis_calib::String, wais_calib::String, saf_calib::String, ais_dist::Bool, ism_used::Bool, omh_used::Bool, amoc_used::Bool, persist_dist::Bool, emuc_dist::Bool, prtp_dist::Bool; save_rvs::Bool=true, setsim::Function=setsim_full, getsim::Function=getsim_full)
-    if wais_calib == "Distribution"
-        try
-            set_param!(model, :WAISmodel, :waisrate, :WAISmodel_waisrate, 0.0033) # set up global connection
-        catch
+    draws = presim_full(trials, pcf_calib, amazon_calib, gis_calib, wais_calib, saf_calib, ais_dist, persist_dist, emuc_dist, prtp_dist)
+
+    ## Ensure that all draws variables have global connections, if we included their components
+    for jj in 2:ncol(draws)
+        if !has_parameter(model.md, Symbol(names(draws)[jj]))
+            component = split(names(draws)[jj], "_")[1]
+            if has_comp(model.md, Symbol(component))
+                set_param!(model, Symbol(component), Symbol(names(draws)[jj][length(component)+2:end]), Symbol(names(draws)[jj]), draws[1, jj])
+            end
         end
     end
-
-    draws = presim_full(trials, pcf_calib, amazon_calib, gis_calib, wais_calib, saf_calib, ais_dist, persist_dist, emuc_dist, prtp_dist)
 
     sim = create_fair_monte_carlo(model, trials; end_year=2200,
                                   data_dir=joinpath(dirname(pathof(MimiFAIRv2)), "..", "data",
@@ -349,12 +352,3 @@ function simdataframe(model::Union{Model, MarginalModel}, results::Vector{Dict{S
     end
     df
 end
-
-# function myupdate_param!(inst, unique_name::Symbol, value)
-#     if has_parameter(inst.md, unique_name)
-#         update_param!(inst, unique_name, value)
-#     else
-#         parts = split(String(unique_name), "_")
-#         set_param!(inst, Symbol(parts[1]), Symbol(join(parts[2:end], "_")), unique_name, value)
-#     end
-# end

@@ -53,6 +53,7 @@
 
     T_AT_2010 = Parameter(default=0.854, unit="degC")
     f_NINO = Parameter(index=[time])
+    IND_index = Parameter{Int64}()
 
     function run_timestep(pp, vv, dd, tt)
 
@@ -128,7 +129,7 @@
         end
 
         vv.extradamage[tt, :] .= 0
-        vv.extradamage[tt, convert(Vector{Bool}, dim_keys(model, :country) .== "IND")] .= vv.D_ISM[tt]
+        vv.extradamage[tt, pp.IND_index] = vv.D_ISM[tt]
     end
 
 end
@@ -143,7 +144,7 @@ function addISMModel(model, ismcalib; before=nothing, after=nothing)
 
     ismmodel = add_comp!(model, ISMModel, first=2010, before=before, after=after)
     ismmodel[:f_NINO] = ones(dim_count(model, :time))
-    ismmodel
+    ismmodel[:IND_index] = findfirst(dim_keys(model, :country) .== "IND")
 
     ismmodel
 

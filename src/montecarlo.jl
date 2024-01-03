@@ -106,9 +106,14 @@ function sim_full(model::Union{Model, MarginalModel}, trials::Int64, pcf_calib::
 
     ## Ensure that all draws variables have global connections, if we included their components
     for jj in 2:ncol(draws)
-        if !has_parameter(model.md, Symbol(names(draws)[jj]))
+        if model isa Model && !has_parameter(model.md, Symbol(names(draws)[jj]))
             component = split(names(draws)[jj], "_")[1]
             if has_comp(model.md, Symbol(component))
+                set_param!(model, Symbol(component), Symbol(names(draws)[jj][length(component)+2:end]), Symbol(names(draws)[jj]), draws[1, jj])
+            end
+        elseif model isa Model && !has_parameter(model.base.md, Symbol(names(draws)[jj]))
+            component = split(names(draws)[jj], "_")[1]
+            if has_comp(model.base.md, Symbol(component))
                 set_param!(model, Symbol(component), Symbol(names(draws)[jj][length(component)+2:end]), Symbol(names(draws)[jj]), draws[1, jj])
             end
         end
@@ -118,7 +123,7 @@ function sim_full(model::Union{Model, MarginalModel}, trials::Int64, pcf_calib::
                                   data_dir=joinpath(dirname(pathof(MimiFAIRv2)), "..", "data",
                                                     "large_constrained_parameter_files"),
                                   delete_downloaded_data=false,
-                                  other_mc_set=(inst, ii) -> setsim(inst, draws, ii, ism_used, omh_used, amoc_used, amazon_calib, wais_calib, ais_dist),
+                                  other_mc_set=(inst, ii) -> setsim(inst, draws, ii, ism_used, omh_used, amoc_used, amazon_calib, wais_calib, ais_dist, saf_calib),
                                   other_mc_get=(inst) -> getsim(inst, draws, save_rvs=save_rvs))
     sim()
 end
@@ -214,7 +219,7 @@ function presim_full(trials::Int64, pcf_calib::String, amazon_calib::String, gis
     draws
 end
 
-function setsim_full(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame, ii::Int64, ism_used::Bool, omh_used::Bool, amoc_used::Bool, amazon_calib::String, wais_calib::String, ais_dist::Bool)
+function setsim_full(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame, ii::Int64, ism_used::Bool, omh_used::Bool, amoc_used::Bool, amazon_calib::String, wais_calib::String, ais_dist::Bool, saf_calib::String)
     setsim_base(inst, draws, ii)
 
     # AIS
@@ -243,9 +248,11 @@ function setsim_full(inst::Union{ModelInstance, MarginalInstance}, draws::DataFr
 
     # SAF
 
-    # Assume default F2x to get ECS
-    FAIR_ECS = (sum(inst[:temperature, :q]))*3.759
-    update_param!(inst, :SAFModel_ECS, FAIR_ECS) # SAFModel.ECS
+    if saf_calib != "none"
+        # Assume default F2x to get ECS
+        FAIR_ECS = (sum(inst[:temperature, :q]))*3.759
+        update_param!(inst, :SAFModel_ECS, FAIR_ECS) # SAFModel.ECS
+    end
 
     # ISM
 

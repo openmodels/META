@@ -167,6 +167,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                        save_rvs=true,
                                        getsim=get_nonscc_results)
                 end
+                run(model) # model is overwritten in some cases
 
                 bgeresults = DataFrame(mc=Int64[], country=String[], bge=Float64[])
                 for mc in 1:length(results[:other])

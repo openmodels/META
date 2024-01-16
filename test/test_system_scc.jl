@@ -14,7 +14,6 @@ sccs = calculate_scc_full_mc(model, 10,
                              true, # ism_used
                              true, # omh_used
                              true, # amoc_used
-			     true, # saf_used
                              false, # persist
                              false, # emuc
                              false, # prtp

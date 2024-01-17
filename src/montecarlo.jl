@@ -10,12 +10,6 @@ include("../src/lib/MimiFAIR_monte_carlo.jl")
 
 import Mimi.ModelInstance, Mimi.has_comp
 
-has_parameter(m::Model, name::Symbol) = has_parameter(m.md, name)
-has_parameter(m::MarginalModel, name::Symbol) = has_parameter(m.base.md, name)
-has_parameter(mi::ModelInstance, name::Symbol) = has_parameter(mi.md, name)
-has_parameter(mi::MarginalInstance, name::Symbol) = has_parameter(mi.base.md, name)
-has_comp(m::MarginalModel, name::Symbol) = has_comp(m.base.md, name)
-
 aisgcms = CSV.read("../data/Basal_melt_models.csv", DataFrame)
 aisresponse_EAIS = CSV.read("../data/Response functions - EAIS.csv", DataFrame)
 aisresponse_Ross = CSV.read("../data/Response functions - Ross.csv", DataFrame)
@@ -69,7 +63,7 @@ end
 
 function setsim_base(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame, ii::Int64)
     for jj in 2:ncol(draws)
-        if has_parameter(inst, Symbol(names(draws)[jj]))
+        if has_parameter(model.md, Symbol(names(draws)[jj]))
             update_param!(inst, Symbol(names(draws)[jj]), draws[ii, jj])
         end
     end
@@ -79,7 +73,7 @@ function setsim_base(inst::Union{ModelInstance, MarginalInstance}, draws::DataFr
     update_param!(inst, :Consumption_beta1, beta1)
     update_param!(inst, :Consumption_beta2, beta2)
 
-    update_param!(inst, :Consumption_slruniforms, rand(Uniform(0, 1), dim_count(inst, :country)))
+    update_param!(inst, :Consumption_slruniforms, rand(Uniform(0, 1), dim_count(model, :country)))
 end
 
 function getsim_base(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame; save_rvs::Bool=true)
@@ -112,9 +106,9 @@ function sim_full(model::Union{Model, MarginalModel}, trials::Int64, pcf_calib::
 
     ## Ensure that all draws variables have global connections, if we included their components
     for jj in 2:ncol(draws)
-        if !has_parameter(model, Symbol(names(draws)[jj]))
+        if !has_parameter(model.md, Symbol(names(draws)[jj]))
             component = split(names(draws)[jj], "_")[1]
-            if has_comp(model, Symbol(component))
+            if has_comp(model.md, Symbol(component))
                 set_param!(model, Symbol(component), Symbol(names(draws)[jj][length(component)+2:end]), Symbol(names(draws)[jj]), draws[1, jj])
             end
         end

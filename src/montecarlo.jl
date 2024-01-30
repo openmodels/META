@@ -24,7 +24,7 @@ function make_lognormal(riskmu, risksd)
 end
 
 # Master function for base model (uses helpers below)
-function sim_base(model::Union{Model, MarginalModel}, trials::Int64, persist_dist::Bool, emuc_dist::Bool, prtp_dist::Bool; save_rvs::Bool=true, setsim::Function=setsim_base, getsim::Function=getsim_base)
+function sim_base(model::Union{Model, MarginalModel}, trials::Int64, persist_dist::Bool, emuc_dist::Bool, prtp_dist::Bool; save_rvs::Bool=true, setsim::Function=setsim_base, getsim::Function=getsim_base, throwex::Bool=false)
     draws = presim_base(trials, persist_dist, emuc_dist, prtp_dist)
 
     sim = create_fair_monte_carlo(model, trials; end_year=2200,
@@ -32,7 +32,7 @@ function sim_base(model::Union{Model, MarginalModel}, trials::Int64, persist_dis
                                                     "large_constrained_parameter_files"),
                                   delete_downloaded_data=false,
                                   other_mc_set=(inst, ii) -> setsim(inst, draws, ii),
-                                  other_mc_get=(inst) -> getsim(inst, draws, save_rvs=save_rvs))
+                                  other_mc_get=(inst) -> getsim(inst, draws, save_rvs=save_rvs), throwex=throwex)
     sim()
 end
 
@@ -81,14 +81,14 @@ function getsim_base(inst::Union{ModelInstance, MarginalInstance}, draws::DataFr
     mcres = Dict{Symbol, Any}()
 
     ##Geophysical results
-    mcres[:SLRModel_SLR] = copy(inst[:SLRModel, :SLR])
-    mcres[:PatternScaling_T_country] = copy(inst[:PatternScaling, :T_country])
-    mcres[:TemperatureConverter_T_AT] = copy(inst[:TemperatureConverter, :T_AT])
+    mcres[:SLRModel_SLR] = inst[:SLRModel, :SLR]
+    mcres[:PatternScaling_T_country] = inst[:PatternScaling, :T_country]
+    mcres[:TemperatureConverter_T_AT] = inst[:TemperatureConverter, :T_AT]
 
     ##Economic results
-    mcres[:TotalDamages_total_damages_global_peryear_percent] = copy(inst[:TotalDamages, :total_damages_global_peryear_percent]) #Population-weighted global change in consumption due to climate damages (in % of counterfactual consumption per capita)
-    # mcres[:total_damages_equiv_conspc_equity] = copy(inst[:TotalDamages, :total_damages_equiv_conspc_equity]) #Equity-weighted global equivalent change in consumption due to climate damages (in % of counterfactual consumption per capita)
-    mcres[:TotalDamages_total_damages_percap_peryear_percent] = copy(inst[:TotalDamages, :total_damages_percap_peryear_percent]) #Annual % loss in per capita consumption due to climate damages. All years, can later pick 2030 and 2050 snapshots.
+    mcres[:TotalDamages_total_damages_global_peryear_percent] = inst[:TotalDamages, :total_damages_global_peryear_percent] #Population-weighted global change in consumption due to climate damages (in % of counterfactual consumption per capita)
+    # mcres[:total_damages_equiv_conspc_equity] = inst[:TotalDamages, :total_damages_equiv_conspc_equity] #Equity-weighted global equivalent change in consumption due to climate damages (in % of counterfactual consumption per capita)
+    mcres[:TotalDamages_total_damages_percap_peryear_percent] = inst[:TotalDamages, :total_damages_percap_peryear_percent] #Annual % loss in per capita consumption due to climate damages. All years, can later pick 2030 and 2050 snapshots.
     #BGE, SC-CO2 and SC-CH4 grabbed from post-compile scripts.
 
     ##Store number of MC iteration
@@ -101,7 +101,7 @@ function getsim_base(inst::Union{ModelInstance, MarginalInstance}, draws::DataFr
     mcres
 end
 
-function sim_full(model::Union{Model, MarginalModel}, trials::Int64, pcf_calib::String, amazon_calib::String, gis_calib::String, wais_calib::String, saf_calib::String, ais_dist::Bool, ism_used::Bool, omh_used::Bool, amoc_used::Bool, persist_dist::Bool, emuc_dist::Bool, prtp_dist::Bool; save_rvs::Bool=true, setsim::Function=setsim_full, getsim::Function=getsim_full)
+function sim_full(model::Union{Model, MarginalModel}, trials::Int64, pcf_calib::String, amazon_calib::String, gis_calib::String, wais_calib::String, saf_calib::String, ais_dist::Bool, ism_used::Bool, omh_used::Bool, amoc_used::Bool, persist_dist::Bool, emuc_dist::Bool, prtp_dist::Bool; save_rvs::Bool=true, setsim::Function=setsim_full, getsim::Function=getsim_full, throwex::Bool=false)
     draws = presim_full(trials, pcf_calib, amazon_calib, gis_calib, wais_calib, saf_calib, ais_dist, persist_dist, emuc_dist, prtp_dist)
 
     ## Ensure that all draws variables have global connections, if we included their components
@@ -119,7 +119,7 @@ function sim_full(model::Union{Model, MarginalModel}, trials::Int64, pcf_calib::
                                                     "large_constrained_parameter_files"),
                                   delete_downloaded_data=false,
                                   other_mc_set=(inst, ii) -> setsim(inst, draws, ii, ism_used, omh_used, amoc_used, amazon_calib, wais_calib, ais_dist),
-                                  other_mc_get=(inst) -> getsim(inst, draws, save_rvs=save_rvs))
+                                  other_mc_get=(inst) -> getsim(inst, draws, save_rvs=save_rvs), throwex=throwex)
     sim()
 end
 
@@ -291,13 +291,13 @@ end
 function getsim_full(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame; save_rvs::Bool=true)
     mcres = getsim_base(inst, draws, save_rvs=save_rvs)
     if has_comp(inst, :AMOC)
-        mcres[:I_AMOC] = copy(inst[:AMOC, :I_AMOC])
+        mcres[:I_AMOC] = inst[:AMOC, :I_AMOC]
     end
     if has_comp(inst, :OMH)
-        mcres[:I_OMH] = copy(inst[:OMH, :I_OMH])
+        mcres[:I_OMH] = inst[:OMH, :I_OMH]
     end
     if has_comp(inst, :AmazonDieback)
-        mcres[:I_AMAZ] = copy(inst[:AmazonDieback, :I_AMAZ])
+        mcres[:I_AMAZ] = inst[:AmazonDieback, :I_AMAZ]
     end
 
     mcres

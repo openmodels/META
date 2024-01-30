@@ -54,6 +54,18 @@ run(model)
                     mcres = getsim_full(inst, draws; save_rvs=save_rvs)
                     bgeres = calculate_bge(inst)
                     mcres[:bge] = bgeres
+                    mcres[:GISModel_VGIS] = inst[:GISModel, :VGIS]
+                    #mcres[:WAISmodel_I_WAIS] = inst[:WAISmodel, :I_WAIS]
+                    mcres[:OMH_I_OMH] = inst[:OMH, :I_OMH]
+                    mcres[:ISMModel_mNINO3pt4] = inst[:ISMModel, :mNINO3pt4]
+                    mcres[:AmazonDieback_I_AMAZ] = inst[:AmazonDieback, :I_AMAZ]
+                    mcres[:AMOC_I_AMOC] = inst[:AMOC, :I_AMOC]
+                    mcres[:AISmodel_totalSLR_Ross] = inst[:AISmodel, :totalSLR_Ross]
+                    mcres[:AISmodel_totalSLR_Amundsen] = inst[:AISmodel, :totalSLR_Amundsen]
+                    mcres[:AISmodel_totalSLR_Weddell] = inst[:AISmodel, :totalSLR_Weddell]
+                    mcres[:AISmodel_totalSLR_Peninsula] = inst[:AISmodel, :totalSLR_Peninsula]
+                    mcres[:AISmodel_totalSLR_EAIS] = inst[:AISmodel, :totalSLR_EAIS]
+                    mcres[:PCFModel_PF_extent] = inst[:PCFModel, :PF_extent]
 
                     mcres
                 end
@@ -73,8 +85,8 @@ run(model)
                                        false, # emuc
                                        false; # prtp
                                        save_rvs=true,
-                                       getsim=get_nonscc_results)
-                
+                                       getsim=get_nonscc_results, throwex=true)
+
                 run(model) # model is overwritten in some cases
 
                 #This runs as before
@@ -86,8 +98,8 @@ run(model)
                 -Try different names for GISmodel (gismodel, GIS, gis)
                 -Try to load a different TP component, and grab VGIS from :Interactions
                 =#
-                df = simdataframe(model, results, :Interactions, :VGIS)
-                for (comp, var) in [(:WAISmodel, :I_WAIS), (:OMH, :I_OMH), (:ISMModel, :mNINO3pt4), (:AmazonDieback, :I_AMAZ), (:AMOC, :I_AMOC), (:AISmodel, :totalSLR_Ross), (:AISmodel, :totalSLR_Amundsen), (:AISmodel, :totalSLR_Weddell), (:AISmodel, :totalSLR_Peninsula), (:AISmodel, :totalSLR_EAIS), (:PCFModel, :PF_extent)]
+                df = simdataframe(model, results, :GISModel, :VGIS)
+                for (comp, var) in [(:OMH, :I_OMH), (:ISMModel, :mNINO3pt4), (:AmazonDieback, :I_AMAZ), (:AMOC, :I_AMOC), (:AISmodel, :totalSLR_Ross), (:AISmodel, :totalSLR_Amundsen), (:AISmodel, :totalSLR_Weddell), (:AISmodel, :totalSLR_Peninsula), (:AISmodel, :totalSLR_EAIS), (:PCFModel, :PF_extent)]
                     subdf = simdataframe(model, results, comp, var)
                     df[!, names(subdf)[2]] = subdf[!, 2]
                 end

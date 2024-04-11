@@ -70,7 +70,7 @@ function calculate_scc_base_mc(model::Model, trials::Int64, persist_dist::Bool, 
         inst.modified[:CO2Converter, :co2_extra][pulse_index] = pulse_size
     end
 
-    function getsim_base_scc(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame; save_rvs::Bool=true)
+    function getsim_base_scc(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame, ii::Int64; save_rvs::Bool=true)
         globalscc = calculate_scc_marginal(inst, pulse_year, emuc)
         if calc_nationals
             nationalscc = calculate_scc_marginal_national(inst, pulse_year, emuc)
@@ -95,7 +95,7 @@ if false
     ## [mean(sccs[:other]), std(sccs[:other]), median(sccs[:other])] # This line only works if calc_nationals = false
 end
 
-function calculate_scc_full_mc(model::Model, trials::Int64, pcf_calib::String, amazon_calib::String, gis_calib::String, wais_calib::String, saf_calib::String, ais_dist::Bool, ism_used::Bool, omh_used::Bool, amoc_used::Bool, persist_dist::Bool, emuc_dist::Bool, prtp_dist::Bool, pulse_year::Int64, pulse_size::Float64, emuc::Float64; calc_nationals::Bool=true)
+function calculate_scc_full_mc(model::Model, trials::Int64, pcf_calib::String, amazon_calib::String, gis_calib::String, wais_calib::String, saf_calib::String, ais_dist::Bool, ism_used::Bool, omh_used::Bool, amoc_used::Bool, persist_dist::Bool, emuc_dist::Bool, prtp_dist::Bool, pulse_year::Int64, pulse_size::Float64, emuc::Float64; calc_nationals::Bool=true, save_rvs::Bool=false)
     mm = calculate_scc_setup(model, pulse_year, pulse_size)
 
     function setsim_full_scc(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame, ii::Int64, ism_used::Bool, omh_used::Bool, amoc_used::Bool, amazon_calib::String, wais_calib::String, ais_dist::Bool)
@@ -104,19 +104,21 @@ function calculate_scc_full_mc(model::Model, trials::Int64, pcf_calib::String, a
         inst.modified[:CO2Converter, :co2_extra][pulse_index] = pulse_size
     end
 
-    function getsim_full_scc(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame; save_rvs::Bool=true)
+    function getsim_full_scc(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame, ii::Int64; save_rvs::Bool=true)
+        results = getsim_full(inst, draws, ii; save_rvs=save_rvs)
         globalscc = calculate_scc_marginal(inst, pulse_year, emuc)
+        results[:globalscc] = globalscc
         if calc_nationals
             nationalscc = calculate_scc_marginal_national(inst, pulse_year, emuc)
             push!(nationalscc, ["global", globalscc])
-            nationalscc
-        else
-            globalscc
+            results[:nationalscc] = nationalscc
         end
+
+        results
     end
 
     sim_full(mm, trials, pcf_calib, amazon_calib, gis_calib, wais_calib, saf_calib,
-             ais_dist, ism_used, omh_used, amoc_used, persist_dist, emuc_dist, prtp_dist; save_rvs=false,
+             ais_dist, ism_used, omh_used, amoc_used, persist_dist, emuc_dist, prtp_dist; save_rvs=save_rvs,
              setsim=setsim_full_scc,
              getsim=getsim_full_scc)
 end

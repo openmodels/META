@@ -12,7 +12,7 @@ Code to use in pkg mode: add https://github.com/FrankErrickson/MimiFAIRv2.jl#d07
 =#
 
 #Comment out if ran on different machine
-cd("C:\\Users\\Thomas\\Documents\\GitHub\\META\\src")
+#cd("C:\\Users\\Thomas\\Documents\\GitHub\\META\\src")
 
 using Mimi
 import Random
@@ -22,7 +22,7 @@ include("../src/scch4.jl")
 include("../src/scc.jl")
 include("../src/bge.jl")
 
-calc_nationals = true
+calc_nationals = false
 
 # Scenarios
 for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
@@ -103,8 +103,8 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                 ### Run the model so we can run scripts
                 run(model)
 
-                function get_nonscc_results(inst, draws; save_rvs)
-                    mcres = getsim_full(inst, draws; save_rvs=save_rvs)
+                function get_nonscc_results(inst, draws, ii; save_rvs)
+                    mcres = getsim_full(inst, draws, ii; save_rvs=save_rvs)
                     bgeres = calculate_bge(inst)
                     mcres[:bge] = bgeres
 
@@ -184,6 +184,21 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                 # Export country-level temperatures
                 df = simdataframe(model, results, :PatternScaling, :T_country)
                 CSV.write("../results/bytimexcountry2-$x$z-$y-$TP-$persistence.csv", df[(df.time .>= 2010) .& (df.time .<= 2100), :])
+
+                # Save non-other values
+                params = Dict{Symbol, Vector{Union{Missing, Float64}}}()
+                for ii in 1:length(results[:other])
+                    for (key, value) in results[:other][ii]
+                        if value isa Union{Missing, Float64}
+                            if key in keys(params)
+                                push!(params[key], value)
+                            else
+                                params[key] = [value]
+                            end
+                        end
+                    end
+                end
+                CSV.write("../results/params-$x$z-$y-$TP-$persistence.csv", DataFrame(params))
 
                 ### Calculate the SC-CO2 in MC mode
                 ## Miniloop over pulse year
@@ -304,18 +319,18 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
 
                     #Ensure results write correctly even if an MC draw crashes
                     if calc_nationals
-                        allscc = simdataframe(model, subscc, :other, :scco2)
+                        allscc = simdataframe(model, subscc, :other, :nationalscc)
                         scc = allscc.scco2[allscc.country .== "global"]
                         allscc.pulse_year .= yy
                         allsccresults = vcat(allsccresults, allscc)
 
-                        allscch4 = simdataframe(model, subscch4, :other, :scch4)
+                        allscch4 = simdataframe(model, subscch4, :other, :nationalscch4)
                         scch4 = allscch4.scch4[allscch4.country .== "global"]
                         allscch4.pulse_year .= yy
                         allscch4results = vcat(allscch4results, allscch4)
                     else
-                        scc=subscc[:other]
-                        scch4=subscch4[:other]
+                        scc = [entry[:globalscc] for entry in subscc[:other]]
+                        scch4 = [entry[:globalscch4] for entry in subscch4[:other]]
                     end
 
                     if length(scc) < length(scch4)
@@ -325,6 +340,22 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                     end
 
                     sccresults = vcat(sccresults, DataFrame(pulse_year=yy, scc=scc, scch4=scch4))
+
+                    if yy == 2020
+                        params = Dict{Symbol, Vector{Union{Missing, Float64}}}()
+                        for ii in 1:length(results[:other])
+                            for (key, value) in results[:other][ii]
+                                if value isa Union{Missing, Float64}
+                                    if key in keys(params)
+                                        push!(params[key], value)
+                                    else
+                                        params[key] = [value]
+                                    end
+                                end
+                            end
+                        end
+                        CSV.write("../results/params-scc-$x$z-$y-$TP-$persistence.csv", DataFrame(params))
+                    end
                 end
 
                 CSV.write("../results/sccs-$x$z-$y-$TP-$persistence.csv", sccresults)

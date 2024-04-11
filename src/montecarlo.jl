@@ -17,6 +17,22 @@ aisresponse_Amundsen = CSV.read("../data/Response functions - Amundsen.csv", Dat
 aisresponse_Weddell = CSV.read("../data/Response functions - Weddell.csv", DataFrame)
 aisresponse_Peninsula = CSV.read("../data/Response functions - Peninsula.csv", DataFrame)
 
+function getmd(model::Model)
+    model.md
+end
+
+function getmd(model::MarginalModel)
+    model.base.md
+end
+
+function getmd(inst::ModelInstance)
+    inst.md
+end
+
+function getmd(inst::MarginalInstance)
+    inst.base.md
+end
+
 function make_lognormal(riskmu, risksd)
     mu = log(riskmu^2 / sqrt(risksd^2 + riskmu^2))
     sd = sqrt(log(1 + (risksd /  riskmu)^2))
@@ -32,7 +48,7 @@ function sim_base(model::Union{Model, MarginalModel}, trials::Int64, persist_dis
                                                     "large_constrained_parameter_files"),
                                   delete_downloaded_data=false,
                                   other_mc_set=(inst, ii) -> setsim(inst, draws, ii),
-                                  other_mc_get=(inst) -> getsim(inst, draws, save_rvs=save_rvs), throwex=throwex)
+                                  other_mc_get=(inst, ii) -> getsim(inst, draws, ii, save_rvs=save_rvs), throwex=throwex)
     sim()
 end
 
@@ -63,7 +79,7 @@ end
 
 function setsim_base(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame, ii::Int64)
     for jj in 2:ncol(draws)
-        if has_parameter(model.md, Symbol(names(draws)[jj]))
+        if has_parameter(getmd(inst), Symbol(names(draws)[jj]))
             update_param!(inst, Symbol(names(draws)[jj]), draws[ii, jj])
         end
     end
@@ -76,7 +92,7 @@ function setsim_base(inst::Union{ModelInstance, MarginalInstance}, draws::DataFr
     update_param!(inst, :Consumption_slruniforms, rand(Uniform(0, 1), dim_count(model, :country)))
 end
 
-function getsim_base(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame; save_rvs::Bool=true)
+function getsim_base(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame, ii::Int64; save_rvs::Bool=true)
     ##Set up results capture
     mcres = Dict{Symbol, Any}()
 
@@ -94,7 +110,7 @@ function getsim_base(inst::Union{ModelInstance, MarginalInstance}, draws::DataFr
     ##Store number of MC iteration
     if save_rvs
         for jj in 2:ncol(draws)
-            mcres[Symbol(names(draws)[jj])] = draws[!, jj]
+            mcres[Symbol(names(draws)[jj])] = draws[ii, jj]
         end
     end
 
@@ -106,20 +122,21 @@ function sim_full(model::Union{Model, MarginalModel}, trials::Int64, pcf_calib::
 
     ## Ensure that all draws variables have global connections, if we included their components
     for jj in 2:ncol(draws)
-        if !has_parameter(model.md, Symbol(names(draws)[jj]))
+        if !has_parameter(getmd(model), Symbol(names(draws)[jj]))
             component = split(names(draws)[jj], "_")[1]
-            if has_comp(model.md, Symbol(component))
+            if has_comp(getmd(model), Symbol(component))
                 set_param!(model, Symbol(component), Symbol(names(draws)[jj][length(component)+2:end]), Symbol(names(draws)[jj]), draws[1, jj])
             end
         end
     end
+    run(model) # ensure we can use getdataframe later
 
     sim = create_fair_monte_carlo(model, trials; end_year=2200,
                                   data_dir=joinpath(dirname(pathof(MimiFAIRv2)), "..", "data",
                                                     "large_constrained_parameter_files"),
                                   delete_downloaded_data=false,
                                   other_mc_set=(inst, ii) -> setsim(inst, draws, ii, ism_used, omh_used, amoc_used, amazon_calib, wais_calib, ais_dist),
-                                  other_mc_get=(inst) -> getsim(inst, draws, save_rvs=save_rvs), throwex=throwex)
+                                  other_mc_get=(inst, ii) -> getsim(inst, draws, ii, save_rvs=save_rvs), throwex=throwex)
     sim()
 end
 
@@ -288,8 +305,8 @@ function setsim_full(inst::Union{ModelInstance, MarginalInstance}, draws::DataFr
     end
 end
 
-function getsim_full(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame; save_rvs::Bool=true)
-    mcres = getsim_base(inst, draws, save_rvs=save_rvs)
+function getsim_full(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame, ii::Int64; save_rvs::Bool=true)
+    mcres = getsim_base(inst, draws, ii, save_rvs=save_rvs)
     if has_comp(inst, :AMOC)
         mcres[:I_AMOC] = inst[:AMOC, :I_AMOC]
     end
@@ -334,7 +351,7 @@ function simdataframe(model::Union{Model, MarginalModel}, results::Vector{Dict{S
         df[!, name] = [results[ii][key] for ii in 1:length(results)]
     else
         dfbase = getdataframe(model, comp, name)
-        df = nothing
+        alldf = []
         for ii in 1:length(results)
             mcdf = dfbase[!, :]
             if isa(results[ii][key], Vector)
@@ -343,12 +360,9 @@ function simdataframe(model::Union{Model, MarginalModel}, results::Vector{Dict{S
                 mcdf[!, name] = vec(transpose(results[ii][key]))
             end
             mcdf.trialnum .= ii
-            if df == nothing
-                df = mcdf
-            else
-                df = vcat(df, mcdf)
-            end
+            push!(alldf, mcdf)
         end
+        df = vcat(alldf...)
     end
     df
 end

@@ -70,7 +70,7 @@ function calculate_scch4_base_mc(model::Model, trials::Int64, persist_dist::Bool
         inst.modified[:CH4Converter, :ch4_extra][pulse_index] = pulse_size
     end
 
-    function getsim_base_scch4(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame; save_rvs::Bool=true)
+    function getsim_base_scch4(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame, ii::Int64; save_rvs::Bool=true)
         globalscch4 = calculate_scch4_marginal(inst, pulse_year, emuc)
         if calc_nationals
             nationalscch4 = calculate_scch4_marginal_national(inst, pulse_year, emuc)
@@ -94,7 +94,7 @@ if false
     ## [mean(scch4s[:other]), std(scch4s[:other]), median(scch4s[:other])] # This line only works if calc_nationals = false
 end
 
-function calculate_scch4_full_mc(model::Model, trials::Int64, pcf_calib::String, amazon_calib::String, gis_calib::String, wais_calib::String, saf_calib::String, ais_dist::Bool, ism_used::Bool, omh_used::Bool, amoc_used::Bool, persist_dist::Bool, emuc_dist::Bool, prtp_dist::Bool, pulse_year::Int64, pulse_size::Float64, emuc::Float64; calc_nationals::Bool=true)
+function calculate_scch4_full_mc(model::Model, trials::Int64, pcf_calib::String, amazon_calib::String, gis_calib::String, wais_calib::String, saf_calib::String, ais_dist::Bool, ism_used::Bool, omh_used::Bool, amoc_used::Bool, persist_dist::Bool, emuc_dist::Bool, prtp_dist::Bool, pulse_year::Int64, pulse_size::Float64, emuc::Float64; calc_nationals::Bool=true, save_rvs::Bool=false)
     mm = calculate_scch4_setup(model, pulse_year, pulse_size)
 
     function setsim_full_scch4(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame, ii::Int64, ism_used::Bool, omh_used::Bool, amoc_used::Bool, amazon_calib::String, wais_calib::String, ais_dist::Bool)
@@ -103,20 +103,22 @@ function calculate_scch4_full_mc(model::Model, trials::Int64, pcf_calib::String,
         inst.modified[:CH4Converter, :ch4_extra][pulse_index] = pulse_size
     end
 
-    function getsim_full_scch4(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame; save_rvs::Bool=true)
+    function getsim_full_scch4(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame, ii::Int64; save_rvs::Bool=true)
+        results = getsim_full(inst, draws, ii; save_rvs=save_rvs)
         globalscch4 = calculate_scch4_marginal(inst, pulse_year, emuc)
+        results[:globalscch4] = globalscch4
         if calc_nationals
             nationalscch4 = calculate_scch4_marginal_national(inst, pulse_year, emuc)
             push!(nationalscch4, ["global", globalscch4])
-            nationalscch4
-        else
-            globalscch4
+            results[:nationalscch4] = nationalscch4
         end
+
+        results
     end
 
 
     sim_full(mm, trials, pcf_calib, amazon_calib, gis_calib, wais_calib, saf_calib,
-             ais_dist, ism_used, omh_used, amoc_used, persist_dist, emuc_dist, prtp_dist; save_rvs=false,
+             ais_dist, ism_used, omh_used, amoc_used, persist_dist, emuc_dist, prtp_dist; save_rvs=save_rvs,
              setsim=setsim_full_scch4,
              getsim=getsim_full_scch4)
 end

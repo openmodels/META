@@ -223,7 +223,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                                        false, # prtp
                                                        yy, # pulse year
                                                        10.0, # pulse size
-                                                       1.02; calc_nationals=calc_nationals) # EMUC
+                                                       1.02; save_rvs=true, calc_nationals=calc_nationals) # EMUC
 
                         subscch4 = calculate_scch4_full_mc(model,
                                                         1000, # MC reps
@@ -241,7 +241,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                                         false, # prtp
                                                         yy, # pulse year
                                                         0.06, # pulse size
-                                                        1.02; calc_nationals=calc_nationals) # EMUC
+                                                        1.02; save_rvs=true, calc_nationals=calc_nationals) # EMUC
                     elseif TP=="NoOMH"
                         subscc = calculate_scc_full_mc(model,
                                                         1000, # MC reps
@@ -259,7 +259,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                                         false, # prtp
                                                         yy, # pulse year
                                                         10.0, # pulse size
-                                                        1.02; calc_nationals=calc_nationals) # EMUC
+                                                        1.02; save_rvs=true, calc_nationals=calc_nationals) # EMUC
 
                         subscch4 = calculate_scch4_full_mc(model,
                                                         1000, # MC reps
@@ -277,7 +277,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                                         false, # prtp
                                                         yy, # pulse year
                                                         0.06, # pulse size
-                                                        1.02; calc_nationals=calc_nationals) # EMUC
+                                                        1.02; save_rvs=true, calc_nationals=calc_nationals) # EMUC
 
                     else
                         subscc = calculate_scc_full_mc(model,
@@ -296,7 +296,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                                        false, # prtp
                                                        yy, # pulse year
                                                        10.0, # pulse size
-                                                       1.02; calc_nationals=calc_nationals) # EMUC
+                                                       1.02; save_rvs=true, calc_nationals=calc_nationals) # EMUC
 
                         subscch4 = calculate_scch4_full_mc(model,
                                                            1000, # MC reps
@@ -314,7 +314,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                                            false, # prtp
                                                            yy, # pulse year
                                                            0.06, # pulse size
-                                                           1.02; calc_nationals=calc_nationals) # EMUC
+                                                           1.02; save_rvs=true, calc_nationals=calc_nationals) # EMUC
                     end
 
                     #Ensure results write correctly even if an MC draw crashes
@@ -343,8 +343,8 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
 
                     if yy == 2020
                         params = Dict{Symbol, Vector{Union{Missing, Float64}}}()
-                        for ii in 1:length(results[:other])
-                            for (key, value) in results[:other][ii]
+                        for ii in 1:length(subscc[:other])
+                            for (key, value) in subscc[:other][ii]
                                 if value isa Union{Missing, Float64}
                                     if key in keys(params)
                                         push!(params[key], value)
@@ -355,6 +355,32 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                             end
                         end
                         CSV.write("../results/params-scc-$x$z-$y-$TP-$persistence.csv", DataFrame(params))
+
+                        params = Dict{Symbol, Vector{Union{Missing, Float64}}}()
+                        for ii in 1:length(subscch4[:other])
+                            for (key, value) in subscch4[:other][ii]
+                                if value isa Union{Missing, Float64}
+                                    if key in keys(params)
+                                        push!(params[key], value)
+                                    else
+                                        params[key] = [value]
+                                    end
+                                end
+                            end
+                        end
+                        CSV.write("../results/params-scch4-$x$z-$y-$TP-$persistence.csv", DataFrame(params))
+
+                        df1 = simdataframe(model, subscc, :SLRModel, :SLR)
+                        df2 = simdataframe(model, subscc, :TemperatureConverter, :T_AT)
+                        df3 = simdataframe(model, subscch4, :SLRModel, :SLR)
+                        df4 = simdataframe(model, subscch4, :TemperatureConverter, :T_AT)
+
+                        df = df1[!, [:time, :trialnum]]
+                        df[!, :SLR_SCC] = df1.SLR
+                        df[!, :T_AT_SCC] = df2.T_AT
+                        df[!, :SLR_SCCH4] = df3.SLR
+                        df[!, :T_AT_SCCH4] = df4.T_AT
+                        CSV.write("../results/bytime-scc-$x$z-$y-$TP-$persistence.csv", df[(df.time .>= 2010) .& (df.time .<= 2100), :])
                     end
                 end
 

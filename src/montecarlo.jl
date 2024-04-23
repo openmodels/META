@@ -17,6 +17,22 @@ aisresponse_Amundsen = CSV.read("../data/Response functions - Amundsen.csv", Dat
 aisresponse_Weddell = CSV.read("../data/Response functions - Weddell.csv", DataFrame)
 aisresponse_Peninsula = CSV.read("../data/Response functions - Peninsula.csv", DataFrame)
 
+function getmd(model::Model)
+    model.md
+end
+
+function getmd(model::MarginalModel)
+    model.base.md
+end
+
+function getmd(inst::ModelInstance)
+    inst.md
+end
+
+function getmd(inst::MarginalInstance)
+    inst.base.md
+end
+
 function make_lognormal(riskmu, risksd)
     mu = log(riskmu^2 / sqrt(risksd^2 + riskmu^2))
     sd = sqrt(log(1 + (risksd /  riskmu)^2))
@@ -63,7 +79,7 @@ end
 
 function setsim_base(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame, ii::Int64)
     for jj in 2:ncol(draws)
-        if has_parameter(model.md, Symbol(names(draws)[jj]))
+        if has_parameter(getmd(inst), Symbol(names(draws)[jj]))
             update_param!(inst, Symbol(names(draws)[jj]), draws[ii, jj])
         end
     end
@@ -106,9 +122,9 @@ function sim_full(model::Union{Model, MarginalModel}, trials::Int64, pcf_calib::
 
     ## Ensure that all draws variables have global connections, if we included their components
     for jj in 2:ncol(draws)
-        if !has_parameter(model.md, Symbol(names(draws)[jj]))
+        if !has_parameter(getmd(model), Symbol(names(draws)[jj]))
             component = split(names(draws)[jj], "_")[1]
-            if has_comp(model.md, Symbol(component))
+            if has_comp(getmd(model), Symbol(component))
                 set_param!(model, Symbol(component), Symbol(names(draws)[jj][length(component)+2:end]), Symbol(names(draws)[jj]), draws[1, jj])
             end
         end

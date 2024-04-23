@@ -18,6 +18,7 @@
 # Function Arguments:
 #
 #       n_samples:          Number of samples to randomly draw from original constrained parameter values (max = 93,995).
+#
 #       start_year:         First year to run the model (note, Mimi-FAIR requires user-supplied initial conditions if not starting in 1750 so this is not yet supported for a year other than 1750).
 #       end_year:           Final year to run the model.
 #       data_dir:           Location of the data files
@@ -31,7 +32,7 @@
 #----------------------------------------------------------------------------------------------------------------------
 
 # Load packages.
-using CSVFiles, DataFrames, Mimi, MimiFAIRv2, StatsBase, Downloads, ProgressMeter
+using CSVFiles, DataFrames, Mimi, MimiFAIRv2, StatsBase, Downloads, Query, ProgressMeter
 import Mimi.build, Mimi.update_param!, Mimi.ModelInstance, Mimi.run, Mimi.dim_count, Mimi.has_comp
 
 struct MarginalInstance
@@ -110,14 +111,12 @@ function create_fair_monte_carlo(fair_model::Union{Model, MarginalModel}, n_samp
         end
     end
 
-    # Load data
-    thermal_params           = DataFrame(load(joinpath(data_dir, "julia_constrained_thermal_parameters_average_probs.csv")))
-    gas_params               = DataFrame(load(joinpath(data_dir, "julia_constrained_gas_cycle_parameters_average_probs.csv")))
-    indirect_forcing_params  = DataFrame(load(joinpath(data_dir, "julia_constrained_indirect_forcing_parameters_average_probs.csv")))
-    exogenous_forcing_params = DataFrame(load(joinpath(data_dir, "julia_constrained_exogenous_forcing_parameters_average_probs.csv")))
-
     # Create random indices and create a subset of FAIR sample id values (for indexing data) if they were not provided directly by the user with the
     # optional sample_id_subset parameter.
+
+    # load just to get the sample ids options
+    thermal_params = load(joinpath(data_dir, "julia_constrained_thermal_parameters_average_probs.csv")) |> @select(:sample_id) |> DataFrame
+
     if isnothing(sample_id_subset)
         rand_indices     = sort(sample(1:93995, n_samples, replace=false))
         sample_id_subset = thermal_params[rand_indices, :sample_id]
@@ -131,11 +130,11 @@ function create_fair_monte_carlo(fair_model::Union{Model, MarginalModel}, n_samp
         end
     end
 
-    # Subset constrained parameters using random sample id values.
-    thermal_params           = thermal_params[findall((in)(sample_id_subset), thermal_params.sample_id), :]
-    gas_params               = gas_params[findall((in)(sample_id_subset), gas_params.sample_id), :]
-    indirect_forcing_params  = indirect_forcing_params[findall((in)(sample_id_subset), indirect_forcing_params.sample_id), :]
-    exogenous_forcing_params = exogenous_forcing_params[findall((in)(sample_id_subset), exogenous_forcing_params.sample_id), :]
+    # Load data and subset constrained parameters using random sample id values.
+    thermal_params           = load(joinpath(data_dir, "julia_constrained_thermal_parameters_average_probs.csv")) |> @filter(_.sample_id in sample_id_subset) |> DataFrame
+    gas_params               = load(joinpath(data_dir, "julia_constrained_gas_cycle_parameters_average_probs.csv")) |> @filter(_.sample_id in sample_id_subset) |> DataFrame
+    indirect_forcing_params  = load(joinpath(data_dir, "julia_constrained_indirect_forcing_parameters_average_probs.csv")) |> @filter(_.sample_id in sample_id_subset) |> DataFrame
+    exogenous_forcing_params = load(joinpath(data_dir, "julia_constrained_exogenous_forcing_parameters_average_probs.csv")) |> @filter(_.sample_id in sample_id_subset) |> DataFrame
 
     # Isolate individual and group gas parameters for convenience.
     co2_p = filter(:gas_name  => ==("carbon_dioxide"), gas_params)
@@ -218,51 +217,67 @@ function create_fair_monte_carlo(fair_model::Union{Model, MarginalModel}, n_samp
     so2_aci_f           = zeros(n_samples, 3)
 
     # Loop through constrained parameter samples and reshape into arrays that can be passed into Mimi-FAIRv2.0
+
+    # To improve performance find indices once. Use a NamedTuple with keys of the
+    # different gas DataFrames and Values which are vectors of BitVectors that can
+    # be used for indexing
+    indices = (
+                montreal_gas_p_rows = [montreal_gas_p.sample_id .== sample_id for sample_id in sample_id_subset],
+                montreal_indirect_rows = [montreal_indirect.sample_id .== sample_id for sample_id in sample_id_subset],
+                flourinated_gas_p_rows = [flourinated_gas_p.sample_id .== sample_id for sample_id in sample_id_subset],
+                aerosol_plus_gas_p_rows = [aerosol_plus_gas_p.sample_id .== sample_id for sample_id in sample_id_subset],
+                indirect_forcing_rows = [indirect_forcing_params.sample_id .== sample_id for sample_id in sample_id_subset]
+            )
+
     for i = 1:n_samples
-        # Montreal gases.
-        montreal_a[:,:,i]         .= montreal_gas_p[findall(x->x==sample_id_subset[i], montreal_gas_p.sample_id), [:a1,:a2,:a3,:a4]]
-        montreal_τ[:,:,i]         .= montreal_gas_p[findall(x->x==sample_id_subset[i], montreal_gas_p.sample_id), [:tau1,:tau2,:tau3,:tau4]]
-        montreal_f[:,:,i]         .= montreal_gas_p[findall(x->x==sample_id_subset[i], montreal_gas_p.sample_id), [:f1,:f2,:f3]]
-        montreal_ind_f[:,:,i]     .= montreal_indirect[findall(x->x==sample_id_subset[i], montreal_indirect.sample_id), [:f1,:f2,:f3]]
-        montreal_r0[:,i]          .= montreal_gas_p[findall(x->x==sample_id_subset[i], montreal_gas_p.sample_id), :r0]
-        montreal_rC[:,i]          .= montreal_gas_p[findall(x->x==sample_id_subset[i], montreal_gas_p.sample_id), :rC]
-        montreal_rT[:,i]          .= montreal_gas_p[findall(x->x==sample_id_subset[i], montreal_gas_p.sample_id), :rT]
-        montreal_rA[:,i]          .= montreal_gas_p[findall(x->x==sample_id_subset[i], montreal_gas_p.sample_id), :rA]
-        montreal_pi_conc[:,i]     .= montreal_gas_p[findall(x->x==sample_id_subset[i], montreal_gas_p.sample_id), :PI_conc]
+
+        # Montreal gases
+        montreal_a[:,:,i]         = montreal_gas_p[indices.montreal_gas_p_rows[i], [:a1,:a2,:a3,:a4]]|> Matrix
+        montreal_τ[:,:,i]         = montreal_gas_p[indices.montreal_gas_p_rows[i], [:tau1,:tau2,:tau3,:tau4]]|> Matrix
+        montreal_f[:,:,i]         = montreal_gas_p[indices.montreal_gas_p_rows[i], [:f1,:f2,:f3]]|> Matrix
+        montreal_ind_f[:,:,i]     = montreal_indirect[indices.montreal_indirect_rows[i], [:f1,:f2,:f3]]|> Matrix
+        montreal_r0[:,i]          = montreal_gas_p[indices.montreal_gas_p_rows[i], :r0]
+        montreal_rC[:,i]          = montreal_gas_p[indices.montreal_gas_p_rows[i], :rC]
+        montreal_rT[:,i]          = montreal_gas_p[indices.montreal_gas_p_rows[i], :rT]
+        montreal_rA[:,i]          = montreal_gas_p[indices.montreal_gas_p_rows[i], :rA]
+        montreal_pi_conc[:,i]     = montreal_gas_p[indices.montreal_gas_p_rows[i], :PI_conc]
+
         # Flourinated gases.
-        flourinated_a[:,:,i]      .= flourinated_gas_p[findall(x->x==sample_id_subset[i], flourinated_gas_p.sample_id), [:a1,:a2,:a3,:a4]]
-        flourinated_τ[:,:,i]      .= flourinated_gas_p[findall(x->x==sample_id_subset[i], flourinated_gas_p.sample_id), [:tau1,:tau2,:tau3,:tau4]]
-        flourinated_f[:,:,i]      .= flourinated_gas_p[findall(x->x==sample_id_subset[i], flourinated_gas_p.sample_id), [:f1,:f2,:f3]]
-        flourinated_r0[:,i]       .= flourinated_gas_p[findall(x->x==sample_id_subset[i], flourinated_gas_p.sample_id), :r0]
-        flourinated_rC[:,i]       .= flourinated_gas_p[findall(x->x==sample_id_subset[i], flourinated_gas_p.sample_id), :rC]
-        flourinated_rT[:,i]       .= flourinated_gas_p[findall(x->x==sample_id_subset[i], flourinated_gas_p.sample_id), :rT]
-        flourinated_rA[:,i]       .= flourinated_gas_p[findall(x->x==sample_id_subset[i], flourinated_gas_p.sample_id), :rA]
-        flourinated_pi_conc[:,i]  .= flourinated_gas_p[findall(x->x==sample_id_subset[i], flourinated_gas_p.sample_id), :PI_conc]
+        flourinated_a[:,:,i]      = flourinated_gas_p[indices.flourinated_gas_p_rows[i], [:a1,:a2,:a3,:a4]]|> Matrix
+        flourinated_τ[:,:,i]      = flourinated_gas_p[indices.flourinated_gas_p_rows[i], [:tau1,:tau2,:tau3,:tau4]]|> Matrix
+        flourinated_f[:,:,i]      = flourinated_gas_p[indices.flourinated_gas_p_rows[i], [:f1,:f2,:f3]]|> Matrix
+        flourinated_r0[:,i]       = flourinated_gas_p[indices.flourinated_gas_p_rows[i], :r0]
+        flourinated_rC[:,i]       = flourinated_gas_p[indices.flourinated_gas_p_rows[i], :rC]
+        flourinated_rT[:,i]       = flourinated_gas_p[indices.flourinated_gas_p_rows[i], :rT]
+        flourinated_rA[:,i]       = flourinated_gas_p[indices.flourinated_gas_p_rows[i], :rA]
+        flourinated_pi_conc[:,i]  = flourinated_gas_p[indices.flourinated_gas_p_rows[i], :PI_conc]
+
         # Aerosol+ gases.
-        aerosol_plus_a[:,:,i]     .= aerosol_plus_gas_p[findall(x->x==sample_id_subset[i], aerosol_plus_gas_p.sample_id), [:a1,:a2,:a3,:a4]]
-        aerosol_plus_τ[:,:,i]     .= aerosol_plus_gas_p[findall(x->x==sample_id_subset[i], aerosol_plus_gas_p.sample_id), [:tau1,:tau2,:tau3,:tau4]]
-        aerosol_plus_r0[:,i]      .= aerosol_plus_gas_p[findall(x->x==sample_id_subset[i], aerosol_plus_gas_p.sample_id), :r0]
-        aerosol_plus_rC[:,i]      .= aerosol_plus_gas_p[findall(x->x==sample_id_subset[i], aerosol_plus_gas_p.sample_id), :rC]
-        aerosol_plus_rT[:,i]      .= aerosol_plus_gas_p[findall(x->x==sample_id_subset[i], aerosol_plus_gas_p.sample_id), :rT]
-        aerosol_plus_rA[:,i]      .= aerosol_plus_gas_p[findall(x->x==sample_id_subset[i], aerosol_plus_gas_p.sample_id), :rA]
-        aerosol_plus_pi_conc[:,i] .= aerosol_plus_gas_p[findall(x->x==sample_id_subset[i], aerosol_plus_gas_p.sample_id), :PI_conc]
+        aerosol_plus_a[:,:,i]     = aerosol_plus_gas_p[indices.aerosol_plus_gas_p_rows[i], [:a1,:a2,:a3,:a4]]|> Matrix
+        aerosol_plus_τ[:,:,i]     = aerosol_plus_gas_p[indices.aerosol_plus_gas_p_rows[i], [:tau1,:tau2,:tau3,:tau4]]|> Matrix
+        aerosol_plus_r0[:,i]      = aerosol_plus_gas_p[indices.aerosol_plus_gas_p_rows[i], :r0]
+        aerosol_plus_rC[:,i]      = aerosol_plus_gas_p[indices.aerosol_plus_gas_p_rows[i], :rC]
+        aerosol_plus_rT[:,i]      = aerosol_plus_gas_p[indices.aerosol_plus_gas_p_rows[i], :rT]
+        aerosol_plus_rA[:,i]      = aerosol_plus_gas_p[indices.aerosol_plus_gas_p_rows[i], :rA]
+        aerosol_plus_pi_conc[:,i] = aerosol_plus_gas_p[indices.aerosol_plus_gas_p_rows[i], :PI_conc]
+
         # Aerosol+ forcing parameters.
-        bc_f[i,:]                 = Array(aerosol_plus_gas_p[(aerosol_plus_gas_p.gas_name .== "bc") .& (aerosol_plus_gas_p.sample_id .== sample_id_subset[i]), [:f1,:f2,:f3]])
-        bc_snow_f[i,:]            = Array(indirect_forcing_params[(indirect_forcing_params.indirect_forcing_effect .== "bc|bc_on_snow") .& (indirect_forcing_params.sample_id .== sample_id_subset[i]), [:f1,:f2,:f3]])
-        bc_aci_f[i,:]             = Array(indirect_forcing_params[(indirect_forcing_params.indirect_forcing_effect .== "bc|aci") .& (indirect_forcing_params.sample_id .== sample_id_subset[i]), [:f1,:f2,:f3]])
-        co_f[i,:]                 = Array(aerosol_plus_gas_p[(aerosol_plus_gas_p.gas_name .== "co") .& (aerosol_plus_gas_p.sample_id .== sample_id_subset[i]), [:f1,:f2,:f3]])
-        co_o3_f[i,:]              = Array(indirect_forcing_params[(indirect_forcing_params.indirect_forcing_effect .== "co|o3") .& (indirect_forcing_params.sample_id .== sample_id_subset[i]), [:f1,:f2,:f3]])
-        nh3_f[i,:]                = Array(aerosol_plus_gas_p[(aerosol_plus_gas_p.gas_name .== "nh3") .& (aerosol_plus_gas_p.sample_id .== sample_id_subset[i]), [:f1,:f2,:f3]])
-        nmvoc_f[i,:]              = Array(aerosol_plus_gas_p[(aerosol_plus_gas_p.gas_name .== "nmvoc") .& (aerosol_plus_gas_p.sample_id .== sample_id_subset[i]), [:f1,:f2,:f3]])
-        nmvoc_o3_f[i,:]           = Array(indirect_forcing_params[(indirect_forcing_params.indirect_forcing_effect .== "nmvoc|o3") .& (indirect_forcing_params.sample_id .== sample_id_subset[i]), [:f1,:f2,:f3]])
-        nox_f[i,:]                = Array(aerosol_plus_gas_p[(aerosol_plus_gas_p.gas_name .== "nox") .& (aerosol_plus_gas_p.sample_id .== sample_id_subset[i]), [:f1,:f2,:f3]])
-        nox_o3_f[i,:]             = Array(indirect_forcing_params[(indirect_forcing_params.indirect_forcing_effect .== "nox|o3") .& (indirect_forcing_params.sample_id .== sample_id_subset[i]), [:f1,:f2,:f3]])
-        nox_avi_f[i,:]            = Array(aerosol_plus_gas_p[(aerosol_plus_gas_p.gas_name .== "nox_avi") .& (aerosol_plus_gas_p.sample_id .== sample_id_subset[i]), [:f1,:f2,:f3]])
-        nox_avi_contrails_f[i,:]  = Array(indirect_forcing_params[(indirect_forcing_params.indirect_forcing_effect .== "nox_avi|contrails") .& (indirect_forcing_params.sample_id .== sample_id_subset[i]), [:f1,:f2,:f3]])
-        oc_f[i,:]                 = Array(aerosol_plus_gas_p[(aerosol_plus_gas_p.gas_name .== "oc") .& (aerosol_plus_gas_p.sample_id .== sample_id_subset[i]), [:f1,:f2,:f3]])
-        oc_aci_f[i,:]             = Array(indirect_forcing_params[(indirect_forcing_params.indirect_forcing_effect .== "oc|aci") .& (indirect_forcing_params.sample_id .== sample_id_subset[i]), [:f1,:f2,:f3]])
-        so2_f[i,:]                = Array(aerosol_plus_gas_p[(aerosol_plus_gas_p.gas_name .== "so2") .& (aerosol_plus_gas_p.sample_id .== sample_id_subset[i]), [:f1,:f2,:f3]])
-        so2_aci_f[i,:]            = Array(indirect_forcing_params[(indirect_forcing_params.indirect_forcing_effect .== "so2|aci") .& (indirect_forcing_params.sample_id .== sample_id_subset[i]), [:f1,:f2,:f3]])
+        bc_f[i,:]                 = Array(aerosol_plus_gas_p[(aerosol_plus_gas_p.gas_name .== "bc") .& indices.aerosol_plus_gas_p_rows[i], [:f1,:f2,:f3]])
+        bc_snow_f[i,:]            = Array(indirect_forcing_params[(indirect_forcing_params.indirect_forcing_effect .== "bc|bc_on_snow") .& indices.indirect_forcing_rows[i], [:f1,:f2,:f3]])
+        bc_aci_f[i,:]             = Array(indirect_forcing_params[(indirect_forcing_params.indirect_forcing_effect .== "bc|aci") .& indices.indirect_forcing_rows[i], [:f1,:f2,:f3]])
+        co_f[i,:]                 = Array(aerosol_plus_gas_p[(aerosol_plus_gas_p.gas_name .== "co") .& indices.aerosol_plus_gas_p_rows[i], [:f1,:f2,:f3]])
+        co_o3_f[i,:]              = Array(indirect_forcing_params[(indirect_forcing_params.indirect_forcing_effect .== "co|o3") .& indices.indirect_forcing_rows[i], [:f1,:f2,:f3]])
+        nh3_f[i,:]                = Array(aerosol_plus_gas_p[(aerosol_plus_gas_p.gas_name .== "nh3") .& indices.aerosol_plus_gas_p_rows[i], [:f1,:f2,:f3]])
+        nmvoc_f[i,:]              = Array(aerosol_plus_gas_p[(aerosol_plus_gas_p.gas_name .== "nmvoc") .& indices.aerosol_plus_gas_p_rows[i], [:f1,:f2,:f3]])
+        nmvoc_o3_f[i,:]           = Array(indirect_forcing_params[(indirect_forcing_params.indirect_forcing_effect .== "nmvoc|o3") .& indices.indirect_forcing_rows[i], [:f1,:f2,:f3]])
+        nox_f[i,:]                = Array(aerosol_plus_gas_p[(aerosol_plus_gas_p.gas_name .== "nox") .& indices.aerosol_plus_gas_p_rows[i], [:f1,:f2,:f3]])
+        nox_o3_f[i,:]             = Array(indirect_forcing_params[(indirect_forcing_params.indirect_forcing_effect .== "nox|o3") .& indices.indirect_forcing_rows[i], [:f1,:f2,:f3]])
+        nox_avi_f[i,:]            = Array(aerosol_plus_gas_p[(aerosol_plus_gas_p.gas_name .== "nox_avi") .& indices.aerosol_plus_gas_p_rows[i], [:f1,:f2,:f3]])
+        nox_avi_contrails_f[i,:]  = Array(indirect_forcing_params[(indirect_forcing_params.indirect_forcing_effect .== "nox_avi|contrails") .& indices.indirect_forcing_rows[i], [:f1,:f2,:f3]])
+        oc_f[i,:]                 = Array(aerosol_plus_gas_p[(aerosol_plus_gas_p.gas_name .== "oc") .& indices.aerosol_plus_gas_p_rows[i], [:f1,:f2,:f3]])
+        oc_aci_f[i,:]             = Array(indirect_forcing_params[(indirect_forcing_params.indirect_forcing_effect .== "oc|aci") .& indices.indirect_forcing_rows[i], [:f1,:f2,:f3]])
+        so2_f[i,:]                = Array(aerosol_plus_gas_p[(aerosol_plus_gas_p.gas_name .== "so2") .& indices.aerosol_plus_gas_p_rows[i], [:f1,:f2,:f3]])
+        so2_aci_f[i,:]            = Array(indirect_forcing_params[(indirect_forcing_params.indirect_forcing_effect .== "so2|aci") .& indices.indirect_forcing_rows[i], [:f1,:f2,:f3]])
     end
 
     # Iniitlaize arrays for g1 and g0 parameters.

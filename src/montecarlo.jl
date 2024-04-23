@@ -112,6 +112,8 @@ function getsim_base(inst::Union{ModelInstance, MarginalInstance}, draws::DataFr
         for jj in 2:ncol(draws)
             mcres[Symbol(names(draws)[jj])] = draws[ii, jj]
         end
+        mcres[:Consumption_beta1] = inst[:Consumption, :beta1]
+        mcres[:Consumption_beta2] = inst[:Consumption, :beta2]
     end
 
     mcres

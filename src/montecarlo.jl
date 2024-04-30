@@ -23,6 +23,22 @@ aisresponse_Amundsen = CSV.read("../data/Response functions - Amundsen.csv", Dat
 aisresponse_Weddell = CSV.read("../data/Response functions - Weddell.csv", DataFrame)
 aisresponse_Peninsula = CSV.read("../data/Response functions - Peninsula.csv", DataFrame)
 
+function getmd(model::Model)
+    model.md
+end
+
+function getmd(model::MarginalModel)
+    model.base.md
+end
+
+function getmd(inst::ModelInstance)
+    inst.md
+end
+
+function getmd(inst::MarginalInstance)
+    inst.base.md
+end
+
 function make_lognormal(riskmu, risksd)
     mu = log(riskmu^2 / sqrt(risksd^2 + riskmu^2))
     sd = sqrt(log(1 + (risksd /  riskmu)^2))
@@ -30,7 +46,7 @@ function make_lognormal(riskmu, risksd)
 end
 
 # Master function for base model (uses helpers below)
-function sim_base(model::Union{Model, MarginalModel}, trials::Int64, persist_dist::Bool, emuc_dist::Bool, prtp_dist::Bool; save_rvs::Bool=true, setsim::Function=setsim_base, getsim::Function=getsim_base)
+function sim_base(model::Union{Model, MarginalModel}, trials::Int64, persist_dist::Bool, emuc_dist::Bool, prtp_dist::Bool; save_rvs::Bool=true, setsim::Function=setsim_base, getsim::Function=getsim_base, throwex::Bool=false)
     draws = presim_base(trials, persist_dist, emuc_dist, prtp_dist)
 
     sim = create_fair_monte_carlo(model, trials; end_year=2200,
@@ -38,7 +54,7 @@ function sim_base(model::Union{Model, MarginalModel}, trials::Int64, persist_dis
                                                     "large_constrained_parameter_files"),
                                   delete_downloaded_data=false,
                                   other_mc_set=(inst, ii) -> setsim(inst, draws, ii),
-                                  other_mc_get=(inst) -> getsim(inst, draws, save_rvs=save_rvs))
+                                  other_mc_get=(inst) -> getsim(inst, draws, save_rvs=save_rvs), throwex=throwex)
     sim()
 end
 
@@ -69,7 +85,11 @@ end
 
 function setsim_base(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame, ii::Int64)
     for jj in 2:ncol(draws)
+<<<<<<< HEAD
         if has_parameter(inst, Symbol(names(draws)[jj]))
+=======
+        if has_parameter(getmd(inst), Symbol(names(draws)[jj]))
+>>>>>>> master
             update_param!(inst, Symbol(names(draws)[jj]), draws[ii, jj])
         end
     end
@@ -87,9 +107,9 @@ function getsim_base(inst::Union{ModelInstance, MarginalInstance}, draws::DataFr
     mcres = Dict{Symbol, Any}()
 
     ##Geophysical results
-    mcres[:SLRModel_SLR] = copy(inst[:SLRModel, :SLR])
-    mcres[:PatternScaling_T_country] = copy(inst[:PatternScaling, :T_country])
-    mcres[:TemperatureConverter_T_AT] = copy(inst[:TemperatureConverter, :T_AT])
+    mcres[:SLRModel_SLR] = inst[:SLRModel, :SLR]
+    mcres[:PatternScaling_T_country] = inst[:PatternScaling, :T_country]
+    mcres[:TemperatureConverter_T_AT] = inst[:TemperatureConverter, :T_AT]
 
     ##Economic results
     mcres[:TotalDamages_total_damages_global_peryear_percent] = inst[:TotalDamages, :total_damages_global_peryear_percent] #Population-weighted global change in consumption due to climate damages (in % of counterfactual consumption per capita)
@@ -107,14 +127,14 @@ function getsim_base(inst::Union{ModelInstance, MarginalInstance}, draws::DataFr
     mcres
 end
 
-function sim_full(model::Union{Model, MarginalModel}, trials::Int64, pcf_calib::String, amazon_calib::String, gis_calib::String, wais_calib::String, saf_calib::String, ais_dist::Bool, ism_used::Bool, omh_used::Bool, amoc_used::Bool, persist_dist::Bool, emuc_dist::Bool, prtp_dist::Bool; save_rvs::Bool=true, setsim::Function=setsim_full, getsim::Function=getsim_full)
+function sim_full(model::Union{Model, MarginalModel}, trials::Int64, pcf_calib::String, amazon_calib::String, gis_calib::String, wais_calib::String, saf_calib::String, ais_dist::Bool, ism_used::Bool, omh_used::Bool, amoc_used::Bool, persist_dist::Bool, emuc_dist::Bool, prtp_dist::Bool; save_rvs::Bool=true, setsim::Function=setsim_full, getsim::Function=getsim_full, throwex::Bool=false)
     draws = presim_full(trials, pcf_calib, amazon_calib, gis_calib, wais_calib, saf_calib, ais_dist, persist_dist, emuc_dist, prtp_dist)
 
     ## Ensure that all draws variables have global connections, if we included their components
     for jj in 2:ncol(draws)
-        if !has_parameter(model, Symbol(names(draws)[jj]))
+        if !has_parameter(getmd(model), Symbol(names(draws)[jj]))
             component = split(names(draws)[jj], "_")[1]
-            if has_comp(model, Symbol(component))
+            if has_comp(getmd(model), Symbol(component))
                 set_param!(model, Symbol(component), Symbol(names(draws)[jj][length(component)+2:end]), Symbol(names(draws)[jj]), draws[1, jj])
             end
         end
@@ -124,8 +144,8 @@ function sim_full(model::Union{Model, MarginalModel}, trials::Int64, pcf_calib::
                                   data_dir=joinpath(dirname(pathof(MimiFAIRv2)), "..", "data",
                                                     "large_constrained_parameter_files"),
                                   delete_downloaded_data=false,
-                                  other_mc_set=(inst, ii) -> setsim(inst, draws, ii, ism_used, omh_used, amoc_used, amazon_calib, wais_calib, ais_dist),
-                                  other_mc_get=(inst) -> getsim(inst, draws, save_rvs=save_rvs))
+                                  other_mc_set=(inst, ii) -> setsim(inst, draws, ii, ism_used, omh_used, amoc_used, amazon_calib, wais_calib, ais_dist, saf_calib),
+                                  other_mc_get=(inst) -> getsim(inst, draws, save_rvs=save_rvs), throwex=throwex)
     sim()
 end
 
@@ -194,7 +214,7 @@ function presim_full(trials::Int64, pcf_calib::String, amazon_calib::String, gis
     # GIS
 
     if gis_calib == "Distribution"
-        draws.GISModel_avoldot = rand(Normal(-0.0000106, 0.0000244/0.5/100), trials) # Only works with a meltmult of 1
+        draws.GISModel_avoldot0 = rand(Normal(-0.0000106, 0.0000244/0.5/100), trials) # Only works with a meltmult of 1
     else
         rand(Normal(-0.0000106, 0.0000244/0.5/100), trials)
     end
@@ -220,7 +240,7 @@ function presim_full(trials::Int64, pcf_calib::String, amazon_calib::String, gis
     draws
 end
 
-function setsim_full(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame, ii::Int64, ism_used::Bool, omh_used::Bool, amoc_used::Bool, amazon_calib::String, wais_calib::String, ais_dist::Bool)
+function setsim_full(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame, ii::Int64, ism_used::Bool, omh_used::Bool, amoc_used::Bool, amazon_calib::String, wais_calib::String, ais_dist::Bool, saf_calib::String)
     setsim_base(inst, draws, ii)
 
     # AIS
@@ -249,9 +269,11 @@ function setsim_full(inst::Union{ModelInstance, MarginalInstance}, draws::DataFr
 
     # SAF
 
-    # Assume default F2x to get ECS
-    FAIR_ECS = (sum(inst[:temperature, :q]))*3.759
-    update_param!(inst, :SAFModel_ECS, FAIR_ECS) # SAFModel.ECS
+    if saf_calib != "none"
+        # Assume default F2x to get ECS
+        FAIR_ECS = (sum(inst[:temperature, :q]))*3.759
+        update_param!(inst, :SAFModel_ECS, FAIR_ECS) # SAFModel.ECS
+    end
 
     # ISM
 
@@ -297,13 +319,13 @@ end
 function getsim_full(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame; save_rvs::Bool=true)
     mcres = getsim_base(inst, draws, save_rvs=save_rvs)
     if has_comp(inst, :AMOC)
-        mcres[:I_AMOC] = copy(inst[:AMOC, :I_AMOC])
+        mcres[:I_AMOC] = inst[:AMOC, :I_AMOC]
     end
     if has_comp(inst, :OMH)
-        mcres[:I_OMH] = copy(inst[:OMH, :I_OMH])
+        mcres[:I_OMH] = inst[:OMH, :I_OMH]
     end
     if has_comp(inst, :AmazonDieback)
-        mcres[:I_AMAZ] = copy(inst[:AmazonDieback, :I_AMAZ])
+        mcres[:I_AMAZ] = inst[:AmazonDieback, :I_AMAZ]
     end
 
     mcres

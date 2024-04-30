@@ -82,7 +82,8 @@ function create_fair_monte_carlo(fair_model::Union{Model, MarginalModel}, n_samp
                                  sample_id_subset::Union{Vector, Nothing} = nothing,
                                  delete_downloaded_data::Bool = true,
                                  other_mc_set::Function = ((model, ii) -> nothing),
-                                 other_mc_get::Function = (model -> nothing)
+                                 other_mc_get::Function = (model -> nothing),
+                                 throwex::Bool=false
                                  )
 
     if start_year !== 1750
@@ -470,10 +471,13 @@ function create_fair_monte_carlo(fair_model::Union{Model, MarginalModel}, n_samp
                 ch4[:, i] = fair_instance[:ch4_cycle, :ch4]  # Total atmospheric methane concentrations (ppb)
                 n2o[:, i] = fair_instance[:n2o_cycle, :n2o]  # Total atmospheric nitrous oxide concentrations (ppb)
 
-                othermc = other_mc_get(fair_instance)
+                othermc = deepcopy(other_mc_get(fair_instance)) # ensure array pointers not saved
                 push!(otherresults, othermc)
-            catch
+            catch e
                 println("Error in model run.")
+                if throwex
+                    throw(e)
+                end
             end
             next!(progress)
         end

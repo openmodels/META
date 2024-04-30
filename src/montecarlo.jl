@@ -85,11 +85,7 @@ end
 
 function setsim_base(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame, ii::Int64)
     for jj in 2:ncol(draws)
-<<<<<<< HEAD
-        if has_parameter(inst, Symbol(names(draws)[jj]))
-=======
         if has_parameter(getmd(inst), Symbol(names(draws)[jj]))
->>>>>>> master
             update_param!(inst, Symbol(names(draws)[jj]), draws[ii, jj])
         end
     end

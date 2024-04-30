@@ -134,7 +134,7 @@ function sim_full(model::Union{Model, MarginalModel}, trials::Int64, pcf_calib::
                                   data_dir=joinpath(dirname(pathof(MimiFAIRv2)), "..", "data",
                                                     "large_constrained_parameter_files"),
                                   delete_downloaded_data=false,
-                                  other_mc_set=(inst, ii) -> setsim(inst, draws, ii, ism_used, omh_used, amoc_used, amazon_calib, wais_calib, ais_dist),
+                                  other_mc_set=(inst, ii) -> setsim(inst, draws, ii, ism_used, omh_used, amoc_used, amazon_calib, wais_calib, ais_dist, saf_calib),
                                   other_mc_get=(inst) -> getsim(inst, draws, save_rvs=save_rvs), throwex=throwex)
     sim()
 end
@@ -230,7 +230,7 @@ function presim_full(trials::Int64, pcf_calib::String, amazon_calib::String, gis
     draws
 end
 
-function setsim_full(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame, ii::Int64, ism_used::Bool, omh_used::Bool, amoc_used::Bool, amazon_calib::String, wais_calib::String, ais_dist::Bool)
+function setsim_full(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame, ii::Int64, ism_used::Bool, omh_used::Bool, amoc_used::Bool, amazon_calib::String, wais_calib::String, ais_dist::Bool, saf_calib::String)
     setsim_base(inst, draws, ii)
 
     # AIS
@@ -259,9 +259,11 @@ function setsim_full(inst::Union{ModelInstance, MarginalInstance}, draws::DataFr
 
     # SAF
 
-    # Assume default F2x to get ECS
-    FAIR_ECS = (sum(inst[:temperature, :q]))*3.759
-    update_param!(inst, :SAFModel_ECS, FAIR_ECS) # SAFModel.ECS
+    if saf_calib != "none"
+        # Assume default F2x to get ECS
+        FAIR_ECS = (sum(inst[:temperature, :q]))*3.759
+        update_param!(inst, :SAFModel_ECS, FAIR_ECS) # SAFModel.ECS
+    end
 
     # ISM
 

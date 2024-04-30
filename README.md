@@ -95,13 +95,13 @@ model).
 
 ### 2. Running the full Monte Carlo model
 
-To run the model in Monte Carlo mode, you need to first generate the
-simulation parameter values, using the `getsim(...)` function, and
-then run the Monte Carlos, using the `runsim(...)` function, both of
-which are defined in `src/montecarlo.jl`.
+To run the model in Monte Carlo mode, run `sim_full(...)`, which is
+defined in `src/montecarlo.jl`, using a model with all the relevant
+components.
 
-`getsim` takes the following arguments (all are required, and given in
-order):
+The `sim_full` function takes the following parameters, all of which
+must be provided:
+ - `model`: A full Mimi model.
  - `trials`: The number of Monte Carlo simulations.
  - `pcf_calib`: May be "Kessler probabilistic" to draw stochastic
    parameters for the PCF model, or one of the options described in
@@ -118,34 +118,23 @@ order):
  - `saf_calib`: May be "Distribution" to draw stochastic parameters
    for the SAF model, or one of the options described in the
    deterministic use case.
+ - `ais_used`: Set to true if the AIS component is included;
+    otherwise false.
+ - `ism_used`: Set to true if the ISM component is included;
+    otherwise false.
+ - `omh_used`: Set to true if the OMH component is included;
+    otherwise false.
+ - `amoc_used`: Set to true if the AMOC component is included;
+    otherwise false.
  - `persist_dist`: May be true to draw the level of temperature
    damages persistance stochastically, or false.
  - `emuc_dist`: May be true to draw the level of elasticity of
    marginal utility stochastically, or false.
  - `prtp_dist`: May be true to draw the level of pure rate of time
    preference stochastically, or false.
-   
- The `runsim` function takes the following parameters, all of which
- must be provided:
-  - `model`: A full Mimi model.
-  - `draws`: The result of the `getsim` function.
-  - `ism_used`: Set to true if the ISM component is included;
-    otherwise false.
-  - `omh_used`: Set to true if the OMH component is included;
-    otherwise false.
-  - `amoc_used`: Set to true if the AMOC component is included;
-    otherwise false.
-  - `amazon_calib`: May be one of the options described in the
-   deterministic use case or "none" if the Amazon dieback component is
-   excluded.
-  - `wais_calib`: Set to "Distribution" if the WAIS component is
-   included, or one of the options described in the deterministic use
-   case.
-  - `save_rvs`: Set to true to save all random variables in the final
-    result; otherwise false.
 
-There are also `getmodel_base` and `runsim_base` functions, which
-include just the non-tipping-point parameters.
+There is also a `sim_base`, which includes just the non-tipping-point
+parameters.
 
 A basic usage is as follows:
 
@@ -153,19 +142,18 @@ A basic usage is as follows:
 include("../src/MimiMETA.jl")
 include("../src/montecarlo.jl")
 model = full_model(rcp="RCP4.5", ssp="SSP2")
-draws = getsim(500, "Fit of Hope and Schaefer (2016)", # PCF
+results = sim_full(100, "Fit of Hope and Schaefer (2016)", # PCF
                "Cai et al. central value", # AMAZ
                "Nordhaus central value", # GIS
-               "Distribution", # WAIS
+               "none", # WAIS
                "Distribution", # SAF
+			   true, # AIS
+			   true, # ISM
+			   true, # OMH
+			   true, # AMOC
                false, # persit
                false, # emuc
                false) # prtp
-results = runsim(model, draws, true, # ism_used
-                 true, # omh_used
-                 true, # amoc_used
-                 "Cai et al. central value", # AMAZ
-                 "Distribution") # WAIS
 ```
 
 Other examples are included in `test/test_montecarlo_tp.jl`.

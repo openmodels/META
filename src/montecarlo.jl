@@ -122,9 +122,11 @@ function sim_full(model::Union{Model, MarginalModel}, trials::Int64, pcf_calib::
 
     ## Ensure that all draws variables have global connections, if we included their components
     for jj in 2:ncol(draws)
-        component = split(names(draws)[jj], "_")[1]
-        if has_comp(getmd(model), Symbol(component))
-            set_param!(model, Symbol(component), Symbol(names(draws)[jj][length(component)+2:end]), Symbol(names(draws)[jj]), draws[1, jj])
+        if !has_parameter(getmd(model), Symbol(names(draws)[jj]))
+            component = split(names(draws)[jj], "_")[1]
+            if has_comp(getmd(model), Symbol(component))
+                set_param!(model, Symbol(component), Symbol(names(draws)[jj][length(component)+2:end]), Symbol(names(draws)[jj]), draws[1, jj])
+            end
         end
     end
 

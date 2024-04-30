@@ -11,10 +11,8 @@ Correct commit (Lisa 22 May 23 update to README.md): https://github.com/FrankErr
 Code to use in pkg mode: add https://github.com/FrankErrickson/MimiFAIRv2.jl#d07bb9995b26b4b5605cc38fa040226928799339
 =#
 
-#=
-OPEN ISSUES
--Make sure META runs with EMUC=1.02 or so
-=#
+#Comment out if ran on different machine
+cd("C:\\Users\\Thomas\\Documents\\GitHub\\META\\src")
 
 using Mimi
 import Random
@@ -102,10 +100,6 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
 
                 Random.seed!(26052023)
 
-                ### Update discounting parameters
-                # Done directly in 'utilityparams.csv', since no need to change that later.
-                # EMUC=1.01 [CURRENTLY 1.02 FOR TESTING. Runs with 1.5], PRTP=0.005
-
                 ### Run the model so we can run scripts
                 run(model)
 
@@ -119,7 +113,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
 
                 ### Run the model in MC mode
                 if TP == "TPs"
-                    results = sim_full(model, 50,
+                    results = sim_full(model, 1000,
                                        "Fit of Hope and Schaefer (2016)", # PCF
                                        "Cai et al. central value", # AMAZ
                                        "Nordhaus central value", # GIS
@@ -135,7 +129,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                        save_rvs=true,
                                        getsim=get_nonscc_results)
                 elseif TP == "NoOMH"
-                    results = sim_full(model, 50,
+                    results = sim_full(model, 1000,
                     "Fit of Hope and Schaefer (2016)", # PCF
                     "Cai et al. central value", # AMAZ
                     "Nordhaus central value", # GIS
@@ -151,7 +145,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                     save_rvs=true,
                     getsim=get_nonscc_results)
                 else
-                    results = sim_full(model, 50,
+                    results = sim_full(model, 1000,
                                        "none", # PCF
                                        "none", # AMAZ
                                        "none", # GIS
@@ -199,7 +193,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                 for yy in 2020:10:2100
                     if TP == "TPs"
                         subscc = calculate_scc_full_mc(model,
-                                                       50, # MC reps
+                                                       1000, # MC reps
                                                        "Fit of Hope and Schaefer (2016)", # PCF
                                                        "Cai et al. central value", # AMAZ
                                                        "Nordhaus central value", # GIS
@@ -214,10 +208,10 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                                        false, # prtp
                                                        yy, # pulse year
                                                        10.0, # pulse size
-                                                       1.5; calc_nationals=calc_nationals) # EMUC
+                                                       1.02; calc_nationals=calc_nationals) # EMUC
 
                         subscch4 = calculate_scch4_full_mc(model,
-                                                        50, # MC reps
+                                                        1000, # MC reps
                                                         "Fit of Hope and Schaefer (2016)", # PCF
                                                         "Cai et al. central value", # AMAZ
                                                         "Nordhaus central value", # GIS
@@ -232,10 +226,10 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                                         false, # prtp
                                                         yy, # pulse year
                                                         0.06, # pulse size
-                                                        1.5; calc_nationals=calc_nationals) # EMUC
+                                                        1.02; calc_nationals=calc_nationals) # EMUC
                     elseif TP=="NoOMH"
                         subscc = calculate_scc_full_mc(model,
-                                                        50, # MC reps
+                                                        1000, # MC reps
                                                         "Fit of Hope and Schaefer (2016)", # PCF
                                                         "Cai et al. central value", # AMAZ
                                                         "Nordhaus central value", # GIS
@@ -250,10 +244,10 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                                         false, # prtp
                                                         yy, # pulse year
                                                         10.0, # pulse size
-                                                        1.5; calc_nationals=calc_nationals) # EMUC
+                                                        1.02; calc_nationals=calc_nationals) # EMUC
 
                         subscch4 = calculate_scch4_full_mc(model,
-                                                        50, # MC reps
+                                                        1000, # MC reps
                                                         "Fit of Hope and Schaefer (2016)", # PCF
                                                         "Cai et al. central value", # AMAZ
                                                         "Nordhaus central value", # GIS
@@ -268,11 +262,11 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                                         false, # prtp
                                                         yy, # pulse year
                                                         0.06, # pulse size
-                                                        1.5; calc_nationals=calc_nationals) # EMUC
+                                                        1.02; calc_nationals=calc_nationals) # EMUC
 
                     else
                         subscc = calculate_scc_full_mc(model,
-                                                       50, # MC reps
+                                                       1000, # MC reps
                                                        "none", # PCF
                                                        "none", # AMAZ
                                                        "none", # GIS
@@ -287,10 +281,10 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                                        false, # prtp
                                                        yy, # pulse year
                                                        10.0, # pulse size
-                                                       1.5; calc_nationals=calc_nationals) # EMUC
+                                                       1.02; calc_nationals=calc_nationals) # EMUC
 
                         subscch4 = calculate_scch4_full_mc(model,
-                                                           50, # MC reps
+                                                           1000, # MC reps
                                                            "none", # PCF
                                                            "none", # AMAZ
                                                            "none", # GIS
@@ -305,7 +299,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                                            false, # prtp
                                                            yy, # pulse year
                                                            0.06, # pulse size
-                                                           1.5; calc_nationals=calc_nationals) # EMUC
+                                                           1.02; calc_nationals=calc_nationals) # EMUC
                     end
 
                     #Ensure results write correctly even if an MC draw crashes

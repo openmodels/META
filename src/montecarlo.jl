@@ -8,7 +8,7 @@ using MimiFAIRv2
 include("../src/lib/presets.jl")
 include("../src/lib/MimiFAIR_monte_carlo.jl")
 
-import Mimi.ModelInstance, Mimi.has_comp
+import Mimi.ModelInstance, Mimi.has_comp, Mimi.set_param!
 
 has_parameter(m::Model, name::Symbol) = has_parameter(m.md, name)
 has_parameter(m::MarginalModel, name::Symbol) = has_parameter(m.base.md, name)
@@ -37,6 +37,11 @@ end
 
 function getmd(inst::MarginalInstance)
     inst.base.md
+end
+
+function set_param!(mm::MarginalModel, comp::Symbol, param::Symbol, glopar::Symbol, value::Float64)
+    set_param!(mm.base, comp, param, glopar, value)
+    set_param!(mm.modified, comp, param, glopar, value)
 end
 
 function make_lognormal(riskmu, risksd)

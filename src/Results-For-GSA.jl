@@ -68,6 +68,43 @@ function getsim_extra(inst, results)
     results[:AISmodel_R_functions_Amundsen] = sum(inst[:AISmodel_R_functions_Amundsen] .* (1:length(inst[:AISmodel_R_functions_Amundsen])))
     results[:AISmodel_R_functions_Weddell] = sum(inst[:AISmodel_R_functions_Weddell] .* (1:length(inst[:AISmodel_R_functions_Weddell])))
     results[:AISmodel_R_functions_Peninsula] = sum(inst[:AISmodel_R_functions_Peninsula] .* (1:length(inst[:AISmodel_R_functions_Peninsula])))
+    # ISM
+    results[:Pbar] = mean(inst[:ISMModel, :Pbar])
+    # Triggering logic
+    # Suppose that there's a threshold T, so log(T) ~ N
+    # Now I observe a bunch of values. When do I get my first value below the threshold? Average over them.
+    omhyears = []
+    amocyears = []
+    amazyears = []
+    waisyears = []
+    for threshold in [1e-3, 1e-2, 1e-1]
+        omhyear = findfirst(inst[:OMH_uniforms] .< threshold)
+        if omhyear == nothing
+            omhyear = length(inst[:OMH_uniforms]) + 1
+        end
+        amocyear = findfirst(inst[:AMOC_uniforms] .< threshold)
+        if amocyear == nothing
+            amocyear = length(inst[:AMOC_uniforms]) + 1
+        end
+        amazyear = findfirst(inst[:AmazonDieback_uniforms] .< threshold)
+        if amazyear == nothing
+            amazyear = length(inst[:AmazonDieback_uniforms]) + 1
+        end
+        waisyear = findfirst(inst[:WAISmodel_uniforms] .< threshold)
+        if waisyear == nothing
+            waisyear = length(inst[:WAISmodel_uniforms]) + 1
+        end
+
+        append!(omhyears, omhyear)
+        append!(amocyears, amocyear)
+        append!(amazyears, amazyear)
+        append!(waisyears, waisyear)
+    end
+
+    results[:OMH_year] = mean(omhyears)
+    results[:AMOC_year] = mean(amocyears)
+    results[:AMAZ_year] = mean(amazyears)
+    results[:waisyears] = mean(waisyears)
 end
 
 ### Calculate the SC-CO2 in MC mode

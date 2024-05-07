@@ -95,7 +95,7 @@ if false
     ## [mean(sccs[:other]), std(sccs[:other]), median(sccs[:other])] # This line only works if calc_nationals = false
 end
 
-function calculate_scc_full_mc(model::Model, trials::Int64, pcf_calib::String, amazon_calib::String, gis_calib::String, wais_calib::String, saf_calib::String, ais_dist::Bool, ism_used::Bool, omh_used::Bool, amoc_used::Bool, persist_dist::Bool, emuc_dist::Bool, prtp_dist::Bool, pulse_year::Int64, pulse_size::Float64, emuc::Float64; calc_nationals::Bool=true, save_rvs::Bool=false)
+function calculate_scc_full_mc(model::Model, trials::Int64, pcf_calib::String, amazon_calib::String, gis_calib::String, wais_calib::String, saf_calib::String, ais_dist::Bool, ism_used::Bool, omh_used::Bool, amoc_used::Bool, persist_dist::Bool, emuc_dist::Bool, prtp_dist::Bool, pulse_year::Int64, pulse_size::Float64, emuc::Float64; calc_nationals::Bool=true, save_rvs::Bool=false, getsim_extra::Function=(inst, results) -> nothing)
     mm = calculate_scc_setup(model, pulse_year, pulse_size)
 
     function setsim_full_scc(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame, ii::Int64, ism_used::Bool, omh_used::Bool, amoc_used::Bool, amazon_calib::String, wais_calib::String, ais_dist::Bool, saf_calib::String)
@@ -113,6 +113,7 @@ function calculate_scc_full_mc(model::Model, trials::Int64, pcf_calib::String, a
             push!(nationalscc, ["global", globalscc])
             results[:nationalscc] = nationalscc
         end
+        getsim_extra(inst, results)
 
         results
     end

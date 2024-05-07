@@ -94,7 +94,7 @@ if false
     ## [mean(scch4s[:other]), std(scch4s[:other]), median(scch4s[:other])] # This line only works if calc_nationals = false
 end
 
-function calculate_scch4_full_mc(model::Model, trials::Int64, pcf_calib::String, amazon_calib::String, gis_calib::String, wais_calib::String, saf_calib::String, ais_dist::Bool, ism_used::Bool, omh_used::Bool, amoc_used::Bool, persist_dist::Bool, emuc_dist::Bool, prtp_dist::Bool, pulse_year::Int64, pulse_size::Float64, emuc::Float64; calc_nationals::Bool=true, save_rvs::Bool=false)
+function calculate_scch4_full_mc(model::Model, trials::Int64, pcf_calib::String, amazon_calib::String, gis_calib::String, wais_calib::String, saf_calib::String, ais_dist::Bool, ism_used::Bool, omh_used::Bool, amoc_used::Bool, persist_dist::Bool, emuc_dist::Bool, prtp_dist::Bool, pulse_year::Int64, pulse_size::Float64, emuc::Float64; calc_nationals::Bool=true, save_rvs::Bool=false, getsim_extra::Function=(inst, results) -> nothing)
     mm = calculate_scch4_setup(model, pulse_year, pulse_size)
 
     function setsim_full_scch4(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame, ii::Int64, ism_used::Bool, omh_used::Bool, amoc_used::Bool, amazon_calib::String, wais_calib::String, ais_dist::Bool, saf_calib::String)
@@ -112,6 +112,7 @@ function calculate_scch4_full_mc(model::Model, trials::Int64, pcf_calib::String,
             push!(nationalscch4, ["global", globalscch4])
             results[:nationalscch4] = nationalscch4
         end
+        getsim_extra(inst, results)
 
         results
     end

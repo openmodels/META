@@ -29,7 +29,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
     for z in ["Base", "GMP", "GMP-LowCH4", "GMP-HighCH4"]
 
         # TP configurations
-        for TP in ["TPs", "NoTPs", "NoOMH"]
+        for TP in ["NoTPs", "TPs", "NoOMH"]
             if TP == "TPs"
                 global model = full_model(;
                                           rcp = x*z, # Concatenate correct scenario-variant name

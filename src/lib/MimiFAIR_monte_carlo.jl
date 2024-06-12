@@ -490,6 +490,7 @@ function create_fair_monte_carlo(fair_model::Union{Model, MarginalModel}, n_samp
                 push!(otherresults, othermc)
             catch e
                 println("Error in model run.")
+                push!(otherresults, nothing)
                 if throwex
                     throw(e)
                 end

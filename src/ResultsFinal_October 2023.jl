@@ -314,8 +314,8 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                         allscch4.pulse_year .= yy
                         allscch4results = vcat(allscch4results, allscch4)
                     else
-                        scc = [entry[:globalscc] for entry in subscc[:other]]
-                        scch4 = [entry[:globalscch4] for entry in subscch4[:other]]
+                        scc = [(isnothing(entry) ? missing : entry[:globalscc]) for entry in subscc[:other]]
+                        scch4 = [(isnothing(entry) ? missing : entry[:globalscch4]) for entry in subscch4[:other]]
                     end
 
                     if length(scc) < length(scch4)

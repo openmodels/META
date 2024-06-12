@@ -105,6 +105,7 @@ function getsim_base(inst::Union{ModelInstance, MarginalInstance}, draws::DataFr
     mcres[:SLRModel_SLR] = inst[:SLRModel, :SLR]
     mcres[:PatternScaling_T_country] = inst[:PatternScaling, :T_country]
     mcres[:TemperatureConverter_T_AT] = inst[:TemperatureConverter, :T_AT]
+    mcres[:temperature_T] = inst[:temperature, :T]
 
     ##Economic results
     mcres[:TotalDamages_total_damages_global_peryear_percent] = inst[:TotalDamages, :total_damages_global_peryear_percent] #Population-weighted global change in consumption due to climate damages (in % of counterfactual consumption per capita)
@@ -349,21 +350,23 @@ function simdataframe(model::Union{Model, MarginalModel}, results::Dict{Symbol, 
 
         return df
     else
-        return simdataframe(model, convert(Vector{Dict{Symbol, Any}}, results[:other]), comp, name)
+        return simdataframe(model, convert(Vector{Union{Dict{Symbol, Any}, Nothing}}, results[:other]), comp, name)
     end
 end
 
-function simdataframe(model::Union{Model, MarginalModel}, results::Vector{Dict{Symbol, Any}}, comp::Symbol, name::Symbol)
+function simdataframe(model::Union{Model, MarginalModel}, results::Vector{Union{Dict{Symbol, Any}, Nothing}}, comp::Symbol, name::Symbol)
     key = Symbol("$(comp)_$(name)")
     if results[1][key] isa Number
         df = DataFrame(trialnum=1:length(results))
-        df[!, name] = [results[ii][key] for ii in 1:length(results)]
+        df[!, name] = [(isnothing(results[ii]) ? missing : results[ii][key]) for ii in 1:length(results)]
     else
         dfbase = getdataframe(model, comp, name)
         alldf = []
         for ii in 1:length(results)
             mcdf = dfbase[!, :]
-            if isa(results[ii][key], Vector)
+            if isnothing(results[ii])
+                mcdf[!, name] .= missing
+            elseif isa(results[ii][key], Vector)
                 mcdf[!, name] = results[ii][key]
             else
                 mcdf[!, name] = vec(transpose(results[ii][key]))

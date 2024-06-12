@@ -12,9 +12,11 @@
     pinit = Variable(index=[time]) # rainfall probability in the onset period if Apl >= Aplcrit
     Pwet = Variable(index=[time], unit="mm/day") # daily rainfall intensity
     Pbar = Variable(index=[time], unit="mm/day") # seasonal mean precipitation rate
+    Pbar_exog = Variable(index=[time], unit="mm/day") # exogenous seasonal mean precipitation rate
     D_ISM = Variable(index=[time], unit="pctGDP") # damages as a function of whether the year is drought, flood or neither
 
     dailyrainfall = Variable(index=[time, monsoonsteps], unit="mm/day")
+    dailyrainfall_exog = Variable(index=[monsoonsteps], unit="mm/day") # just the most recent period
 
     extradamage = Variable(index=[time, country])
 
@@ -114,10 +116,12 @@
 
                 # Calculate rainfall for each period of days in year t
                 vv.dailyrainfall[tt, ss] = ISM_daily_rainfall_draws ? vv.Pwet[tt] : pp.Pdry
+                vv.dailyrainfall_exog[ss] = (pp.uniforms[tt, ss] > 1 - pp.pinit_0) ? pp.Pwet_0 : pp.Pdry
             end
         end
 
         vv.Pbar[tt] = mean(vv.dailyrainfall[tt, :]) # Seasonal mean precipitation rate for year t
+        vv.Pbar_exog[tt] = mean(vv.dailyrainfall_exog[:]) # Seasonal mean precipitation rate for year t
 
         if vv.Pbar[tt] <= pp.Pdrought
             vv.D_ISM[tt] = pp.Ddrought

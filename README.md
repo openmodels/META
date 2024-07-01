@@ -28,7 +28,7 @@ The following directories are used for the Mimi model:
  
  Please note that all code is designed to be run with the working
  directory set to a subdirectory of the repository (e.g., `src` or you
- can create a subdirectory `analysis`).
+ can create a subdirectory `analysis`). META can be installed and run on a normal desktop computer. Typical installation time for META as well as any dependencies is around a few hours. Expected run time on a normal desktop computer depends largely on Monte Carlo sample sizes and active modules. Sample sizes up to 1,000 MC draws can be run in a few hours at most, while sample sizes of 10,000 MC draws might take around one day to complete.
  
 ### 1. Running the full deterministic model
  

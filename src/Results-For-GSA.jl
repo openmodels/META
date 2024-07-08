@@ -30,27 +30,6 @@ function extract_params(results)
     params
 end
 
-model = full_model(;
-                   rcp = "CP-Base", # Concatenate correct scenario-variant name
-                   ssp = "SSP2",
-                   tdamage = "pointestimate",
-                   slrdamage = "mode",
-                   saf = "Distribution mean",
-                   interaction = true,
-                   pcf = "Fit of Hope and Schaefer (2016)",
-                   omh = "Whiteman et al. beta 20 years",
-                   amaz = "Cai et al. central value",
-                   gis = "Nordhaus central value",
-                   ais = "AIS",
-                   ism = "Value",
-                   amoc = "IPSL",
-                   nonmarketdamage = true)
-
-myupdate_param!(model, :Consumption, :damagepersist, 0.5)
-
-### Run the model so we can run scripts
-run(model)
-
 function getsim_extra(inst, results)
     model = inst.base
 
@@ -141,30 +120,32 @@ function getsim_extra(inst, results)
     end
 end
 
-Random.seed!(26052023)
+for TP in ["TPs", "NoOMH"]
+    model = full_model(;
+                       rcp = "CP-Base", # Concatenate correct scenario-variant name
+                       ssp = "SSP2",
+                       tdamage = "pointestimate",
+                       slrdamage = "mode",
+                       saf = "Distribution mean",
+                       interaction = true,
+                       pcf = "Fit of Hope and Schaefer (2016)",
+                       omh = (TP == "TPs" ? "Whiteman et al. beta 20 years" : false),
+                       amaz = "Cai et al. central value",
+                       gis = "Nordhaus central value",
+                       ais = "AIS",
+                       ism = "Value",
+                       amoc = "IPSL",
+                       nonmarketdamage = true)
 
-### Calculate the SC-CO2 in MC mode
-subscc = calculate_scc_full_mc(model,
-                               nummc, # MC reps
-                               "Fit of Hope and Schaefer (2016)", # PCF
-                               "Cai et al. central value", # AMAZ
-                               "Nordhaus central value", # GIS
-                               "none", # WAIS
-                               "Distribution", # SAF
-                               true, # ais_used
-                               true, # ism_used
-                               true, # omh_used
-                               true, # amoc_used
-                               false, # persist
-                               false, # emuc
-                               false, # prtp
-                               2020, # pulse year
-                               10.0, # pulse size
-                               1.02; save_rvs=true, calc_nationals=false, getsim_extra=getsim_extra) # EMUC
+    myupdate_param!(model, :Consumption, :damagepersist, 0.5)
 
-Random.seed!(26052023)
+    ### Run the model so we can run scripts
+    run(model)
 
-subscch4 = calculate_scch4_full_mc(model,
+    Random.seed!(26052023)
+
+    ### Calculate the SC-CO2 in MC mode
+    subscc = calculate_scc_full_mc(model,
                                    nummc, # MC reps
                                    "Fit of Hope and Schaefer (2016)", # PCF
                                    "Cai et al. central value", # AMAZ
@@ -173,40 +154,61 @@ subscch4 = calculate_scch4_full_mc(model,
                                    "Distribution", # SAF
                                    true, # ais_used
                                    true, # ism_used
-                                   true, # omh_used
+                                   (TP == "TPs"), # omh_used
                                    true, # amoc_used
                                    false, # persist
                                    false, # emuc
                                    false, # prtp
                                    2020, # pulse year
-                                   0.06, # pulse size
+                                   10.0, # pulse size
                                    1.02; save_rvs=true, calc_nationals=false, getsim_extra=getsim_extra) # EMUC
 
-scc = [(isnothing(entry) ? missing : entry[:globalscc]) for entry in subscc[:other]]
-scch4 = [(isnothing(entry) ? missing : entry[:globalscch4]) for entry in subscch4[:other]]
+    Random.seed!(26052023)
 
-CSV.write("../results/sccs-CP-Base-SSP2-GSA-0.5.csv", DataFrame(pulse_year=2020, scc=scc, scch4=scch4))
+    subscch4 = calculate_scch4_full_mc(model,
+                                       nummc, # MC reps
+                                       "Fit of Hope and Schaefer (2016)", # PCF
+                                       "Cai et al. central value", # AMAZ
+                                       "Nordhaus central value", # GIS
+                                       "none", # WAIS
+                                       "Distribution", # SAF
+                                       true, # ais_used
+                                       true, # ism_used
+                                       (TP == "TPs"), # omh_used
+                                       true, # amoc_used
+                                       false, # persist
+                                       false, # emuc
+                                       false, # prtp
+                                       2020, # pulse year
+                                       0.06, # pulse size
+                                       1.02; save_rvs=true, calc_nationals=false, getsim_extra=getsim_extra) # EMUC
 
-CSV.write("../results/params-scc-CP-Base-SSP2-GSA-0.5.csv", DataFrame(extract_params(subscc)))
-CSV.write("../results/params-scch4-CP-Base-SSP2-GSA-0.5.csv", DataFrame(extract_params(subscch4)))
+    scc = [(isnothing(entry) ? missing : entry[:globalscc]) for entry in subscc[:other]]
+    scch4 = [(isnothing(entry) ? missing : entry[:globalscch4]) for entry in subscch4[:other]]
 
-df1 = simdataframe(model, subscc, :SLRModel, :SLR)
-df2 = simdataframe(model, subscc, :TemperatureConverter, :T_AT)
-df3 = simdataframe(model, subscch4, :SLRModel, :SLR)
-df4 = simdataframe(model, subscch4, :TemperatureConverter, :T_AT)
+    CSV.write("../results/sccs-CP-Base-SSP2-GSA-0.5-$(TP).csv", DataFrame(pulse_year=2020, scc=scc, scch4=scch4))
 
-df = df1[!, [:time, :trialnum]]
-df[!, :SLR_SCC] = df1.SLR
-df[!, :T_AT_SCC] = df2.T_AT
-df[!, :SLR_SCCH4] = df3.SLR
-df[!, :T_AT_SCCH4] = df4.T_AT
-CSV.write("../results/bytime-CP-Base-SSP2-GSA-0.5.csv", df[(df.time .>= 2010) .& (df.time .<= 2100), :])
+    CSV.write("../results/params-scc-CP-Base-SSP2-GSA-0.5-$(TP).csv", DataFrame(extract_params(subscc)))
+    CSV.write("../results/params-scch4-CP-Base-SSP2-GSA-0.5-$(TP).csv", DataFrame(extract_params(subscch4)))
 
-df1 = simdataframe(model, subscc, :temperature, :T)
-df2 = simdataframe(model, subscch4, :temperature, :T)
+    df1 = simdataframe(model, subscc, :SLRModel, :SLR)
+    df2 = simdataframe(model, subscc, :TemperatureConverter, :T_AT)
+    df3 = simdataframe(model, subscch4, :SLRModel, :SLR)
+    df4 = simdataframe(model, subscch4, :TemperatureConverter, :T_AT)
 
-df = df1[!, [:time, :trialnum]]
-df[!, :T_SCC] = df1.T
-df[!, :T_SCCH4] = df2.T
+    df = df1[!, [:time, :trialnum]]
+    df[!, :SLR_SCC] = df1.SLR
+    df[!, :T_AT_SCC] = df2.T_AT
+    df[!, :SLR_SCCH4] = df3.SLR
+    df[!, :T_AT_SCCH4] = df4.T_AT
+    CSV.write("../results/bytime-CP-Base-SSP2-GSA-0.5-$(TP).csv", df[(df.time .>= 2010) .& (df.time .<= 2100), :])
 
-CSV.write("../results/bytimemore-CP-Base-SSP2-GSA-0.5.csv", df)
+    df1 = simdataframe(model, subscc, :temperature, :T)
+    df2 = simdataframe(model, subscch4, :temperature, :T)
+
+    df = df1[!, [:time, :trialnum]]
+    df[!, :T_SCC] = df1.T
+    df[!, :T_SCCH4] = df2.T
+
+    CSV.write("../results/bytimemore-CP-Base-SSP2-GSA-0.5-$(TP).csv", df)
+end

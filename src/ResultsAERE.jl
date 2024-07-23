@@ -88,8 +88,8 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                 ### Run the model so we can run scripts
                 run(model)
 
-                function get_nonscc_results(inst, draws; save_rvs)
-                    mcres = getsim_full(inst, draws; save_rvs=save_rvs)
+                function get_nonscc_results(inst, draws, ii; save_rvs)
+                    mcres = getsim_full(inst, draws, ii; save_rvs=save_rvs)
                     bgeres = calculate_bge(inst)
                     mcres[:bge] = bgeres
 
@@ -163,11 +163,11 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                 end
                 CSV.write("../results/bytime-$x$z-$y-$TP-$persistence.csv", df[(df.time .>= 2010) .& (df.time .<= 2100), :])
 
-                df = simdataframe(model, results, :TotalDamages, :total_damages_percap_peryear_percent) 
+                df = simdataframe(model, results, :TotalDamages, :total_damages_percap_peryear_percent)
                 CSV.write("../results/bytimexcountry-$x$z-$y-$TP-$persistence.csv", df[(df.time .>= 2010) .& (df.time .<= 2100), :])
 
                 # Export country-level temperatures
-                df = simdataframe(model, results, :PatternScaling, :T_country) 
+                df = simdataframe(model, results, :PatternScaling, :T_country)
                 CSV.write("../results/bytimexcountry2-$x$z-$y-$TP-$persistence.csv", df[(df.time .>= 2010) .& (df.time .<= 2100), :])
 
                 ### Calculate the SC-CO2 in MC mode
@@ -246,7 +246,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                                         yy, # pulse year
                                                         0.06, # pulse size
                                                         1.5) # EMUC
-                    
+
                     else
                         subscc = calculate_scc_full_mc(model,
                                                        500, # MC reps

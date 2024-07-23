@@ -88,14 +88,14 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                 ### Run the model so we can run scripts
                 run(model)
 
-                function get_nonscc_results(inst, draws; save_rvs)
-                    mcres = getsim_full(inst, draws; save_rvs=save_rvs)
+                function get_nonscc_results(inst, draws, ii; save_rvs)
+                    mcres = getsim_full(inst, draws, ii; save_rvs=save_rvs)
                     bgeres = calculate_bge(inst)
                     mcres[:bge] = bgeres
 
                     mcres
                 end
-                
+
                 ### Run the model in MC mode
                 if TP == "TPs"
                     results = sim_full(model, 50,
@@ -164,11 +164,11 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                 end
                 CSV.write("../results/bytime-$x$z-$y-$TP-$persistence.csv", df[(df.time .>= 2010) .& (df.time .<= 2100), :])
 
-                df = simdataframe(model, results, :TotalDamages, :total_damages_percap_peryear_percent) 
+                df = simdataframe(model, results, :TotalDamages, :total_damages_percap_peryear_percent)
                 CSV.write("../results/bytimexcountry-$x$z-$y-$TP-$persistence.csv", df[(df.time .>= 2010) .& (df.time .<= 2100), :])
 
                 # Export country-level temperatures
-                df = simdataframe(model, results, :PatternScaling, :T_country) 
+                df = simdataframe(model, results, :PatternScaling, :T_country)
                 CSV.write("../results/bytimexcountry2-$x$z-$y-$TP-$persistence.csv", df[(df.time .>= 2010) .& (df.time .<= 2100), :])
                 =#
 
@@ -212,7 +212,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                                         2020, # pulse year
                                                         yy, # pulse size
                                                         1.5) # EMUC
-                    
+
                     else
                         subscch4 = calculate_scch4_full_mc(model,
                                                         50, # MC reps

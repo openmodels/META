@@ -19,7 +19,7 @@ wedge_to_category = Dict(
     1:17 => "AIS",
     18:19 => "Amazon",
     20:21 => "AMOC",
-    22:23 => "Burke Damages",
+    #22:23 => "Burke Damages",
     24:43 => "Interactions",
     44:45 => "OMH",
     46 => "ISM",
@@ -68,11 +68,11 @@ end
 function get_category_values(inputs, do_method)
     results = get_gsa(inputs[1], inputs[2], inputs[3], do_method)
     normed_raw = zeros(length(inputs[4]))
-    normed_raw[inputs[4]] = results.raw ./ sum(results.raw)
+    normed_raw[inputs[4]] = results.raw
     normed_lo = zeros(length(inputs[4]))
-    normed_lo[inputs[4]] = results.lo ./ sum(results.lo)
+    normed_lo[inputs[4]] = results.lo
     normed_hi = zeros(length(inputs[4]))
-    normed_hi[inputs[4]] = results.hi ./ sum(results.hi)
+    normed_hi[inputs[4]] = results.hi
 
     import_raw = Float64[]
     import_lo = Float64[]
@@ -106,6 +106,7 @@ if do_pies
             println(do_method)
 
             import_raw, import_lo, import_hi, labels = get_category_values(inputs, do_method)
+            normed_raw = import_raw / sum(import_raw)
 
             pie(import_raw, label=labels, title=titles[do_method], legend=:none, linewidth=0.5, c=palette(:tab10))
 
@@ -143,23 +144,24 @@ else
 
             if pp == nothing
                 pp = plot(
-                    import_raw, labels, seriestype=:scatter, label=titles[do_method],
+                    import_raw / sum(import_raw), labels, seriestype=:scatter, label=titles[do_method],
                     marker=markers[do_method],
                     xlabel="Variables", ylabel="Relative Importance", legend=:topright)
             elseif all(import_lo .== import_hi)
-                plot!(pp, import_raw, labels, seriestype=:scatter, label=titles[do_method],
+                plot!(pp, import_raw / sum(import_raw), labels, seriestype=:scatter, label=titles[do_method],
                       marker=markers[do_method])
             else
                 for ii in 1:length(labels)
-                    plot!(pp, [import_raw[ii]], [labels[ii]], seriestype=:scatter,
+                    plot!(pp, [import_raw[ii] / sum(import_raw)], [labels[ii]], seriestype=:scatter,
                           label=ii == 1 ? titles[do_method] : "",
-                          xerror=[(import_raw[ii] - import_lo[ii], import_hi[ii] - import_raw[ii])],
+                          xerror=[((import_raw[ii] - import_lo[ii]) / sum(import_raw), (import_hi[ii] - import_raw[ii]) / sum(import_raw))],
                           marker=markers[do_method], line=(:solid, 2, :purple))
                 end
             end
         end
 
         display(pp)
+        plot!(size=(600,300))
         Plots.pdf("gsa-scatter-$(do_gas).pdf")
     end
 end

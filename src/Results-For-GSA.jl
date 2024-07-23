@@ -42,7 +42,6 @@ function getsim_extra(inst, results)
 
     if has_comp(model, :AISmodel)
         results[:AISmodel_β_EAIS] = model[:AISmodel, :β_EAIS]
-        results[:AISmodel_β_EAIS] = model[:AISmodel, :β_EAIS]
         results[:AISmodel_δ_EAIS] = model[:AISmodel, :δ_EAIS]
         results[:AISmodel_β_Ross] = model[:AISmodel, :β_Ross]
         results[:AISmodel_δ_Ross] = model[:AISmodel, :δ_Ross]

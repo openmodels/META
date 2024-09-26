@@ -14,7 +14,9 @@ amoc[:T_AT] = benchmark.Temperature[2:end]
 amoc[:f_AMOC] = repeat([1], dim_count(model, :time))
 amoc[:uniforms] = 1 .- benchmark."Binomial draw"[2:end]
 
-amoc[:scale_country] = Matrix(benchmark_scale[!, 2:end-1])
+T_country_base = Matrix(benchmark_scale[!, 2:end])
+T_country_base[ismissing.(T_country_base)] .= 0
+amoc[:T_country_base] = T_country_base
 
 run(model)
 

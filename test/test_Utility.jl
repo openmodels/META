@@ -13,8 +13,8 @@ include("../src/components/Utility.jl")
 
 utility = addUtility(model, "SSP2")
 
-utility[:conspc] = Matrix(benchmark_cons[2:192, 2:195])
-utility[:lossfactor] = Matrix(benchmark_lossfactor[!, 2:end])
+utility[:conspc] = Matrix(benchmark_cons[2:192, 1:end-5])
+utility[:lossfactor] = Matrix(benchmark_lossfactor[!, 1:end])
 
 run(model)
 

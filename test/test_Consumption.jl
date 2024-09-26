@@ -11,7 +11,7 @@ include("../src/components/Consumption.jl")
 model = test_model()
 cons = addConsumption(model, "none", "none", "SSP2")
 
-cons[:T_country] = Matrix(benchmark_temp[!, 2:end])
+cons[:T_country] = Matrix(benchmark_temp[!, 1:end])
 cons[:SLR] = benchmark_slr[!, 4]
 
 run(model)
@@ -37,7 +37,7 @@ conspc_compare = Matrix(benchmark[2:end, 2:end])
 model = test_model()
 cons = addConsumption(model, "pointestimate", "mode", "SSP2")
 
-cons[:T_country] = Matrix(benchmark_temp[!, 2:end])
+cons[:T_country] = Matrix(benchmark_temp[!, 1:end])
 cons[:SLR] = benchmark_slr[!, 4]
 
 run(model)
@@ -45,7 +45,7 @@ run(model)
 benchmark = CSV.read("../data/benchmark/Consumption.csv", DataFrame)
 
 conspc = model[:Consumption, :conspc]
-conspc_compare = Matrix(benchmark[2:end, 2:end])
+conspc_compare = Matrix(benchmark[2:end, 1:end])
 
 @test conspc[1:3, 1:3] ≈ conspc_compare[1:3, 1:3]
 @test conspc[1:100, 1:194] ≈ conspc_compare[1:100, 1:194] rtol=1e-4

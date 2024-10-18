@@ -5,6 +5,9 @@ META 2021 is an advanced integrated assessment model (SC-IAM), designed as a mod
 
 META 2021 is introduced in; **Dietz, Rising, Stoerk, and Wagner (2021): "Economic impacts of tipping points in the climate system", PNAS, 118(34), e2103081118.** [https://doi.org/10.1073/pnas.2103081118]
 
+Scientific documentation for the current version of META is available
+as [a PDF](https://docs.google.com/viewer?url=https://raw.githubusercontent.com/openmodels/META/master/docs.pdf).
+
 See that paper and its supplementary information for further
 details. Please cite the paper when using META in your research.
 
@@ -28,7 +31,7 @@ The following directories are used for the Mimi model:
  
  Please note that all code is designed to be run with the working
  directory set to a subdirectory of the repository (e.g., `src` or you
- can create a subdirectory `analysis`). META can be installed and run on a normal desktop computer. Typical installation time for META as well as any dependencies is around a few hours. Expected run time on a normal desktop computer depends largely on Monte Carlo sample sizes and active modules. Sample sizes up to 1,000 MC draws can be run in a few hours at most, while sample sizes of 10,000 MC draws might take around one day to complete.
+ can create a subdirectory `analysis`). Installation time for META on a standard desktop computer should be in the hours, while the speed of results production depends on the number of Monte Carlo draws. Monte Carlo sample sizes of 1,000 likely take hours, while sample sizes of 10,000 and beyond likely take days to compute on a standard desktop computer.
  
 ### 1. Running the full deterministic model
  

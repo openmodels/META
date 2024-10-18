@@ -97,3 +97,1070 @@ results/bytime-CP-Base-SSP2-NoTPs-high.csv
 results/bytimexcountry-CP-Base-SSP2-NoTPs-high.csv
 results/bytimexcountry2-CP-Base-SSP2-NoTPs-high.csv
 results/sccs-CP-Base-SSP2-NoTPs-high_earlier.csv
+results/bge-1.5-Base-SSP1-NoOMH-default.csv
+results/bge-1.5-Base-SSP1-NoOMH-high.csv
+results/bge-1.5-Base-SSP1-NoTPs-default.csv
+results/bge-1.5-Base-SSP1-NoTPs-high.csv
+results/bge-1.5-Base-SSP1-TPs-default.csv
+results/bge-1.5-Base-SSP1-TPs-high.csv
+results/bge-1.5-GMP-HighCH4-SSP1-NoOMH-default.csv
+results/bge-1.5-GMP-HighCH4-SSP1-NoOMH-high.csv
+results/bge-1.5-GMP-HighCH4-SSP1-NoTPs-default.csv
+results/bge-1.5-GMP-HighCH4-SSP1-NoTPs-high.csv
+results/bge-1.5-GMP-HighCH4-SSP1-TPs-default.csv
+results/bge-1.5-GMP-HighCH4-SSP1-TPs-high.csv
+results/bge-1.5-GMP-LowCH4-SSP1-NoOMH-default.csv
+results/bge-1.5-GMP-LowCH4-SSP1-NoOMH-high.csv
+results/bge-1.5-GMP-LowCH4-SSP1-NoTPs-default.csv
+results/bge-1.5-GMP-LowCH4-SSP1-NoTPs-high.csv
+results/bge-1.5-GMP-LowCH4-SSP1-TPs-default.csv
+results/bge-1.5-GMP-LowCH4-SSP1-TPs-high.csv
+results/bge-1.5-GMP-SSP1-NoOMH-default.csv
+results/bge-1.5-GMP-SSP1-NoOMH-high.csv
+results/bge-1.5-GMP-SSP1-NoTPs-default.csv
+results/bge-1.5-GMP-SSP1-NoTPs-high.csv
+results/bge-1.5-GMP-SSP1-TPs-default.csv
+results/bge-1.5-GMP-SSP1-TPs-high.csv
+results/bge-CP-Base-SSP2-NoOMH-default.csv
+results/bge-CP-Base-SSP2-NoOMH-high-test.csv
+results/bge-CP-Base-SSP2-NoTPs-default.csv
+results/bge-CP-Base-SSP2-TPs-default.csv
+results/bge-CP-Base-SSP2-TPs-high.csv
+results/bge-CP-GMP-HighCH4-SSP2-NoOMH-default.csv
+results/bge-CP-GMP-HighCH4-SSP2-NoOMH-high.csv
+results/bge-CP-GMP-HighCH4-SSP2-NoTPs-default.csv
+results/bge-CP-GMP-HighCH4-SSP2-NoTPs-high.csv
+results/bge-CP-GMP-HighCH4-SSP2-TPs-default.csv
+results/bge-CP-GMP-HighCH4-SSP2-TPs-high.csv
+results/bge-CP-GMP-LowCH4-SSP2-NoOMH-default.csv
+results/bge-CP-GMP-LowCH4-SSP2-NoOMH-high.csv
+results/bge-CP-GMP-LowCH4-SSP2-NoTPs-default.csv
+results/bge-CP-GMP-LowCH4-SSP2-NoTPs-high.csv
+results/bge-CP-GMP-LowCH4-SSP2-TPs-default.csv
+results/bge-CP-GMP-LowCH4-SSP2-TPs-high.csv
+results/bge-CP-GMP-SSP2-NoOMH-default.csv
+results/bge-CP-GMP-SSP2-NoOMH-high.csv
+results/bge-CP-GMP-SSP2-NoTPs-default.csv
+results/bge-CP-GMP-SSP2-NoTPs-high.csv
+results/bge-CP-GMP-SSP2-TPs-default.csv
+results/bge-CP-GMP-SSP2-TPs-high.csv
+results/bge-NP-Base-SSP3-NoOMH-default.csv
+results/bge-NP-Base-SSP3-NoOMH-high.csv
+results/bge-NP-Base-SSP3-NoTPs-default.csv
+results/bge-NP-Base-SSP3-NoTPs-high.csv
+results/bge-NP-Base-SSP3-TPs-default.csv
+results/bge-NP-Base-SSP3-TPs-high.csv
+results/bge-NP-GMP-HighCH4-SSP3-NoOMH-default.csv
+results/bge-NP-GMP-HighCH4-SSP3-NoOMH-high.csv
+results/bge-NP-GMP-HighCH4-SSP3-NoTPs-default.csv
+results/bge-NP-GMP-HighCH4-SSP3-NoTPs-high.csv
+results/bge-NP-GMP-HighCH4-SSP3-TPs-default.csv
+results/bge-NP-GMP-HighCH4-SSP3-TPs-high.csv
+results/bge-NP-GMP-LowCH4-SSP3-NoOMH-default.csv
+results/bge-NP-GMP-LowCH4-SSP3-NoOMH-high.csv
+results/bge-NP-GMP-LowCH4-SSP3-NoTPs-default.csv
+results/bge-NP-GMP-LowCH4-SSP3-NoTPs-high.csv
+results/bge-NP-GMP-LowCH4-SSP3-TPs-default.csv
+results/bge-NP-GMP-LowCH4-SSP3-TPs-high.csv
+results/bge-NP-GMP-SSP3-NoOMH-default.csv
+results/bge-NP-GMP-SSP3-NoOMH-high.csv
+results/bge-NP-GMP-SSP3-NoTPs-default.csv
+results/bge-NP-GMP-SSP3-NoTPs-high.csv
+results/bge-NP-GMP-SSP3-TPs-default.csv
+results/bge-NP-GMP-SSP3-TPs-high.csv
+results/bytime-1.5-Base-SSP1-NoOMH-default.csv
+results/bytime-1.5-Base-SSP1-NoOMH-high.csv
+results/bytime-1.5-Base-SSP1-NoTPs-default.csv
+results/bytime-1.5-Base-SSP1-NoTPs-high.csv
+results/bytime-1.5-Base-SSP1-TPs-default.csv
+results/bytime-1.5-Base-SSP1-TPs-high.csv
+results/bytime-1.5-GMP-HighCH4-SSP1-NoOMH-default.csv
+results/bytime-1.5-GMP-HighCH4-SSP1-NoOMH-high.csv
+results/bytime-1.5-GMP-HighCH4-SSP1-NoTPs-default.csv
+results/bytime-1.5-GMP-HighCH4-SSP1-NoTPs-high.csv
+results/bytime-1.5-GMP-HighCH4-SSP1-TPs-default.csv
+results/bytime-1.5-GMP-HighCH4-SSP1-TPs-high.csv
+results/bytime-1.5-GMP-LowCH4-SSP1-NoOMH-default.csv
+results/bytime-1.5-GMP-LowCH4-SSP1-NoOMH-high.csv
+results/bytime-1.5-GMP-LowCH4-SSP1-NoTPs-default.csv
+results/bytime-1.5-GMP-LowCH4-SSP1-NoTPs-high.csv
+results/bytime-1.5-GMP-LowCH4-SSP1-TPs-default.csv
+results/bytime-1.5-GMP-LowCH4-SSP1-TPs-high.csv
+results/bytime-1.5-GMP-SSP1-NoOMH-default.csv
+results/bytime-1.5-GMP-SSP1-NoOMH-high.csv
+results/bytime-1.5-GMP-SSP1-NoTPs-default.csv
+results/bytime-1.5-GMP-SSP1-NoTPs-high.csv
+results/bytime-1.5-GMP-SSP1-TPs-default.csv
+results/bytime-1.5-GMP-SSP1-TPs-high.csv
+results/bytime-CP-Base-SSP2-NoOMH-default.csv
+results/bytime-CP-Base-SSP2-NoOMH-high-test.csv
+results/bytime-CP-Base-SSP2-NoTPs-default.csv
+results/bytime-CP-Base-SSP2-TPs-default.csv
+results/bytime-CP-Base-SSP2-TPs-high.csv
+results/bytime-CP-GMP-HighCH4-SSP2-NoOMH-default.csv
+results/bytime-CP-GMP-HighCH4-SSP2-NoOMH-high.csv
+results/bytime-CP-GMP-HighCH4-SSP2-NoTPs-default.csv
+results/bytime-CP-GMP-HighCH4-SSP2-NoTPs-high.csv
+results/bytime-CP-GMP-HighCH4-SSP2-TPs-default.csv
+results/bytime-CP-GMP-HighCH4-SSP2-TPs-high.csv
+results/bytime-CP-GMP-LowCH4-SSP2-NoOMH-default.csv
+results/bytime-CP-GMP-LowCH4-SSP2-NoOMH-high.csv
+results/bytime-CP-GMP-LowCH4-SSP2-NoTPs-default.csv
+results/bytime-CP-GMP-LowCH4-SSP2-NoTPs-high.csv
+results/bytime-CP-GMP-LowCH4-SSP2-TPs-default.csv
+results/bytime-CP-GMP-LowCH4-SSP2-TPs-high.csv
+results/bytime-CP-GMP-SSP2-NoOMH-default.csv
+results/bytime-CP-GMP-SSP2-NoOMH-high.csv
+results/bytime-CP-GMP-SSP2-NoTPs-default.csv
+results/bytime-CP-GMP-SSP2-NoTPs-high.csv
+results/bytime-CP-GMP-SSP2-TPs-default.csv
+results/bytime-CP-GMP-SSP2-TPs-high.csv
+results/bytime-NP-Base-SSP3-NoOMH-default.csv
+results/bytime-NP-Base-SSP3-NoOMH-high.csv
+results/bytime-NP-Base-SSP3-NoTPs-default.csv
+results/bytime-NP-Base-SSP3-NoTPs-high.csv
+results/bytime-NP-Base-SSP3-TPs-default.csv
+results/bytime-NP-Base-SSP3-TPs-high.csv
+results/bytime-NP-GMP-HighCH4-SSP3-NoOMH-default.csv
+results/bytime-NP-GMP-HighCH4-SSP3-NoOMH-high.csv
+results/bytime-NP-GMP-HighCH4-SSP3-NoTPs-default.csv
+results/bytime-NP-GMP-HighCH4-SSP3-NoTPs-high.csv
+results/bytime-NP-GMP-HighCH4-SSP3-TPs-default.csv
+results/bytime-NP-GMP-HighCH4-SSP3-TPs-high.csv
+results/bytime-NP-GMP-LowCH4-SSP3-NoOMH-default.csv
+results/bytime-NP-GMP-LowCH4-SSP3-NoOMH-high.csv
+results/bytime-NP-GMP-LowCH4-SSP3-NoTPs-default.csv
+results/bytime-NP-GMP-LowCH4-SSP3-NoTPs-high.csv
+results/bytime-NP-GMP-LowCH4-SSP3-TPs-default.csv
+results/bytime-NP-GMP-LowCH4-SSP3-TPs-high.csv
+results/bytime-NP-GMP-SSP3-NoOMH-default.csv
+results/bytime-NP-GMP-SSP3-NoOMH-high.csv
+results/bytime-NP-GMP-SSP3-NoTPs-default.csv
+results/bytime-NP-GMP-SSP3-NoTPs-high.csv
+results/bytime-NP-GMP-SSP3-TPs-default.csv
+results/bytime-NP-GMP-SSP3-TPs-high.csv
+results/bytimexcountry-1.5-Base-SSP1-NoOMH-default.csv
+results/bytimexcountry-1.5-Base-SSP1-NoOMH-high.csv
+results/bytimexcountry-1.5-Base-SSP1-NoTPs-default.csv
+results/bytimexcountry-1.5-Base-SSP1-NoTPs-high.csv
+results/bytimexcountry-1.5-Base-SSP1-TPs-default.csv
+results/bytimexcountry-1.5-Base-SSP1-TPs-high.csv
+results/bytimexcountry-1.5-GMP-HighCH4-SSP1-NoOMH-default.csv
+results/bytimexcountry-1.5-GMP-HighCH4-SSP1-NoOMH-high.csv
+results/bytimexcountry-1.5-GMP-HighCH4-SSP1-NoTPs-default.csv
+results/bytimexcountry-1.5-GMP-HighCH4-SSP1-NoTPs-high.csv
+results/bytimexcountry-1.5-GMP-HighCH4-SSP1-TPs-default.csv
+results/bytimexcountry-1.5-GMP-HighCH4-SSP1-TPs-high.csv
+results/bytimexcountry-1.5-GMP-LowCH4-SSP1-NoOMH-default.csv
+results/bytimexcountry-1.5-GMP-LowCH4-SSP1-NoOMH-high.csv
+results/bytimexcountry-1.5-GMP-LowCH4-SSP1-NoTPs-default.csv
+results/bytimexcountry-1.5-GMP-LowCH4-SSP1-NoTPs-high.csv
+results/bytimexcountry-1.5-GMP-LowCH4-SSP1-TPs-default.csv
+results/bytimexcountry-1.5-GMP-LowCH4-SSP1-TPs-high.csv
+results/bytimexcountry-1.5-GMP-SSP1-NoOMH-default.csv
+results/bytimexcountry-1.5-GMP-SSP1-NoOMH-high.csv
+results/bytimexcountry-1.5-GMP-SSP1-NoTPs-default.csv
+results/bytimexcountry-1.5-GMP-SSP1-NoTPs-high.csv
+results/bytimexcountry-1.5-GMP-SSP1-TPs-default.csv
+results/bytimexcountry-1.5-GMP-SSP1-TPs-high.csv
+results/bytimexcountry-CP-Base-SSP2-NoOMH-default.csv
+results/bytimexcountry-CP-Base-SSP2-NoOMH-high-test.csv
+results/bytimexcountry-CP-Base-SSP2-NoTPs-default.csv
+results/bytimexcountry-CP-Base-SSP2-TPs-default.csv
+results/bytimexcountry-CP-Base-SSP2-TPs-high.csv
+results/bytimexcountry-CP-GMP-HighCH4-SSP2-NoOMH-default.csv
+results/bytimexcountry-CP-GMP-HighCH4-SSP2-NoOMH-high.csv
+results/bytimexcountry-CP-GMP-HighCH4-SSP2-NoTPs-default.csv
+results/bytimexcountry-CP-GMP-HighCH4-SSP2-NoTPs-high.csv
+results/bytimexcountry-CP-GMP-HighCH4-SSP2-TPs-default.csv
+results/bytimexcountry-CP-GMP-HighCH4-SSP2-TPs-high.csv
+results/bytimexcountry-CP-GMP-LowCH4-SSP2-NoOMH-default.csv
+results/bytimexcountry-CP-GMP-LowCH4-SSP2-NoOMH-high.csv
+results/bytimexcountry-CP-GMP-LowCH4-SSP2-NoTPs-default.csv
+results/bytimexcountry-CP-GMP-LowCH4-SSP2-NoTPs-high.csv
+results/bytimexcountry-CP-GMP-LowCH4-SSP2-TPs-default.csv
+results/bytimexcountry-CP-GMP-LowCH4-SSP2-TPs-high.csv
+results/bytimexcountry-CP-GMP-SSP2-NoOMH-default.csv
+results/bytimexcountry-CP-GMP-SSP2-NoOMH-high.csv
+results/bytimexcountry-CP-GMP-SSP2-NoTPs-default.csv
+results/bytimexcountry-CP-GMP-SSP2-NoTPs-high.csv
+results/bytimexcountry-CP-GMP-SSP2-TPs-default.csv
+results/bytimexcountry-CP-GMP-SSP2-TPs-high.csv
+results/bytimexcountry-NP-Base-SSP3-NoOMH-default.csv
+results/bytimexcountry-NP-Base-SSP3-NoOMH-high.csv
+results/bytimexcountry-NP-Base-SSP3-NoTPs-default.csv
+results/bytimexcountry-NP-Base-SSP3-NoTPs-high.csv
+results/bytimexcountry-NP-Base-SSP3-TPs-default.csv
+results/bytimexcountry-NP-Base-SSP3-TPs-high.csv
+results/bytimexcountry-NP-GMP-HighCH4-SSP3-NoOMH-default.csv
+results/bytimexcountry-NP-GMP-HighCH4-SSP3-NoOMH-high.csv
+results/bytimexcountry-NP-GMP-HighCH4-SSP3-NoTPs-default.csv
+results/bytimexcountry-NP-GMP-HighCH4-SSP3-NoTPs-high.csv
+results/bytimexcountry-NP-GMP-HighCH4-SSP3-TPs-default.csv
+results/bytimexcountry-NP-GMP-HighCH4-SSP3-TPs-high.csv
+results/bytimexcountry-NP-GMP-LowCH4-SSP3-NoOMH-default.csv
+results/bytimexcountry-NP-GMP-LowCH4-SSP3-NoOMH-high.csv
+results/bytimexcountry-NP-GMP-LowCH4-SSP3-NoTPs-default.csv
+results/bytimexcountry-NP-GMP-LowCH4-SSP3-NoTPs-high.csv
+results/bytimexcountry-NP-GMP-LowCH4-SSP3-TPs-default.csv
+results/bytimexcountry-NP-GMP-LowCH4-SSP3-TPs-high.csv
+results/bytimexcountry-NP-GMP-SSP3-NoOMH-default.csv
+results/bytimexcountry-NP-GMP-SSP3-NoOMH-high.csv
+results/bytimexcountry-NP-GMP-SSP3-NoTPs-default.csv
+results/bytimexcountry-NP-GMP-SSP3-NoTPs-high.csv
+results/bytimexcountry-NP-GMP-SSP3-TPs-default.csv
+results/bytimexcountry-NP-GMP-SSP3-TPs-high.csv
+results/bytimexcountry2-1.5-Base-SSP1-NoOMH-default.csv
+results/bytimexcountry2-1.5-Base-SSP1-NoOMH-high.csv
+results/bytimexcountry2-1.5-Base-SSP1-NoTPs-default.csv
+results/bytimexcountry2-1.5-Base-SSP1-NoTPs-high.csv
+results/bytimexcountry2-1.5-Base-SSP1-TPs-default.csv
+results/bytimexcountry2-1.5-Base-SSP1-TPs-high.csv
+results/bytimexcountry2-1.5-GMP-HighCH4-SSP1-NoOMH-default.csv
+results/bytimexcountry2-1.5-GMP-HighCH4-SSP1-NoOMH-high.csv
+results/bytimexcountry2-1.5-GMP-HighCH4-SSP1-NoTPs-default.csv
+results/bytimexcountry2-1.5-GMP-HighCH4-SSP1-NoTPs-high.csv
+results/bytimexcountry2-1.5-GMP-HighCH4-SSP1-TPs-default.csv
+results/bytimexcountry2-1.5-GMP-HighCH4-SSP1-TPs-high.csv
+results/bytimexcountry2-1.5-GMP-LowCH4-SSP1-NoOMH-default.csv
+results/bytimexcountry2-1.5-GMP-LowCH4-SSP1-NoOMH-high.csv
+results/bytimexcountry2-1.5-GMP-LowCH4-SSP1-NoTPs-default.csv
+results/bytimexcountry2-1.5-GMP-LowCH4-SSP1-NoTPs-high.csv
+results/bytimexcountry2-1.5-GMP-LowCH4-SSP1-TPs-default.csv
+results/bytimexcountry2-1.5-GMP-LowCH4-SSP1-TPs-high.csv
+results/bytimexcountry2-1.5-GMP-SSP1-NoOMH-default.csv
+results/bytimexcountry2-1.5-GMP-SSP1-NoOMH-high.csv
+results/bytimexcountry2-1.5-GMP-SSP1-NoTPs-default.csv
+results/bytimexcountry2-1.5-GMP-SSP1-NoTPs-high.csv
+results/bytimexcountry2-1.5-GMP-SSP1-TPs-default.csv
+results/bytimexcountry2-1.5-GMP-SSP1-TPs-high.csv
+results/bytimexcountry2-CP-Base-SSP2-NoOMH-default.csv
+results/bytimexcountry2-CP-Base-SSP2-NoOMH-high-test.csv
+results/bytimexcountry2-CP-Base-SSP2-NoTPs-default.csv
+results/bytimexcountry2-CP-Base-SSP2-TPs-default.csv
+results/bytimexcountry2-CP-Base-SSP2-TPs-high.csv
+results/bytimexcountry2-CP-GMP-HighCH4-SSP2-NoOMH-default.csv
+results/bytimexcountry2-CP-GMP-HighCH4-SSP2-NoOMH-high.csv
+results/bytimexcountry2-CP-GMP-HighCH4-SSP2-NoTPs-default.csv
+results/bytimexcountry2-CP-GMP-HighCH4-SSP2-NoTPs-high.csv
+results/bytimexcountry2-CP-GMP-HighCH4-SSP2-TPs-default.csv
+results/bytimexcountry2-CP-GMP-HighCH4-SSP2-TPs-high.csv
+results/bytimexcountry2-CP-GMP-LowCH4-SSP2-NoOMH-default.csv
+results/bytimexcountry2-CP-GMP-LowCH4-SSP2-NoOMH-high.csv
+results/bytimexcountry2-CP-GMP-LowCH4-SSP2-NoTPs-default.csv
+results/bytimexcountry2-CP-GMP-LowCH4-SSP2-NoTPs-high.csv
+results/bytimexcountry2-CP-GMP-LowCH4-SSP2-TPs-default.csv
+results/bytimexcountry2-CP-GMP-LowCH4-SSP2-TPs-high.csv
+results/bytimexcountry2-CP-GMP-SSP2-NoOMH-default.csv
+results/bytimexcountry2-CP-GMP-SSP2-NoOMH-high.csv
+results/bytimexcountry2-CP-GMP-SSP2-NoTPs-default.csv
+results/bytimexcountry2-CP-GMP-SSP2-NoTPs-high.csv
+results/bytimexcountry2-CP-GMP-SSP2-TPs-default.csv
+results/bytimexcountry2-CP-GMP-SSP2-TPs-high.csv
+results/bytimexcountry2-NP-Base-SSP3-NoOMH-default.csv
+results/bytimexcountry2-NP-Base-SSP3-NoOMH-high.csv
+results/bytimexcountry2-NP-Base-SSP3-NoTPs-default.csv
+results/bytimexcountry2-NP-Base-SSP3-NoTPs-high.csv
+results/bytimexcountry2-NP-Base-SSP3-TPs-default.csv
+results/bytimexcountry2-NP-Base-SSP3-TPs-high.csv
+results/bytimexcountry2-NP-GMP-HighCH4-SSP3-NoOMH-default.csv
+results/bytimexcountry2-NP-GMP-HighCH4-SSP3-NoOMH-high.csv
+results/bytimexcountry2-NP-GMP-HighCH4-SSP3-NoTPs-default.csv
+results/bytimexcountry2-NP-GMP-HighCH4-SSP3-NoTPs-high.csv
+results/bytimexcountry2-NP-GMP-HighCH4-SSP3-TPs-default.csv
+results/bytimexcountry2-NP-GMP-HighCH4-SSP3-TPs-high.csv
+results/bytimexcountry2-NP-GMP-LowCH4-SSP3-NoOMH-default.csv
+results/bytimexcountry2-NP-GMP-LowCH4-SSP3-NoOMH-high.csv
+results/bytimexcountry2-NP-GMP-LowCH4-SSP3-NoTPs-default.csv
+results/bytimexcountry2-NP-GMP-LowCH4-SSP3-NoTPs-high.csv
+results/bytimexcountry2-NP-GMP-LowCH4-SSP3-TPs-default.csv
+results/bytimexcountry2-NP-GMP-LowCH4-SSP3-TPs-high.csv
+results/bytimexcountry2-NP-GMP-SSP3-NoOMH-default.csv
+results/bytimexcountry2-NP-GMP-SSP3-NoOMH-high.csv
+results/bytimexcountry2-NP-GMP-SSP3-NoTPs-default.csv
+results/bytimexcountry2-NP-GMP-SSP3-NoTPs-high.csv
+results/bytimexcountry2-NP-GMP-SSP3-TPs-default.csv
+results/bytimexcountry2-NP-GMP-SSP3-TPs-high.csv
+results/natscch4s-1.5-Base-SSP1-NoOMH-default.csv
+results/natscch4s-1.5-Base-SSP1-NoOMH-high.csv
+results/natscch4s-1.5-Base-SSP1-NoTPs-default.csv
+results/natscch4s-1.5-Base-SSP1-NoTPs-high.csv
+results/natscch4s-1.5-Base-SSP1-TPs-default.csv
+results/natscch4s-1.5-Base-SSP1-TPs-high.csv
+results/natscch4s-1.5-GMP-HighCH4-SSP1-NoOMH-default.csv
+results/natscch4s-1.5-GMP-HighCH4-SSP1-NoOMH-high.csv
+results/natscch4s-1.5-GMP-HighCH4-SSP1-NoTPs-default.csv
+results/natscch4s-1.5-GMP-HighCH4-SSP1-NoTPs-high.csv
+results/natscch4s-1.5-GMP-HighCH4-SSP1-TPs-default.csv
+results/natscch4s-1.5-GMP-HighCH4-SSP1-TPs-high.csv
+results/natscch4s-1.5-GMP-LowCH4-SSP1-NoOMH-default.csv
+results/natscch4s-1.5-GMP-LowCH4-SSP1-NoOMH-high.csv
+results/natscch4s-1.5-GMP-LowCH4-SSP1-NoTPs-default.csv
+results/natscch4s-1.5-GMP-LowCH4-SSP1-NoTPs-high.csv
+results/natscch4s-1.5-GMP-LowCH4-SSP1-TPs-default.csv
+results/natscch4s-1.5-GMP-LowCH4-SSP1-TPs-high.csv
+results/natscch4s-1.5-GMP-SSP1-NoOMH-default.csv
+results/natscch4s-1.5-GMP-SSP1-NoOMH-high.csv
+results/natscch4s-1.5-GMP-SSP1-NoTPs-default.csv
+results/natscch4s-1.5-GMP-SSP1-NoTPs-high.csv
+results/natscch4s-1.5-GMP-SSP1-TPs-default.csv
+results/natscch4s-1.5-GMP-SSP1-TPs-high.csv
+results/natscch4s-CP-Base-SSP2-NoOMH-default.csv
+results/natscch4s-CP-Base-SSP2-NoOMH-high-10000MC.csv
+results/natscch4s-CP-Base-SSP2-NoOMH-high-2605202.csv
+results/natscch4s-CP-Base-SSP2-NoOMH-high-10505746.csv
+results/natscch4s-CP-Base-SSP2-NoOMH-high-12580252.csv
+results/natscch4s-CP-Base-SSP2-NoOMH-high-17254536.csv
+results/natscch4s-CP-Base-SSP2-NoOMH-high-21201384.csv
+results/natscch4s-CP-Base-SSP2-NoOMH-high-24582649.csv
+results/natscch4s-CP-Base-SSP2-NoOMH-high-26052023.csv
+results/natscch4s-CP-Base-SSP2-NoOMH-high-53973576.csv
+results/natscch4s-CP-Base-SSP2-NoOMH-high-65649168.csv
+results/natscch4s-CP-Base-SSP2-NoOMH-high-76300249.csv
+results/natscch4s-CP-Base-SSP2-NoOMH-high-79399005.csv
+results/natscch4s-CP-Base-SSP2-NoOMH-high-87497631.csv
+results/natscch4s-CP-Base-SSP2-NoOMH-high-EMUC15PRPT001.csv
+results/natscch4s-CP-Base-SSP2-NoOMH-high-nonmarketoff.csv
+results/natscch4s-CP-Base-SSP2-NoOMH-high-retest.csv
+results/natscch4s-CP-Base-SSP2-NoOMH-high-test.csv
+results/natscch4s-CP-Base-SSP2-NoOMH-high.csv
+results/natscch4s-CP-Base-SSP2-NoTPs-default.csv
+results/natscch4s-CP-Base-SSP2-NoTPs-high.csv
+results/natscch4s-CP-Base-SSP2-TPs-default.csv
+results/natscch4s-CP-Base-SSP2-TPs-high.csv
+results/natscch4s-CP-GMP-HighCH4-SSP2-NoOMH-default.csv
+results/natscch4s-CP-GMP-HighCH4-SSP2-NoOMH-high.csv
+results/natscch4s-CP-GMP-HighCH4-SSP2-NoTPs-default.csv
+results/natscch4s-CP-GMP-HighCH4-SSP2-NoTPs-high.csv
+results/natscch4s-CP-GMP-HighCH4-SSP2-TPs-default.csv
+results/natscch4s-CP-GMP-HighCH4-SSP2-TPs-high.csv
+results/natscch4s-CP-GMP-LowCH4-SSP2-NoOMH-default.csv
+results/natscch4s-CP-GMP-LowCH4-SSP2-NoOMH-high.csv
+results/natscch4s-CP-GMP-LowCH4-SSP2-NoTPs-default.csv
+results/natscch4s-CP-GMP-LowCH4-SSP2-NoTPs-high.csv
+results/natscch4s-CP-GMP-LowCH4-SSP2-TPs-default.csv
+results/natscch4s-CP-GMP-LowCH4-SSP2-TPs-high.csv
+results/natscch4s-CP-GMP-SSP2-NoOMH-default.csv
+results/natscch4s-CP-GMP-SSP2-NoOMH-high.csv
+results/natscch4s-CP-GMP-SSP2-NoTPs-default.csv
+results/natscch4s-CP-GMP-SSP2-NoTPs-high.csv
+results/natscch4s-CP-GMP-SSP2-TPs-default.csv
+results/natscch4s-CP-GMP-SSP2-TPs-high.csv
+results/natscch4s-NP-Base-SSP3-NoOMH-default.csv
+results/natscch4s-NP-Base-SSP3-NoOMH-high.csv
+results/natscch4s-NP-Base-SSP3-NoTPs-default.csv
+results/natscch4s-NP-Base-SSP3-NoTPs-high.csv
+results/natscch4s-NP-Base-SSP3-TPs-default.csv
+results/natscch4s-NP-Base-SSP3-TPs-high.csv
+results/natscch4s-NP-GMP-HighCH4-SSP3-NoOMH-default.csv
+results/natscch4s-NP-GMP-HighCH4-SSP3-NoOMH-high.csv
+results/natscch4s-NP-GMP-HighCH4-SSP3-NoTPs-default.csv
+results/natscch4s-NP-GMP-HighCH4-SSP3-NoTPs-high.csv
+results/natscch4s-NP-GMP-HighCH4-SSP3-TPs-default.csv
+results/natscch4s-NP-GMP-HighCH4-SSP3-TPs-high.csv
+results/natscch4s-NP-GMP-LowCH4-SSP3-NoOMH-default.csv
+results/natscch4s-NP-GMP-LowCH4-SSP3-NoOMH-high.csv
+results/natscch4s-NP-GMP-LowCH4-SSP3-NoTPs-default.csv
+results/natscch4s-NP-GMP-LowCH4-SSP3-NoTPs-high.csv
+results/natscch4s-NP-GMP-LowCH4-SSP3-TPs-default.csv
+results/natscch4s-NP-GMP-LowCH4-SSP3-TPs-high.csv
+results/natscch4s-NP-GMP-SSP3-NoOMH-default.csv
+results/natscch4s-NP-GMP-SSP3-NoOMH-high.csv
+results/natscch4s-NP-GMP-SSP3-NoTPs-default.csv
+results/natscch4s-NP-GMP-SSP3-NoTPs-high.csv
+results/natscch4s-NP-GMP-SSP3-TPs-default.csv
+results/natscch4s-NP-GMP-SSP3-TPs-high.csv
+results/natsccs-1.5-Base-SSP1-NoOMH-default.csv
+results/natsccs-1.5-Base-SSP1-NoOMH-high.csv
+results/natsccs-1.5-Base-SSP1-NoTPs-default.csv
+results/natsccs-1.5-Base-SSP1-NoTPs-high.csv
+results/natsccs-1.5-Base-SSP1-TPs-default.csv
+results/natsccs-1.5-Base-SSP1-TPs-high.csv
+results/natsccs-1.5-GMP-HighCH4-SSP1-NoOMH-default.csv
+results/natsccs-1.5-GMP-HighCH4-SSP1-NoOMH-high.csv
+results/natsccs-1.5-GMP-HighCH4-SSP1-NoTPs-default.csv
+results/natsccs-1.5-GMP-HighCH4-SSP1-NoTPs-high.csv
+results/natsccs-1.5-GMP-HighCH4-SSP1-TPs-default.csv
+results/natsccs-1.5-GMP-HighCH4-SSP1-TPs-high.csv
+results/natsccs-1.5-GMP-LowCH4-SSP1-NoOMH-default.csv
+results/natsccs-1.5-GMP-LowCH4-SSP1-NoOMH-high.csv
+results/natsccs-1.5-GMP-LowCH4-SSP1-NoTPs-default.csv
+results/natsccs-1.5-GMP-LowCH4-SSP1-NoTPs-high.csv
+results/natsccs-1.5-GMP-LowCH4-SSP1-TPs-default.csv
+results/natsccs-1.5-GMP-LowCH4-SSP1-TPs-high.csv
+results/natsccs-1.5-GMP-SSP1-NoOMH-default.csv
+results/natsccs-1.5-GMP-SSP1-NoOMH-high.csv
+results/natsccs-1.5-GMP-SSP1-NoTPs-default.csv
+results/natsccs-1.5-GMP-SSP1-NoTPs-high.csv
+results/natsccs-1.5-GMP-SSP1-TPs-default.csv
+results/natsccs-1.5-GMP-SSP1-TPs-high.csv
+results/natsccs-CP-Base-SSP2-NoOMH-default.csv
+results/natsccs-CP-Base-SSP2-NoOMH-high-10000MC.csv
+results/natsccs-CP-Base-SSP2-NoOMH-high-2605202.csv
+results/natsccs-CP-Base-SSP2-NoOMH-high-10505746.csv
+results/natsccs-CP-Base-SSP2-NoOMH-high-12580252.csv
+results/natsccs-CP-Base-SSP2-NoOMH-high-17254536.csv
+results/natsccs-CP-Base-SSP2-NoOMH-high-21201384.csv
+results/natsccs-CP-Base-SSP2-NoOMH-high-24582649.csv
+results/natsccs-CP-Base-SSP2-NoOMH-high-26052023.csv
+results/natsccs-CP-Base-SSP2-NoOMH-high-53973576.csv
+results/natsccs-CP-Base-SSP2-NoOMH-high-65649168.csv
+results/natsccs-CP-Base-SSP2-NoOMH-high-76300249.csv
+results/natsccs-CP-Base-SSP2-NoOMH-high-79399005.csv
+results/natsccs-CP-Base-SSP2-NoOMH-high-87497631.csv
+results/natsccs-CP-Base-SSP2-NoOMH-high-EMUC15PRPT001.csv
+results/natsccs-CP-Base-SSP2-NoOMH-high-nonmarketoff.csv
+results/natsccs-CP-Base-SSP2-NoOMH-high-retest.csv
+results/natsccs-CP-Base-SSP2-NoOMH-high-test.csv
+results/natsccs-CP-Base-SSP2-NoOMH-high.csv
+results/natsccs-CP-Base-SSP2-NoTPs-default.csv
+results/natsccs-CP-Base-SSP2-NoTPs-high.csv
+results/natsccs-CP-Base-SSP2-TPs-default.csv
+results/natsccs-CP-Base-SSP2-TPs-high.csv
+results/sccs-CP-Base-SSP2-NoOMH-default.csv
+results/sccs-CP-Base-SSP2-NoOMH-high-10000MC_2605202.csv
+results/sccs-CP-Base-SSP2-NoOMH-high-2605202.csv
+results/sccs-CP-Base-SSP2-NoOMH-high-10505746.csv
+results/sccs-CP-Base-SSP2-NoOMH-high-12580252.csv
+results/sccs-CP-Base-SSP2-NoOMH-high-17254536.csv
+results/sccs-CP-Base-SSP2-NoOMH-high-21201384.csv
+results/sccs-CP-Base-SSP2-NoOMH-high-24582649.csv
+results/sccs-CP-Base-SSP2-NoOMH-high-53973576.csv
+results/sccs-CP-Base-SSP2-NoOMH-high-65649168.csv
+results/sccs-CP-Base-SSP2-NoOMH-high-76300249.csv
+results/sccs-CP-Base-SSP2-NoOMH-high-79399005.csv
+results/sccs-CP-Base-SSP2-NoOMH-high-87497631.csv
+results/sccs-CP-Base-SSP2-NoOMH-high-EMUC15PRPT001.csv
+results/sccs-CP-Base-SSP2-NoOMH-high-nonmarketoff.csv
+results/sccs-CP-Base-SSP2-NoOMH-high-retest.csv
+results/sccs-CP-Base-SSP2-NoTPs-default.csv
+results/sccs-CP-Base-SSP2-NoTPs-high.csv
+results/sccs-CP-Base-SSP2-TPs-default.csv
+results/sccs-CP-Base-SSP2-TPs-high.csv
+results/TPs_bytime-CP-Base-SSP2-NoOMH-high.csv
+results/TPs_bytime-CP-Base-SSP2-TPs-high.csv
+results/TPs_bytime-CP-GMP-SSP2-NoOMH-high.csv
+results/TPs_bytime-CP-GMP-SSP2-TPs-high.csv
+results/50 MC archive/bge-CP-Base-SSP2-NoOMH-default.csv
+results/50 MC archive/bge-CP-Base-SSP2-NoOMH-high.csv
+results/50 MC archive/bge-CP-Base-SSP2-NoTPs-default.csv
+results/50 MC archive/bge-CP-Base-SSP2-NoTPs-high.csv
+results/50 MC archive/bge-CP-Base-SSP2-TPs-default.csv
+results/50 MC archive/bge-CP-Base-SSP2-TPs-high.csv
+results/50 MC archive/bge-CP-GMP-HighCH4-SSP2-NoOMH-default.csv
+results/50 MC archive/bge-CP-GMP-HighCH4-SSP2-NoOMH-high.csv
+results/50 MC archive/bge-CP-GMP-HighCH4-SSP2-NoTPs-default.csv
+results/50 MC archive/bge-CP-GMP-HighCH4-SSP2-NoTPs-high.csv
+results/50 MC archive/bge-CP-GMP-HighCH4-SSP2-TPs-default.csv
+results/50 MC archive/bge-CP-GMP-HighCH4-SSP2-TPs-high.csv
+results/50 MC archive/bge-CP-GMP-LowCH4-SSP2-NoOMH-default.csv
+results/50 MC archive/bge-CP-GMP-LowCH4-SSP2-NoOMH-high.csv
+results/50 MC archive/bge-CP-GMP-LowCH4-SSP2-NoTPs-default.csv
+results/50 MC archive/bge-CP-GMP-LowCH4-SSP2-NoTPs-high.csv
+results/50 MC archive/bge-CP-GMP-LowCH4-SSP2-TPs-default.csv
+results/50 MC archive/bge-CP-GMP-LowCH4-SSP2-TPs-high.csv
+results/50 MC archive/bge-CP-GMP-SSP2-NoOMH-default.csv
+results/50 MC archive/bge-CP-GMP-SSP2-NoOMH-high.csv
+results/50 MC archive/bge-CP-GMP-SSP2-NoTPs-default.csv
+results/50 MC archive/bge-CP-GMP-SSP2-NoTPs-high.csv
+results/50 MC archive/bge-CP-GMP-SSP2-TPs-default.csv
+results/50 MC archive/bge-CP-GMP-SSP2-TPs-high.csv
+results/50 MC archive/bge-NP-Base-SSP3-NoTPs-default.csv
+results/50 MC archive/bge-NP-Base-SSP3-NoTPs-high.csv
+results/50 MC archive/bge-NP-Base-SSP3-TPs-default.csv
+results/50 MC archive/bge-NP-Base-SSP3-TPs-high.csv
+results/50 MC archive/bytime-CP-Base-SSP2-NoOMH-default.csv
+results/50 MC archive/bytime-CP-Base-SSP2-NoOMH-high.csv
+results/50 MC archive/bytime-CP-Base-SSP2-NoTPs-default.csv
+results/50 MC archive/bytime-CP-Base-SSP2-NoTPs-high.csv
+results/50 MC archive/bytime-CP-Base-SSP2-TPs-default.csv
+results/50 MC archive/bytime-CP-Base-SSP2-TPs-high.csv
+results/50 MC archive/bytime-CP-GMP-HighCH4-SSP2-NoOMH-default.csv
+results/50 MC archive/bytime-CP-GMP-HighCH4-SSP2-NoOMH-high.csv
+results/50 MC archive/bytime-CP-GMP-HighCH4-SSP2-NoTPs-default.csv
+results/50 MC archive/bytime-CP-GMP-HighCH4-SSP2-NoTPs-high.csv
+results/50 MC archive/bytime-CP-GMP-HighCH4-SSP2-TPs-default.csv
+results/50 MC archive/bytime-CP-GMP-HighCH4-SSP2-TPs-high.csv
+results/50 MC archive/bytime-CP-GMP-LowCH4-SSP2-NoOMH-default.csv
+results/50 MC archive/bytime-CP-GMP-LowCH4-SSP2-NoOMH-high.csv
+results/50 MC archive/bytime-CP-GMP-LowCH4-SSP2-NoTPs-default.csv
+results/50 MC archive/bytime-CP-GMP-LowCH4-SSP2-NoTPs-high.csv
+results/50 MC archive/bytime-CP-GMP-LowCH4-SSP2-TPs-default.csv
+results/50 MC archive/bytime-CP-GMP-LowCH4-SSP2-TPs-high.csv
+results/50 MC archive/bytime-CP-GMP-SSP2-NoOMH-default.csv
+results/50 MC archive/bytime-CP-GMP-SSP2-NoOMH-high.csv
+results/50 MC archive/bytime-CP-GMP-SSP2-NoTPs-default.csv
+results/50 MC archive/bytime-CP-GMP-SSP2-NoTPs-high.csv
+results/50 MC archive/bytime-CP-GMP-SSP2-TPs-default.csv
+results/50 MC archive/bytime-CP-GMP-SSP2-TPs-high.csv
+results/50 MC archive/bytime-NP-Base-SSP3-NoTPs-default.csv
+results/50 MC archive/bytime-NP-Base-SSP3-NoTPs-high.csv
+results/50 MC archive/bytime-NP-Base-SSP3-TPs-default.csv
+results/50 MC archive/bytime-NP-Base-SSP3-TPs-high.csv
+results/50 MC archive/bytimexcountry-CP-Base-SSP2-NoOMH-default.csv
+results/50 MC archive/bytimexcountry-CP-Base-SSP2-NoOMH-high.csv
+results/50 MC archive/bytimexcountry-CP-Base-SSP2-NoTPs-default.csv
+results/50 MC archive/bytimexcountry-CP-Base-SSP2-NoTPs-high.csv
+results/50 MC archive/bytimexcountry-CP-Base-SSP2-TPs-default.csv
+results/50 MC archive/bytimexcountry-CP-Base-SSP2-TPs-high.csv
+results/50 MC archive/bytimexcountry-CP-GMP-HighCH4-SSP2-NoOMH-default.csv
+results/50 MC archive/bytimexcountry-CP-GMP-HighCH4-SSP2-NoOMH-high.csv
+results/50 MC archive/bytimexcountry-CP-GMP-HighCH4-SSP2-NoTPs-default.csv
+results/50 MC archive/bytimexcountry-CP-GMP-HighCH4-SSP2-NoTPs-high.csv
+results/50 MC archive/bytimexcountry-CP-GMP-HighCH4-SSP2-TPs-default.csv
+results/50 MC archive/bytimexcountry-CP-GMP-HighCH4-SSP2-TPs-high.csv
+results/50 MC archive/bytimexcountry-CP-GMP-LowCH4-SSP2-NoOMH-default.csv
+results/50 MC archive/bytimexcountry-CP-GMP-LowCH4-SSP2-NoOMH-high.csv
+results/50 MC archive/bytimexcountry-CP-GMP-LowCH4-SSP2-NoTPs-default.csv
+results/50 MC archive/bytimexcountry-CP-GMP-LowCH4-SSP2-NoTPs-high.csv
+results/50 MC archive/bytimexcountry-CP-GMP-LowCH4-SSP2-TPs-default.csv
+results/50 MC archive/bytimexcountry-CP-GMP-LowCH4-SSP2-TPs-high.csv
+results/50 MC archive/bytimexcountry-CP-GMP-SSP2-NoOMH-default.csv
+results/50 MC archive/bytimexcountry-CP-GMP-SSP2-NoOMH-high.csv
+results/50 MC archive/bytimexcountry-CP-GMP-SSP2-NoTPs-default.csv
+results/50 MC archive/bytimexcountry-CP-GMP-SSP2-NoTPs-high.csv
+results/50 MC archive/bytimexcountry-CP-GMP-SSP2-TPs-default.csv
+results/50 MC archive/bytimexcountry-CP-GMP-SSP2-TPs-high.csv
+results/50 MC archive/bytimexcountry-NP-Base-SSP3-NoTPs-default.csv
+results/50 MC archive/bytimexcountry-NP-Base-SSP3-NoTPs-high.csv
+results/50 MC archive/bytimexcountry-NP-Base-SSP3-TPs-default.csv
+results/50 MC archive/bytimexcountry-NP-Base-SSP3-TPs-high.csv
+results/50 MC archive/bytimexcountry2-CP-Base-SSP2-NoOMH-default.csv
+results/50 MC archive/bytimexcountry2-CP-Base-SSP2-NoOMH-high.csv
+results/50 MC archive/bytimexcountry2-CP-Base-SSP2-NoTPs-default.csv
+results/50 MC archive/bytimexcountry2-CP-Base-SSP2-NoTPs-high.csv
+results/50 MC archive/bytimexcountry2-CP-Base-SSP2-TPs-default.csv
+results/50 MC archive/bytimexcountry2-CP-Base-SSP2-TPs-high.csv
+results/50 MC archive/bytimexcountry2-CP-GMP-HighCH4-SSP2-NoOMH-default.csv
+results/50 MC archive/bytimexcountry2-CP-GMP-HighCH4-SSP2-NoOMH-high.csv
+results/50 MC archive/bytimexcountry2-CP-GMP-HighCH4-SSP2-NoTPs-default.csv
+results/50 MC archive/bytimexcountry2-CP-GMP-HighCH4-SSP2-NoTPs-high.csv
+results/50 MC archive/bytimexcountry2-CP-GMP-HighCH4-SSP2-TPs-default.csv
+results/50 MC archive/bytimexcountry2-CP-GMP-HighCH4-SSP2-TPs-high.csv
+results/50 MC archive/bytimexcountry2-CP-GMP-LowCH4-SSP2-NoOMH-default.csv
+results/50 MC archive/bytimexcountry2-CP-GMP-LowCH4-SSP2-NoOMH-high.csv
+results/50 MC archive/bytimexcountry2-CP-GMP-LowCH4-SSP2-NoTPs-default.csv
+results/50 MC archive/bytimexcountry2-CP-GMP-LowCH4-SSP2-NoTPs-high.csv
+results/50 MC archive/bytimexcountry2-CP-GMP-LowCH4-SSP2-TPs-default.csv
+results/50 MC archive/bytimexcountry2-CP-GMP-LowCH4-SSP2-TPs-high.csv
+results/50 MC archive/bytimexcountry2-CP-GMP-SSP2-NoOMH-default.csv
+results/50 MC archive/bytimexcountry2-CP-GMP-SSP2-NoOMH-high.csv
+results/50 MC archive/bytimexcountry2-CP-GMP-SSP2-NoTPs-default.csv
+results/50 MC archive/bytimexcountry2-CP-GMP-SSP2-NoTPs-high.csv
+results/50 MC archive/bytimexcountry2-CP-GMP-SSP2-TPs-default.csv
+results/50 MC archive/bytimexcountry2-CP-GMP-SSP2-TPs-high.csv
+results/50 MC archive/bytimexcountry2-NP-Base-SSP3-NoTPs-default.csv
+results/50 MC archive/bytimexcountry2-NP-Base-SSP3-NoTPs-high.csv
+results/50 MC archive/bytimexcountry2-NP-Base-SSP3-TPs-default.csv
+results/50 MC archive/bytimexcountry2-NP-Base-SSP3-TPs-high.csv
+results/50 MC archive/natscch4s-CP-Base-SSP2-NoOMH-default.csv
+results/50 MC archive/natscch4s-CP-Base-SSP2-NoOMH-high.csv
+results/50 MC archive/natscch4s-CP-Base-SSP2-NoTPs-default.csv
+results/50 MC archive/natscch4s-CP-Base-SSP2-NoTPs-high.csv
+results/50 MC archive/natscch4s-CP-Base-SSP2-TPs-default.csv
+results/50 MC archive/natscch4s-CP-Base-SSP2-TPs-high.csv
+results/50 MC archive/natscch4s-CP-GMP-HighCH4-SSP2-NoOMH-default.csv
+results/50 MC archive/natscch4s-CP-GMP-HighCH4-SSP2-NoOMH-high.csv
+results/50 MC archive/natscch4s-CP-GMP-HighCH4-SSP2-NoTPs-default.csv
+results/50 MC archive/natscch4s-CP-GMP-HighCH4-SSP2-NoTPs-high.csv
+results/50 MC archive/natscch4s-CP-GMP-HighCH4-SSP2-TPs-default.csv
+results/50 MC archive/natscch4s-CP-GMP-HighCH4-SSP2-TPs-high.csv
+results/50 MC archive/natscch4s-CP-GMP-LowCH4-SSP2-NoOMH-default.csv
+results/50 MC archive/natscch4s-CP-GMP-LowCH4-SSP2-NoOMH-high.csv
+results/50 MC archive/natscch4s-CP-GMP-LowCH4-SSP2-NoTPs-default.csv
+results/50 MC archive/natscch4s-CP-GMP-LowCH4-SSP2-NoTPs-high.csv
+results/50 MC archive/natscch4s-CP-GMP-LowCH4-SSP2-TPs-default.csv
+results/50 MC archive/natscch4s-CP-GMP-LowCH4-SSP2-TPs-high.csv
+results/50 MC archive/natscch4s-CP-GMP-SSP2-NoOMH-default.csv
+results/50 MC archive/natscch4s-CP-GMP-SSP2-NoOMH-high.csv
+results/50 MC archive/natscch4s-CP-GMP-SSP2-NoTPs-default.csv
+results/50 MC archive/natscch4s-CP-GMP-SSP2-NoTPs-high.csv
+results/50 MC archive/natscch4s-CP-GMP-SSP2-TPs-default.csv
+results/50 MC archive/natscch4s-CP-GMP-SSP2-TPs-high.csv
+results/50 MC archive/natscch4s-NP-Base-SSP3-NoTPs-default.csv
+results/50 MC archive/natscch4s-NP-Base-SSP3-NoTPs-high.csv
+results/50 MC archive/natscch4s-NP-Base-SSP3-TPs-high.csv
+results/50 MC archive/natsccs-CP-Base-SSP2-NoOMH-default.csv
+results/50 MC archive/natsccs-CP-Base-SSP2-NoOMH-high.csv
+results/50 MC archive/natsccs-CP-Base-SSP2-NoTPs-default.csv
+results/50 MC archive/natsccs-CP-Base-SSP2-NoTPs-high.csv
+results/50 MC archive/natsccs-CP-Base-SSP2-TPs-default.csv
+results/50 MC archive/natsccs-CP-Base-SSP2-TPs-high.csv
+results/50 MC archive/natsccs-CP-GMP-HighCH4-SSP2-NoOMH-default.csv
+results/50 MC archive/natsccs-CP-GMP-HighCH4-SSP2-NoOMH-high.csv
+results/50 MC archive/natsccs-CP-GMP-HighCH4-SSP2-NoTPs-default.csv
+results/50 MC archive/natsccs-CP-GMP-HighCH4-SSP2-NoTPs-high.csv
+results/50 MC archive/natsccs-CP-GMP-HighCH4-SSP2-TPs-default.csv
+results/50 MC archive/natsccs-CP-GMP-HighCH4-SSP2-TPs-high.csv
+results/50 MC archive/natsccs-CP-GMP-LowCH4-SSP2-NoOMH-default.csv
+results/50 MC archive/natsccs-CP-GMP-LowCH4-SSP2-NoOMH-high.csv
+results/50 MC archive/natsccs-CP-GMP-LowCH4-SSP2-NoTPs-default.csv
+results/50 MC archive/natsccs-CP-GMP-LowCH4-SSP2-NoTPs-high.csv
+results/50 MC archive/natsccs-CP-GMP-LowCH4-SSP2-TPs-default.csv
+results/50 MC archive/natsccs-CP-GMP-LowCH4-SSP2-TPs-high.csv
+results/50 MC archive/natsccs-CP-GMP-SSP2-NoOMH-default.csv
+results/50 MC archive/natsccs-CP-GMP-SSP2-NoOMH-high.csv
+results/50 MC archive/natsccs-CP-GMP-SSP2-NoTPs-default.csv
+results/50 MC archive/natsccs-CP-GMP-SSP2-NoTPs-high.csv
+results/50 MC archive/natsccs-CP-GMP-SSP2-TPs-default.csv
+results/50 MC archive/natsccs-CP-GMP-SSP2-TPs-high.csv
+results/50 MC archive/natsccs-NP-Base-SSP3-NoTPs-default.csv
+results/50 MC archive/natsccs-NP-Base-SSP3-NoTPs-high.csv
+results/50 MC archive/natsccs-NP-Base-SSP3-TPs-high.csv
+results/50 MC archive/placeholder
+results/50 MC archive/sccs-CP-Base-SSP2-NoOMH-default.csv
+results/50 MC archive/sccs-CP-Base-SSP2-NoOMH-high.csv
+results/50 MC archive/sccs-CP-Base-SSP2-NoTPs-default.csv
+results/50 MC archive/sccs-CP-Base-SSP2-NoTPs-high.csv
+results/50 MC archive/sccs-CP-Base-SSP2-TPs-default.csv
+results/50 MC archive/sccs-CP-Base-SSP2-TPs-high.csv
+results/50 MC archive/sccs-CP-GMP-HighCH4-SSP2-NoOMH-default.csv
+results/50 MC archive/sccs-CP-GMP-HighCH4-SSP2-NoOMH-high.csv
+results/50 MC archive/sccs-CP-GMP-HighCH4-SSP2-NoTPs-default.csv
+results/50 MC archive/sccs-CP-GMP-HighCH4-SSP2-NoTPs-high.csv
+results/50 MC archive/sccs-CP-GMP-HighCH4-SSP2-TPs-default.csv
+results/50 MC archive/sccs-CP-GMP-HighCH4-SSP2-TPs-high.csv
+results/50 MC archive/sccs-CP-GMP-LowCH4-SSP2-NoOMH-default.csv
+results/50 MC archive/sccs-CP-GMP-LowCH4-SSP2-NoOMH-high.csv
+results/50 MC archive/sccs-CP-GMP-LowCH4-SSP2-NoTPs-default.csv
+results/50 MC archive/sccs-CP-GMP-LowCH4-SSP2-NoTPs-high.csv
+results/50 MC archive/sccs-CP-GMP-LowCH4-SSP2-TPs-default.csv
+results/50 MC archive/sccs-CP-GMP-LowCH4-SSP2-TPs-high.csv
+results/50 MC archive/sccs-CP-GMP-SSP2-NoOMH-default.csv
+results/50 MC archive/sccs-CP-GMP-SSP2-NoOMH-high.csv
+results/50 MC archive/sccs-CP-GMP-SSP2-NoTPs-default.csv
+results/50 MC archive/sccs-CP-GMP-SSP2-NoTPs-high.csv
+results/50 MC archive/sccs-CP-GMP-SSP2-TPs-default.csv
+results/50 MC archive/sccs-CP-GMP-SSP2-TPs-high.csv
+results/50 MC archive/sccs-NP-Base-SSP3-NoTPs-default.csv
+results/50 MC archive/sccs-NP-Base-SSP3-NoTPs-high.csv
+results/50 MC archive/sccs-NP-Base-SSP3-TPs-high.csv
+results/May2024SC-X/natscch4s-CP-Base-SSP2-NoOMH-default-2605202.csv
+results/May2024SC-X/natscch4s-CP-Base-SSP2-NoOMH-high-2605202-EMUC15PRTP001.csv
+results/May2024SC-X/natscch4s-CP-Base-SSP2-NoOMH-high-2605202-nonmarketoff.csv
+results/May2024SC-X/natscch4s-CP-Base-SSP2-NoOMH-high-2605202.csv
+results/May2024SC-X/natscch4s-CP-Base-SSP2-NoTPs-high-2605202.csv
+results/May2024SC-X/natsccs-CP-Base-SSP2-NoOMH-default-2605202.csv
+results/May2024SC-X/natsccs-CP-Base-SSP2-NoOMH-high-2605202-EMUC15PRTP001.csv
+results/May2024SC-X/natsccs-CP-Base-SSP2-NoOMH-high-2605202-nonmarketoff.csv
+results/May2024SC-X/natsccs-CP-Base-SSP2-NoOMH-high-2605202.csv
+results/May2024SC-X/natsccs-CP-Base-SSP2-NoTPs-high-2605202.csv
+results/May2024SC-X/sccs-CP-Base-SSP2-NoOMH-default-2605202.csv
+results/May2024SC-X/sccs-CP-Base-SSP2-NoOMH-high-2605202-EMUC15PRTP001.csv
+results/May2024SC-X/sccs-CP-Base-SSP2-NoOMH-high-2605202-nonmarketoff.csv
+results/May2024SC-X/sccs-CP-Base-SSP2-NoOMH-high-2605202.csv
+results/May2024SC-X/sccs-CP-Base-SSP2-NoOMH-high-10505746-nonmarketoff.csv
+results/May2024SC-X/sccs-CP-Base-SSP2-NoOMH-high-12580252-nonmarketoff.csv
+results/May2024SC-X/sccs-CP-Base-SSP2-NoOMH-high-17254536-nonmarketoff.csv
+results/May2024SC-X/sccs-CP-Base-SSP2-NoOMH-high-21201384-nonmarketoff.csv
+results/May2024SC-X/sccs-CP-Base-SSP2-NoOMH-high-24582649-nonmarketoff.csv
+results/May2024SC-X/sccs-CP-Base-SSP2-NoOMH-high-53973576-nonmarketoff.csv
+results/May2024SC-X/sccs-CP-Base-SSP2-NoOMH-high-65649168-nonmarketoff.csv
+results/May2024SC-X/sccs-CP-Base-SSP2-NoOMH-high-76300249-nonmarketoff.csv
+results/May2024SC-X/sccs-CP-Base-SSP2-NoOMH-high-79399005-nonmarketoff.csv
+results/May2024SC-X/sccs-CP-Base-SSP2-NoOMH-high-87497631-nonmarketoff.csv
+results/May2024SC-X/sccs-CP-Base-SSP2-NoTPs-high-2605202.csv
+results/May2024SC-X/sccs-CP-Base-SSP2-TPs-high-2605202.csv
+results/Safekeeping/bge-1.5-Base-SSP1-NoOMH-default.csv
+results/Safekeeping/bge-1.5-Base-SSP1-NoOMH-high.csv
+results/Safekeeping/bge-1.5-Base-SSP1-NoTPs-default.csv
+results/Safekeeping/bge-1.5-Base-SSP1-NoTPs-high.csv
+results/Safekeeping/bge-1.5-Base-SSP1-TPs-default.csv
+results/Safekeeping/bge-1.5-Base-SSP1-TPs-high.csv
+results/Safekeeping/bge-1.5-GMP-HighCH4-SSP1-NoOMH-default.csv
+results/Safekeeping/bge-1.5-GMP-HighCH4-SSP1-NoOMH-high.csv
+results/Safekeeping/bge-1.5-GMP-HighCH4-SSP1-NoTPs-default.csv
+results/Safekeeping/bge-1.5-GMP-HighCH4-SSP1-NoTPs-high.csv
+results/Safekeeping/bge-1.5-GMP-HighCH4-SSP1-TPs-default.csv
+results/Safekeeping/bge-1.5-GMP-HighCH4-SSP1-TPs-high.csv
+results/Safekeeping/bge-1.5-GMP-LowCH4-SSP1-NoOMH-default.csv
+results/Safekeeping/bge-1.5-GMP-LowCH4-SSP1-NoOMH-high.csv
+results/Safekeeping/bge-1.5-GMP-LowCH4-SSP1-NoTPs-default.csv
+results/Safekeeping/bge-1.5-GMP-LowCH4-SSP1-NoTPs-high.csv
+results/Safekeeping/bge-1.5-GMP-LowCH4-SSP1-TPs-default.csv
+results/Safekeeping/bge-1.5-GMP-LowCH4-SSP1-TPs-high.csv
+results/Safekeeping/bge-1.5-GMP-SSP1-NoOMH-default.csv
+results/Safekeeping/bge-1.5-GMP-SSP1-NoOMH-high.csv
+results/Safekeeping/bge-1.5-GMP-SSP1-NoTPs-default.csv
+results/Safekeeping/bge-1.5-GMP-SSP1-NoTPs-high.csv
+results/Safekeeping/bge-1.5-GMP-SSP1-TPs-default.csv
+results/Safekeeping/bge-1.5-GMP-SSP1-TPs-high.csv
+results/Safekeeping/bge-CP-Base-SSP2-NoOMH-default.csv
+results/Safekeeping/bge-CP-Base-SSP2-NoOMH-high.csv
+results/Safekeeping/bge-CP-Base-SSP2-NoTPs-default.csv
+results/Safekeeping/bge-CP-Base-SSP2-NoTPs-high.csv
+results/Safekeeping/bge-CP-Base-SSP2-TPs-default.csv
+results/Safekeeping/bge-CP-Base-SSP2-TPs-high.csv
+results/Safekeeping/bge-CP-GMP-HighCH4-SSP2-NoOMH-default.csv
+results/Safekeeping/bge-CP-GMP-HighCH4-SSP2-NoOMH-high.csv
+results/Safekeeping/bge-CP-GMP-HighCH4-SSP2-NoTPs-default.csv
+results/Safekeeping/bge-CP-GMP-HighCH4-SSP2-NoTPs-high.csv
+results/Safekeeping/bge-CP-GMP-HighCH4-SSP2-TPs-default.csv
+results/Safekeeping/bge-CP-GMP-HighCH4-SSP2-TPs-high.csv
+results/Safekeeping/bge-CP-GMP-LowCH4-SSP2-NoOMH-default.csv
+results/Safekeeping/bge-CP-GMP-LowCH4-SSP2-NoOMH-high.csv
+results/Safekeeping/bge-CP-GMP-LowCH4-SSP2-NoTPs-default.csv
+results/Safekeeping/bge-CP-GMP-LowCH4-SSP2-NoTPs-high.csv
+results/Safekeeping/bge-CP-GMP-LowCH4-SSP2-TPs-default.csv
+results/Safekeeping/bge-CP-GMP-LowCH4-SSP2-TPs-high.csv
+results/Safekeeping/bge-CP-GMP-SSP2-NoOMH-default.csv
+results/Safekeeping/bge-CP-GMP-SSP2-NoOMH-high.csv
+results/Safekeeping/bge-CP-GMP-SSP2-NoTPs-default.csv
+results/Safekeeping/bge-CP-GMP-SSP2-NoTPs-high.csv
+results/Safekeeping/bge-CP-GMP-SSP2-TPs-default.csv
+results/Safekeeping/bge-CP-GMP-SSP2-TPs-high.csv
+results/Safekeeping/bge-NP-Base-SSP3-NoOMH-default.csv
+results/Safekeeping/bge-NP-Base-SSP3-NoOMH-high.csv
+results/Safekeeping/bge-NP-Base-SSP3-NoTPs-default.csv
+results/Safekeeping/bge-NP-Base-SSP3-NoTPs-high.csv
+results/Safekeeping/bge-NP-Base-SSP3-TPs-default.csv
+results/Safekeeping/bge-NP-Base-SSP3-TPs-high.csv
+results/Safekeeping/bge-NP-GMP-HighCH4-SSP3-NoOMH-default.csv
+results/Safekeeping/bge-NP-GMP-HighCH4-SSP3-NoOMH-high.csv
+results/Safekeeping/bge-NP-GMP-HighCH4-SSP3-NoTPs-default.csv
+results/Safekeeping/bge-NP-GMP-HighCH4-SSP3-NoTPs-high.csv
+results/Safekeeping/bge-NP-GMP-HighCH4-SSP3-TPs-default.csv
+results/Safekeeping/bge-NP-GMP-HighCH4-SSP3-TPs-high.csv
+results/Safekeeping/bge-NP-GMP-LowCH4-SSP3-NoOMH-default.csv
+results/Safekeeping/bge-NP-GMP-LowCH4-SSP3-NoOMH-high.csv
+results/Safekeeping/bge-NP-GMP-LowCH4-SSP3-NoTPs-default.csv
+results/Safekeeping/bge-NP-GMP-LowCH4-SSP3-NoTPs-high.csv
+results/Safekeeping/bge-NP-GMP-LowCH4-SSP3-TPs-default.csv
+results/Safekeeping/bge-NP-GMP-LowCH4-SSP3-TPs-high.csv
+results/Safekeeping/bge-NP-GMP-SSP3-NoOMH-default.csv
+results/Safekeeping/bge-NP-GMP-SSP3-NoOMH-high.csv
+results/Safekeeping/bge-NP-GMP-SSP3-NoTPs-default.csv
+results/Safekeeping/bge-NP-GMP-SSP3-NoTPs-high.csv
+results/Safekeeping/bge-NP-GMP-SSP3-TPs-default.csv
+results/Safekeeping/bge-NP-GMP-SSP3-TPs-high.csv
+results/Safekeeping/bytime-1.5-Base-SSP1-NoOMH-default.csv
+results/Safekeeping/bytime-1.5-Base-SSP1-NoOMH-high.csv
+results/Safekeeping/bytime-1.5-Base-SSP1-NoTPs-default.csv
+results/Safekeeping/bytime-1.5-Base-SSP1-NoTPs-high.csv
+results/Safekeeping/bytime-1.5-Base-SSP1-TPs-default.csv
+results/Safekeeping/bytime-1.5-Base-SSP1-TPs-high.csv
+results/Safekeeping/bytime-1.5-GMP-HighCH4-SSP1-NoOMH-default.csv
+results/Safekeeping/bytime-1.5-GMP-HighCH4-SSP1-NoOMH-high.csv
+results/Safekeeping/bytime-1.5-GMP-HighCH4-SSP1-NoTPs-default.csv
+results/Safekeeping/bytime-1.5-GMP-HighCH4-SSP1-NoTPs-high.csv
+results/Safekeeping/bytime-1.5-GMP-HighCH4-SSP1-TPs-default.csv
+results/Safekeeping/bytime-1.5-GMP-HighCH4-SSP1-TPs-high.csv
+results/Safekeeping/bytime-1.5-GMP-LowCH4-SSP1-NoOMH-default.csv
+results/Safekeeping/bytime-1.5-GMP-LowCH4-SSP1-NoOMH-high.csv
+results/Safekeeping/bytime-1.5-GMP-LowCH4-SSP1-NoTPs-default.csv
+results/Safekeeping/bytime-1.5-GMP-LowCH4-SSP1-NoTPs-high.csv
+results/Safekeeping/bytime-1.5-GMP-LowCH4-SSP1-TPs-default.csv
+results/Safekeeping/bytime-1.5-GMP-LowCH4-SSP1-TPs-high.csv
+results/Safekeeping/bytime-1.5-GMP-SSP1-NoOMH-default.csv
+results/Safekeeping/bytime-1.5-GMP-SSP1-NoOMH-high.csv
+results/Safekeeping/bytime-1.5-GMP-SSP1-NoTPs-default.csv
+results/Safekeeping/bytime-1.5-GMP-SSP1-NoTPs-high.csv
+results/Safekeeping/bytime-1.5-GMP-SSP1-TPs-default.csv
+results/Safekeeping/bytime-1.5-GMP-SSP1-TPs-high.csv
+results/Safekeeping/bytime-CP-Base-SSP2-NoOMH-default.csv
+results/Safekeeping/bytime-CP-Base-SSP2-NoOMH-high.csv
+results/Safekeeping/bytime-CP-Base-SSP2-NoTPs-default.csv
+results/Safekeeping/bytime-CP-Base-SSP2-NoTPs-high.csv
+results/Safekeeping/bytime-CP-Base-SSP2-TPs-default.csv
+results/Safekeeping/bytime-CP-Base-SSP2-TPs-high.csv
+results/Safekeeping/bytime-CP-GMP-HighCH4-SSP2-NoOMH-default.csv
+results/Safekeeping/bytime-CP-GMP-HighCH4-SSP2-NoOMH-high.csv
+results/Safekeeping/bytime-CP-GMP-HighCH4-SSP2-NoTPs-default.csv
+results/Safekeeping/bytime-CP-GMP-HighCH4-SSP2-NoTPs-high.csv
+results/Safekeeping/bytime-CP-GMP-HighCH4-SSP2-TPs-default.csv
+results/Safekeeping/bytime-CP-GMP-HighCH4-SSP2-TPs-high.csv
+results/Safekeeping/bytime-CP-GMP-LowCH4-SSP2-NoOMH-default.csv
+results/Safekeeping/bytime-CP-GMP-LowCH4-SSP2-NoOMH-high.csv
+results/Safekeeping/bytime-CP-GMP-LowCH4-SSP2-NoTPs-default.csv
+results/Safekeeping/bytime-CP-GMP-LowCH4-SSP2-NoTPs-high.csv
+results/Safekeeping/bytime-CP-GMP-LowCH4-SSP2-TPs-default.csv
+results/Safekeeping/bytime-CP-GMP-LowCH4-SSP2-TPs-high.csv
+results/Safekeeping/bytime-CP-GMP-SSP2-NoOMH-default.csv
+results/Safekeeping/bytime-CP-GMP-SSP2-NoOMH-high.csv
+results/Safekeeping/bytime-CP-GMP-SSP2-NoTPs-default.csv
+results/Safekeeping/bytime-CP-GMP-SSP2-NoTPs-high.csv
+results/Safekeeping/bytime-CP-GMP-SSP2-TPs-default.csv
+results/Safekeeping/bytime-CP-GMP-SSP2-TPs-high.csv
+results/Safekeeping/bytime-NP-Base-SSP3-NoOMH-default.csv
+results/Safekeeping/bytime-NP-Base-SSP3-NoOMH-high.csv
+results/Safekeeping/bytime-NP-Base-SSP3-NoTPs-default.csv
+results/Safekeeping/bytime-NP-Base-SSP3-NoTPs-high.csv
+results/Safekeeping/bytime-NP-Base-SSP3-TPs-default.csv
+results/Safekeeping/bytime-NP-Base-SSP3-TPs-high.csv
+results/Safekeeping/bytime-NP-GMP-HighCH4-SSP3-NoOMH-default.csv
+results/Safekeeping/bytime-NP-GMP-HighCH4-SSP3-NoOMH-high.csv
+results/Safekeeping/bytime-NP-GMP-HighCH4-SSP3-NoTPs-default.csv
+results/Safekeeping/bytime-NP-GMP-HighCH4-SSP3-NoTPs-high.csv
+results/Safekeeping/bytime-NP-GMP-HighCH4-SSP3-TPs-default.csv
+results/Safekeeping/bytime-NP-GMP-HighCH4-SSP3-TPs-high.csv
+results/Safekeeping/bytime-NP-GMP-LowCH4-SSP3-NoOMH-default.csv
+results/Safekeeping/bytime-NP-GMP-LowCH4-SSP3-NoOMH-high.csv
+results/Safekeeping/bytime-NP-GMP-LowCH4-SSP3-NoTPs-default.csv
+results/Safekeeping/bytime-NP-GMP-LowCH4-SSP3-NoTPs-high.csv
+results/Safekeeping/bytime-NP-GMP-LowCH4-SSP3-TPs-default.csv
+results/Safekeeping/bytime-NP-GMP-LowCH4-SSP3-TPs-high.csv
+results/Safekeeping/bytime-NP-GMP-SSP3-NoOMH-default.csv
+results/Safekeeping/bytime-NP-GMP-SSP3-NoOMH-high.csv
+results/Safekeeping/bytime-NP-GMP-SSP3-NoTPs-default.csv
+results/Safekeeping/bytime-NP-GMP-SSP3-NoTPs-high.csv
+results/Safekeeping/bytime-NP-GMP-SSP3-TPs-default.csv
+results/Safekeeping/bytime-NP-GMP-SSP3-TPs-high.csv
+results/Safekeeping/bytimexcountry-1.5-Base-SSP1-NoOMH-default.csv
+results/Safekeeping/bytimexcountry-1.5-Base-SSP1-NoOMH-high.csv
+results/Safekeeping/bytimexcountry-1.5-Base-SSP1-NoTPs-default.csv
+results/Safekeeping/bytimexcountry-1.5-Base-SSP1-NoTPs-high.csv
+results/Safekeeping/bytimexcountry-1.5-Base-SSP1-TPs-default.csv
+results/Safekeeping/bytimexcountry-1.5-Base-SSP1-TPs-high.csv
+results/Safekeeping/bytimexcountry-1.5-GMP-HighCH4-SSP1-NoOMH-default.csv
+results/Safekeeping/bytimexcountry-1.5-GMP-HighCH4-SSP1-NoOMH-high.csv
+results/Safekeeping/bytimexcountry-1.5-GMP-HighCH4-SSP1-NoTPs-default.csv
+results/Safekeeping/bytimexcountry-1.5-GMP-HighCH4-SSP1-NoTPs-high.csv
+results/Safekeeping/bytimexcountry-1.5-GMP-HighCH4-SSP1-TPs-default.csv
+results/Safekeeping/bytimexcountry-1.5-GMP-HighCH4-SSP1-TPs-high.csv
+results/Safekeeping/bytimexcountry-1.5-GMP-LowCH4-SSP1-NoOMH-default.csv
+results/Safekeeping/bytimexcountry-1.5-GMP-LowCH4-SSP1-NoOMH-high.csv
+results/Safekeeping/bytimexcountry-1.5-GMP-LowCH4-SSP1-NoTPs-default.csv
+results/Safekeeping/bytimexcountry-1.5-GMP-LowCH4-SSP1-NoTPs-high.csv
+results/Safekeeping/bytimexcountry-1.5-GMP-LowCH4-SSP1-TPs-default.csv
+results/Safekeeping/bytimexcountry-1.5-GMP-LowCH4-SSP1-TPs-high.csv
+results/Safekeeping/bytimexcountry-1.5-GMP-SSP1-NoOMH-default.csv
+results/Safekeeping/bytimexcountry-1.5-GMP-SSP1-NoOMH-high.csv
+results/Safekeeping/bytimexcountry-1.5-GMP-SSP1-NoTPs-default.csv
+results/Safekeeping/bytimexcountry-1.5-GMP-SSP1-NoTPs-high.csv
+results/Safekeeping/bytimexcountry-1.5-GMP-SSP1-TPs-default.csv
+results/Safekeeping/bytimexcountry-1.5-GMP-SSP1-TPs-high.csv
+results/Safekeeping/bytimexcountry-CP-Base-SSP2-NoOMH-default.csv
+results/Safekeeping/bytimexcountry-CP-Base-SSP2-NoOMH-high.csv
+results/Safekeeping/bytimexcountry-CP-Base-SSP2-NoTPs-default.csv
+results/Safekeeping/bytimexcountry-CP-Base-SSP2-NoTPs-high.csv
+results/Safekeeping/bytimexcountry-CP-Base-SSP2-TPs-default.csv
+results/Safekeeping/bytimexcountry-CP-Base-SSP2-TPs-high.csv
+results/Safekeeping/bytimexcountry-CP-GMP-HighCH4-SSP2-NoOMH-default.csv
+results/Safekeeping/bytimexcountry-CP-GMP-HighCH4-SSP2-NoOMH-high.csv
+results/Safekeeping/bytimexcountry-CP-GMP-HighCH4-SSP2-NoTPs-default.csv
+results/Safekeeping/bytimexcountry-CP-GMP-HighCH4-SSP2-NoTPs-high.csv
+results/Safekeeping/bytimexcountry-CP-GMP-HighCH4-SSP2-TPs-default.csv
+results/Safekeeping/bytimexcountry-CP-GMP-HighCH4-SSP2-TPs-high.csv
+results/Safekeeping/bytimexcountry-CP-GMP-LowCH4-SSP2-NoOMH-default.csv
+results/Safekeeping/bytimexcountry-CP-GMP-LowCH4-SSP2-NoOMH-high.csv
+results/Safekeeping/bytimexcountry-CP-GMP-LowCH4-SSP2-NoTPs-default.csv
+results/Safekeeping/bytimexcountry-CP-GMP-LowCH4-SSP2-NoTPs-high.csv
+results/Safekeeping/bytimexcountry-CP-GMP-LowCH4-SSP2-TPs-default.csv
+results/Safekeeping/bytimexcountry-CP-GMP-LowCH4-SSP2-TPs-high.csv
+results/Safekeeping/bytimexcountry-CP-GMP-SSP2-NoOMH-default.csv
+results/Safekeeping/bytimexcountry-CP-GMP-SSP2-NoOMH-high.csv
+results/Safekeeping/bytimexcountry-CP-GMP-SSP2-NoTPs-default.csv
+results/Safekeeping/bytimexcountry-CP-GMP-SSP2-NoTPs-high.csv
+results/Safekeeping/bytimexcountry-CP-GMP-SSP2-TPs-default.csv
+results/Safekeeping/bytimexcountry-CP-GMP-SSP2-TPs-high.csv
+results/Safekeeping/bytimexcountry-NP-Base-SSP3-NoOMH-default.csv
+results/Safekeeping/bytimexcountry-NP-Base-SSP3-NoOMH-high.csv
+results/Safekeeping/bytimexcountry-NP-Base-SSP3-NoTPs-default.csv
+results/Safekeeping/bytimexcountry-NP-Base-SSP3-NoTPs-high.csv
+results/Safekeeping/bytimexcountry-NP-Base-SSP3-TPs-default.csv
+results/Safekeeping/bytimexcountry-NP-Base-SSP3-TPs-high.csv
+results/Safekeeping/bytimexcountry-NP-GMP-HighCH4-SSP3-NoOMH-default.csv
+results/Safekeeping/bytimexcountry-NP-GMP-HighCH4-SSP3-NoOMH-high.csv
+results/Safekeeping/bytimexcountry-NP-GMP-HighCH4-SSP3-NoTPs-default.csv
+results/Safekeeping/bytimexcountry-NP-GMP-HighCH4-SSP3-NoTPs-high.csv
+results/Safekeeping/bytimexcountry-NP-GMP-HighCH4-SSP3-TPs-default.csv
+results/Safekeeping/bytimexcountry-NP-GMP-HighCH4-SSP3-TPs-high.csv
+results/Safekeeping/bytimexcountry-NP-GMP-LowCH4-SSP3-NoOMH-default.csv
+results/Safekeeping/bytimexcountry-NP-GMP-LowCH4-SSP3-NoOMH-high.csv
+results/Safekeeping/bytimexcountry-NP-GMP-LowCH4-SSP3-NoTPs-default.csv
+results/Safekeeping/bytimexcountry-NP-GMP-LowCH4-SSP3-NoTPs-high.csv
+results/Safekeeping/bytimexcountry-NP-GMP-LowCH4-SSP3-TPs-default.csv
+results/Safekeeping/bytimexcountry-NP-GMP-LowCH4-SSP3-TPs-high.csv
+results/Safekeeping/bytimexcountry-NP-GMP-SSP3-NoOMH-default.csv
+results/Safekeeping/bytimexcountry-NP-GMP-SSP3-NoOMH-high.csv
+results/Safekeeping/bytimexcountry-NP-GMP-SSP3-NoTPs-default.csv
+results/Safekeeping/bytimexcountry-NP-GMP-SSP3-NoTPs-high.csv
+results/Safekeeping/bytimexcountry-NP-GMP-SSP3-TPs-default.csv
+results/Safekeeping/bytimexcountry-NP-GMP-SSP3-TPs-high.csv
+results/Safekeeping/bytimexcountry2-1.5-Base-SSP1-NoOMH-default.csv
+results/Safekeeping/bytimexcountry2-1.5-Base-SSP1-NoOMH-high.csv
+results/Safekeeping/bytimexcountry2-1.5-Base-SSP1-NoTPs-default.csv
+results/Safekeeping/bytimexcountry2-1.5-Base-SSP1-NoTPs-high.csv
+results/Safekeeping/bytimexcountry2-1.5-Base-SSP1-TPs-default.csv
+results/Safekeeping/bytimexcountry2-1.5-Base-SSP1-TPs-high.csv
+results/Safekeeping/bytimexcountry2-1.5-GMP-HighCH4-SSP1-NoOMH-default.csv
+results/Safekeeping/bytimexcountry2-1.5-GMP-HighCH4-SSP1-NoOMH-high.csv
+results/Safekeeping/bytimexcountry2-1.5-GMP-HighCH4-SSP1-NoTPs-default.csv
+results/Safekeeping/bytimexcountry2-1.5-GMP-HighCH4-SSP1-NoTPs-high.csv
+results/Safekeeping/bytimexcountry2-1.5-GMP-HighCH4-SSP1-TPs-default.csv
+results/Safekeeping/bytimexcountry2-1.5-GMP-HighCH4-SSP1-TPs-high.csv
+results/Safekeeping/bytimexcountry2-1.5-GMP-LowCH4-SSP1-NoOMH-default.csv
+results/Safekeeping/bytimexcountry2-1.5-GMP-LowCH4-SSP1-NoOMH-high.csv
+results/Safekeeping/bytimexcountry2-1.5-GMP-LowCH4-SSP1-NoTPs-default.csv
+results/Safekeeping/bytimexcountry2-1.5-GMP-LowCH4-SSP1-NoTPs-high.csv
+results/Safekeeping/bytimexcountry2-1.5-GMP-LowCH4-SSP1-TPs-default.csv
+results/Safekeeping/bytimexcountry2-1.5-GMP-LowCH4-SSP1-TPs-high.csv
+results/Safekeeping/bytimexcountry2-1.5-GMP-SSP1-NoOMH-default.csv
+results/Safekeeping/bytimexcountry2-1.5-GMP-SSP1-NoOMH-high.csv
+results/Safekeeping/bytimexcountry2-1.5-GMP-SSP1-NoTPs-default.csv
+results/Safekeeping/bytimexcountry2-1.5-GMP-SSP1-NoTPs-high.csv
+results/Safekeeping/bytimexcountry2-1.5-GMP-SSP1-TPs-default.csv
+results/Safekeeping/bytimexcountry2-1.5-GMP-SSP1-TPs-high.csv
+results/Safekeeping/bytimexcountry2-CP-Base-SSP2-NoOMH-default.csv
+results/Safekeeping/bytimexcountry2-CP-Base-SSP2-NoOMH-high.csv
+results/Safekeeping/bytimexcountry2-CP-Base-SSP2-NoTPs-default.csv
+results/Safekeeping/bytimexcountry2-CP-Base-SSP2-NoTPs-high.csv
+results/Safekeeping/bytimexcountry2-CP-Base-SSP2-TPs-default.csv
+results/Safekeeping/bytimexcountry2-CP-Base-SSP2-TPs-high.csv
+results/Safekeeping/bytimexcountry2-CP-GMP-HighCH4-SSP2-NoOMH-default.csv
+results/Safekeeping/bytimexcountry2-CP-GMP-HighCH4-SSP2-NoOMH-high.csv
+results/Safekeeping/bytimexcountry2-CP-GMP-HighCH4-SSP2-NoTPs-default.csv
+results/Safekeeping/bytimexcountry2-CP-GMP-HighCH4-SSP2-NoTPs-high.csv
+results/Safekeeping/bytimexcountry2-CP-GMP-HighCH4-SSP2-TPs-default.csv
+results/Safekeeping/bytimexcountry2-CP-GMP-HighCH4-SSP2-TPs-high.csv
+results/Safekeeping/bytimexcountry2-CP-GMP-LowCH4-SSP2-NoOMH-default.csv
+results/Safekeeping/bytimexcountry2-CP-GMP-LowCH4-SSP2-NoOMH-high.csv
+results/Safekeeping/bytimexcountry2-CP-GMP-LowCH4-SSP2-NoTPs-default.csv
+results/Safekeeping/bytimexcountry2-CP-GMP-LowCH4-SSP2-NoTPs-high.csv
+results/Safekeeping/bytimexcountry2-CP-GMP-LowCH4-SSP2-TPs-default.csv
+results/Safekeeping/bytimexcountry2-CP-GMP-LowCH4-SSP2-TPs-high.csv
+results/Safekeeping/bytimexcountry2-CP-GMP-SSP2-NoOMH-default.csv
+results/Safekeeping/bytimexcountry2-CP-GMP-SSP2-NoOMH-high.csv
+results/Safekeeping/bytimexcountry2-CP-GMP-SSP2-NoTPs-default.csv
+results/Safekeeping/bytimexcountry2-CP-GMP-SSP2-NoTPs-high.csv
+results/Safekeeping/bytimexcountry2-CP-GMP-SSP2-TPs-default.csv
+results/Safekeeping/bytimexcountry2-CP-GMP-SSP2-TPs-high.csv
+results/Safekeeping/bytimexcountry2-NP-Base-SSP3-NoOMH-default.csv
+results/Safekeeping/bytimexcountry2-NP-Base-SSP3-NoOMH-high.csv
+results/Safekeeping/bytimexcountry2-NP-Base-SSP3-NoTPs-default.csv
+results/Safekeeping/bytimexcountry2-NP-Base-SSP3-NoTPs-high.csv
+results/Safekeeping/bytimexcountry2-NP-Base-SSP3-TPs-default.csv
+results/Safekeeping/bytimexcountry2-NP-Base-SSP3-TPs-high.csv
+results/Safekeeping/bytimexcountry2-NP-GMP-HighCH4-SSP3-NoOMH-default.csv
+results/Safekeeping/bytimexcountry2-NP-GMP-HighCH4-SSP3-NoOMH-high.csv
+results/Safekeeping/bytimexcountry2-NP-GMP-HighCH4-SSP3-NoTPs-default.csv
+results/Safekeeping/bytimexcountry2-NP-GMP-HighCH4-SSP3-NoTPs-high.csv
+results/Safekeeping/bytimexcountry2-NP-GMP-HighCH4-SSP3-TPs-default.csv
+results/Safekeeping/bytimexcountry2-NP-GMP-HighCH4-SSP3-TPs-high.csv
+results/Safekeeping/bytimexcountry2-NP-GMP-LowCH4-SSP3-NoOMH-default.csv
+results/Safekeeping/bytimexcountry2-NP-GMP-LowCH4-SSP3-NoOMH-high.csv
+results/Safekeeping/bytimexcountry2-NP-GMP-LowCH4-SSP3-NoTPs-default.csv
+results/Safekeeping/bytimexcountry2-NP-GMP-LowCH4-SSP3-NoTPs-high.csv
+results/Safekeeping/bytimexcountry2-NP-GMP-LowCH4-SSP3-TPs-default.csv
+results/Safekeeping/bytimexcountry2-NP-GMP-LowCH4-SSP3-TPs-high.csv
+results/Safekeeping/bytimexcountry2-NP-GMP-SSP3-NoOMH-default.csv
+results/Safekeeping/bytimexcountry2-NP-GMP-SSP3-NoOMH-high.csv
+results/Safekeeping/bytimexcountry2-NP-GMP-SSP3-NoTPs-default.csv
+results/Safekeeping/bytimexcountry2-NP-GMP-SSP3-NoTPs-high.csv
+results/Safekeeping/bytimexcountry2-NP-GMP-SSP3-TPs-default.csv
+results/Safekeeping/bytimexcountry2-NP-GMP-SSP3-TPs-high.csv
+results/Safekeeping/natscch4s-1.5-Base-SSP1-NoOMH-default.csv
+results/Safekeeping/natscch4s-1.5-Base-SSP1-NoOMH-high.csv
+results/Safekeeping/natscch4s-1.5-Base-SSP1-NoTPs-default.csv
+results/Safekeeping/natscch4s-1.5-Base-SSP1-NoTPs-high.csv
+results/Safekeeping/natscch4s-1.5-Base-SSP1-TPs-default.csv
+results/Safekeeping/natscch4s-1.5-Base-SSP1-TPs-high.csv
+results/Safekeeping/natscch4s-1.5-GMP-HighCH4-SSP1-NoOMH-default.csv
+results/Safekeeping/natscch4s-1.5-GMP-HighCH4-SSP1-NoOMH-high.csv
+results/Safekeeping/natscch4s-1.5-GMP-HighCH4-SSP1-NoTPs-default.csv
+results/Safekeeping/natscch4s-1.5-GMP-HighCH4-SSP1-NoTPs-high.csv
+results/Safekeeping/natscch4s-1.5-GMP-HighCH4-SSP1-TPs-default.csv
+results/Safekeeping/natscch4s-1.5-GMP-HighCH4-SSP1-TPs-high.csv
+results/Safekeeping/natscch4s-1.5-GMP-LowCH4-SSP1-NoOMH-default.csv
+results/Safekeeping/natscch4s-1.5-GMP-LowCH4-SSP1-NoOMH-high.csv
+results/Safekeeping/natscch4s-1.5-GMP-LowCH4-SSP1-NoTPs-default.csv
+results/Safekeeping/natscch4s-1.5-GMP-LowCH4-SSP1-NoTPs-high.csv
+results/Safekeeping/natscch4s-1.5-GMP-LowCH4-SSP1-TPs-default.csv
+results/Safekeeping/natscch4s-1.5-GMP-LowCH4-SSP1-TPs-high.csv
+results/Safekeeping/natscch4s-1.5-GMP-SSP1-NoOMH-default.csv
+results/Safekeeping/natscch4s-1.5-GMP-SSP1-NoOMH-high.csv
+results/Safekeeping/natscch4s-1.5-GMP-SSP1-NoTPs-default.csv
+results/Safekeeping/natscch4s-1.5-GMP-SSP1-NoTPs-high.csv
+results/Safekeeping/natscch4s-1.5-GMP-SSP1-TPs-default.csv
+results/Safekeeping/natscch4s-1.5-GMP-SSP1-TPs-high.csv
+results/Safekeeping/natscch4s-CP-Base-SSP2-NoOMH-default.csv
+results/Safekeeping/natscch4s-CP-Base-SSP2-NoOMH-high.csv
+results/Safekeeping/natscch4s-CP-Base-SSP2-NoTPs-default.csv
+results/Safekeeping/natscch4s-CP-Base-SSP2-NoTPs-high.csv
+results/Safekeeping/natscch4s-CP-Base-SSP2-TPs-default.csv
+results/Safekeeping/natscch4s-CP-Base-SSP2-TPs-high.csv
+results/Safekeeping/natscch4s-CP-GMP-HighCH4-SSP2-NoOMH-default.csv
+results/Safekeeping/natscch4s-CP-GMP-HighCH4-SSP2-NoOMH-high.csv
+results/Safekeeping/natscch4s-CP-GMP-HighCH4-SSP2-NoTPs-default.csv
+results/Safekeeping/natscch4s-CP-GMP-HighCH4-SSP2-NoTPs-high.csv
+results/Safekeeping/natscch4s-CP-GMP-HighCH4-SSP2-TPs-default.csv
+results/Safekeeping/natscch4s-CP-GMP-HighCH4-SSP2-TPs-high.csv
+results/Safekeeping/natscch4s-CP-GMP-LowCH4-SSP2-NoOMH-default.csv
+results/Safekeeping/natscch4s-CP-GMP-LowCH4-SSP2-NoOMH-high.csv
+results/Safekeeping/natscch4s-CP-GMP-LowCH4-SSP2-NoTPs-default.csv
+results/Safekeeping/natscch4s-CP-GMP-LowCH4-SSP2-NoTPs-high.csv
+results/Safekeeping/natscch4s-CP-GMP-LowCH4-SSP2-TPs-default.csv
+results/Safekeeping/natscch4s-CP-GMP-LowCH4-SSP2-TPs-high.csv
+results/Safekeeping/natscch4s-CP-GMP-SSP2-NoOMH-default.csv
+results/Safekeeping/natscch4s-CP-GMP-SSP2-NoOMH-high.csv
+results/Safekeeping/natscch4s-CP-GMP-SSP2-NoTPs-default.csv
+results/Safekeeping/natscch4s-CP-GMP-SSP2-NoTPs-high.csv
+results/Safekeeping/natscch4s-CP-GMP-SSP2-TPs-default.csv
+results/Safekeeping/natscch4s-CP-GMP-SSP2-TPs-high.csv
+results/Safekeeping/natscch4s-NP-Base-SSP3-NoOMH-default.csv
+results/Safekeeping/natscch4s-NP-Base-SSP3-NoOMH-high.csv
+results/Safekeeping/natscch4s-NP-Base-SSP3-NoTPs-default.csv
+results/Safekeeping/natscch4s-NP-Base-SSP3-NoTPs-high.csv
+results/Safekeeping/natscch4s-NP-Base-SSP3-TPs-default.csv
+results/Safekeeping/natscch4s-NP-Base-SSP3-TPs-high.csv
+results/Safekeeping/natscch4s-NP-GMP-HighCH4-SSP3-NoOMH-default.csv
+results/Safekeeping/natscch4s-NP-GMP-HighCH4-SSP3-NoOMH-high.csv
+results/Safekeeping/natscch4s-NP-GMP-HighCH4-SSP3-NoTPs-default.csv
+results/Safekeeping/natscch4s-NP-GMP-HighCH4-SSP3-NoTPs-high.csv
+results/Safekeeping/natscch4s-NP-GMP-HighCH4-SSP3-TPs-default.csv
+results/Safekeeping/natscch4s-NP-GMP-HighCH4-SSP3-TPs-high.csv
+results/Safekeeping/natscch4s-NP-GMP-LowCH4-SSP3-NoOMH-default.csv
+results/Safekeeping/natscch4s-NP-GMP-LowCH4-SSP3-NoOMH-high.csv
+results/Safekeeping/natscch4s-NP-GMP-LowCH4-SSP3-NoTPs-default.csv
+results/Safekeeping/natscch4s-NP-GMP-LowCH4-SSP3-NoTPs-high.csv
+results/Safekeeping/natscch4s-NP-GMP-LowCH4-SSP3-TPs-default.csv
+results/Safekeeping/natscch4s-NP-GMP-LowCH4-SSP3-TPs-high.csv
+results/Safekeeping/natscch4s-NP-GMP-SSP3-NoOMH-default.csv
+results/Safekeeping/natscch4s-NP-GMP-SSP3-NoOMH-high.csv
+results/Safekeeping/natscch4s-NP-GMP-SSP3-NoTPs-default.csv
+results/Safekeeping/natscch4s-NP-GMP-SSP3-NoTPs-high.csv
+results/Safekeeping/natscch4s-NP-GMP-SSP3-TPs-default.csv
+results/Safekeeping/natscch4s-NP-GMP-SSP3-TPs-high.csv
+results/Safekeeping/natsccs-1.5-Base-SSP1-NoOMH-default.csv
+results/Safekeeping/natsccs-1.5-Base-SSP1-NoOMH-high.csv
+results/Safekeeping/natsccs-1.5-Base-SSP1-NoTPs-default.csv
+results/Safekeeping/natsccs-1.5-Base-SSP1-NoTPs-high.csv
+results/Safekeeping/natsccs-1.5-Base-SSP1-TPs-default.csv
+results/Safekeeping/natsccs-1.5-Base-SSP1-TPs-high.csv
+results/Safekeeping/natsccs-1.5-GMP-HighCH4-SSP1-NoOMH-default.csv
+results/Safekeeping/natsccs-1.5-GMP-HighCH4-SSP1-NoOMH-high.csv
+results/Safekeeping/natsccs-1.5-GMP-HighCH4-SSP1-NoTPs-default.csv
+results/Safekeeping/natsccs-1.5-GMP-HighCH4-SSP1-NoTPs-high.csv
+results/Safekeeping/natsccs-1.5-GMP-HighCH4-SSP1-TPs-default.csv
+results/Safekeeping/natsccs-1.5-GMP-HighCH4-SSP1-TPs-high.csv
+results/Safekeeping/natsccs-1.5-GMP-LowCH4-SSP1-NoOMH-default.csv
+results/Safekeeping/natsccs-1.5-GMP-LowCH4-SSP1-NoOMH-high.csv
+results/Safekeeping/natsccs-1.5-GMP-LowCH4-SSP1-NoTPs-default.csv
+results/Safekeeping/natsccs-1.5-GMP-LowCH4-SSP1-NoTPs-high.csv
+results/Safekeeping/natsccs-1.5-GMP-LowCH4-SSP1-TPs-default.csv
+results/Safekeeping/natsccs-1.5-GMP-LowCH4-SSP1-TPs-high.csv
+results/Safekeeping/natsccs-1.5-GMP-SSP1-NoOMH-default.csv
+results/Safekeeping/natsccs-1.5-GMP-SSP1-NoOMH-high.csv
+results/Safekeeping/natsccs-1.5-GMP-SSP1-NoTPs-default.csv
+results/Safekeeping/natsccs-1.5-GMP-SSP1-NoTPs-high.csv
+results/Safekeeping/natsccs-1.5-GMP-SSP1-TPs-default.csv
+results/Safekeeping/natsccs-1.5-GMP-SSP1-TPs-high.csv
+results/Safekeeping/natsccs-CP-Base-SSP2-NoOMH-default.csv
+results/Safekeeping/natsccs-CP-Base-SSP2-NoOMH-high.csv
+results/Safekeeping/natsccs-CP-Base-SSP2-NoTPs-default.csv
+results/Safekeeping/natsccs-CP-Base-SSP2-NoTPs-high.csv
+results/Safekeeping/natsccs-CP-Base-SSP2-TPs-default.csv
+results/Safekeeping/natsccs-CP-Base-SSP2-TPs-high.csv
+results/May2024SC-X/ResultsFinal_May 2024 SC-X redo_2020-2100 pulses NoOMH NoTP.jl
+results/May2024SC-X/ResultsFinal_May 2024 SC-X redo_base SC-X results.jl
+results/May2024SC-X/ResultsFinal_May 2024 SC-X redo_default persistence.jl
+results/May2024SC-X/ResultsFinal_May 2024 SC-X redo_EMUC15PRPT001.jl
+results/May2024SC-X/ResultsFinal_May 2024 SC-X redo_nonmarketoff.jl
+results/May2024SC-X/ResultsFinal_October 2023_Different MC seeds_nonmarket damages off.jl
+src/Result_Tests non-stochastic.jl
+src/Result_Tests.jl
+src/ResultsFinal_May 2024 SC-X redo.jl
+src/ResultsFinal_October 2023 - BACKUP.jl
+src/ResultsFinal_October 2023_Different MC seeds.jl
+src/ResultsFinal_October 2023.jl
+src/ResultsFinal_October 2023.jl

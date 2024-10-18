@@ -25,11 +25,11 @@ include("../src/bge.jl")
 calc_nationals = true
 
 # Scenarios
-for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
-    for z in ["Base", "GMP", "GMP-LowCH4", "GMP-HighCH4"]
+for (x,y) in [("CP-", "SSP2")#=("NP-", "SSP3"), ("1.5-", "SSP1")=#]
+    for z in ["Base"#=, "GMP", "GMP-LowCH4", "GMP-HighCH4"=#]
 
         # TP configurations
-        for TP in ["NoTPs", "TPs", "NoOMH"]
+        for TP in [#="NoTPs", "TPs",=#"NoOMH"]
             if TP == "TPs"
                 global model = full_model(;
                                           rcp = x*z, # Concatenate correct scenario-variant name
@@ -48,7 +48,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                           ais = "AIS",
                                           ism = "Value",
                                           amoc = "IPSL",
-                                          nonmarketdamage = true)
+                                          nonmarketdamage = true) 
             elseif TP == "NoOMH"
                 global model = full_model(;
                                           rcp = x*z, # Concatenate correct scenario-variant name
@@ -89,7 +89,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                           nonmarketdamage = true)
             end
 
-            for persistence in ["high", "default"]
+            for persistence in ["high"#=, "default"=#]
                 println("$x$z $y $TP $persistence")
 
                 if persistence == "high"
@@ -102,18 +102,32 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
 
                 ### Run the model so we can run scripts
                 run(model)
+                #scc = calculate_scc(model,2020,10.0,1.05)
+                #scch4 = calculate_scch4(model,2020,0.06,1.05)
+                #println(scc, scch4)
 
                 function get_nonscc_results(inst, draws; save_rvs)
                     mcres = getsim_full(inst, draws; save_rvs=save_rvs)
                     bgeres = calculate_bge(inst)
                     mcres[:bge] = bgeres
+                    #mcres[:GISModel_VGIS] = inst[:GISModel, :VGIS]
+                    #mcres[:OMH_I_OMH] = inst[:OMH, :I_OMH]
+                    #mcres[:ISMModel_mNINO3pt4] = inst[:ISMModel, :mNINO3pt4]
+                    #mcres[:AmazonDieback_I_AMAZ] = inst[:AmazonDieback, :I_AMAZ]
+                    #mcres[:AMOC_I_AMOC] = inst[:AMOC, :I_AMOC]
+                    #mcres[:AISmodel_totalSLR_Ross] = inst[:AISmodel, :totalSLR_Ross]
+                    #mcres[:AISmodel_totalSLR_Amundsen] = inst[:AISmodel, :totalSLR_Amundsen]
+                    #mcres[:AISmodel_totalSLR_Weddell] = inst[:AISmodel, :totalSLR_Weddell]
+                    #mcres[:AISmodel_totalSLR_Peninsula] = inst[:AISmodel, :totalSLR_Peninsula]
+                    #mcres[:AISmodel_totalSLR_EAIS] = inst[:AISmodel, :totalSLR_EAIS]
+                    #mcres[:PCFModel_PF_extent] = inst[:PCFModel, :PF_extent]
 
                     mcres
                 end
 
                 ### Run the model in MC mode
                 if TP == "TPs"
-                    results = sim_full(model, 1000,
+                    results = sim_full(model, 10,
                                        "Fit of Hope and Schaefer (2016)", # PCF
                                        "Cai et al. central value", # AMAZ
                                        "Nordhaus central value", # GIS
@@ -129,7 +143,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                        save_rvs=true,
                                        getsim=get_nonscc_results)
                 elseif TP == "NoOMH"
-                    results = sim_full(model, 1000,
+                    results = sim_full(model, 10,
                     "Fit of Hope and Schaefer (2016)", # PCF
                     "Cai et al. central value", # AMAZ
                     "Nordhaus central value", # GIS
@@ -145,7 +159,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                     save_rvs=true,
                     getsim=get_nonscc_results)
                 else
-                    results = sim_full(model, 1000,
+                    results = sim_full(model, 10,
                                        "none", # PCF
                                        "none", # AMAZ
                                        "none", # GIS
@@ -161,36 +175,46 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                        save_rvs=true,
                                        getsim=get_nonscc_results)
                 end
+                run(model) # model is overwritten in some cases
 
-                bgeresults = DataFrame(mc=Int64[], country=String[], bge=Float64[])
-                for mc in 1:length(results[:other])
-                    bgeres = results[:other][mc][:bge]
-                    bgeres[!, :mc] .= mc
-                    bgeresults = vcat(bgeresults, bgeres)
-                end
+                #bgeresults = DataFrame(mc=Int64[], country=String[], bge=Float64[])
+                #for mc in 1:length(results[:other])
+                #    bgeres = results[:other][mc][:bge]
+                #    bgeres[!, :mc] .= mc
+                #    bgeresults = vcat(bgeresults, bgeres)
+                #end
 
-                CSV.write("../results/bge-$x$z-$y-$TP-$persistence.csv", bgeresults)
+                #CSV.write("../results/bge-$x$z-$y-$TP-$persistence.csv", bgeresults)
 
-                df = simdataframe(model, results, :SLRModel, :SLR)
-                for (comp, var) in [(:TotalDamages, :total_damages_global_peryear_percent), (:TemperatureConverter, :T_AT)]
-                    subdf = simdataframe(model, results, comp, var)
-                    df[!, names(subdf)[2]] = subdf[!, 2]
-                end
-                CSV.write("../results/bytime-$x$z-$y-$TP-$persistence.csv", df[(df.time .>= 2010) .& (df.time .<= 2100), :])
+                #df = simdataframe(model, results, :SLRModel, :SLR)
+                #for (comp, var) in [(:TotalDamages, :total_damages_global_peryear_percent), (:TemperatureConverter, :T_AT)]
+                #    subdf = simdataframe(model, results, comp, var)
+                #    df[!, names(subdf)[2]] = subdf[!, 2]
+                #end
+                #CSV.write("../results/bytime-$x$z-$y-$TP-$persistence.csv", df[(df.time .>= 2010) .& (df.time .<= 2100), :])
 
-                df = simdataframe(model, results, :TotalDamages, :total_damages_percap_peryear_percent)
-                CSV.write("../results/bytimexcountry-$x$z-$y-$TP-$persistence.csv", df[(df.time .>= 2010) .& (df.time .<= 2100), :])
+                #df = simdataframe(model, results, :GISModel, :VGIS)
+                #for (comp, var) in [#=(:OMH, :I_OMH), =#(:ISMModel, :mNINO3pt4), (:AmazonDieback, :I_AMAZ), (:AMOC, :I_AMOC), (:AISmodel, :totalSLR_Ross), (:AISmodel, :totalSLR_Amundsen), (:AISmodel, :totalSLR_Weddell), (:AISmodel, :totalSLR_Peninsula), (:AISmodel, :totalSLR_EAIS), (:PCFModel, :PF_extent)]
+                #    subdf = simdataframe(model, results, comp, var)
+                #    df[!, names(subdf)[2]] = subdf[!, 2]
+                #end
+
+                #CSV.write("../results/TPs_bytime-$x$z-$y-$TP-$persistence.csv", df[(df.time .>= 2010) .& (df.time .<= 2100), :])
+
+
+                #df = simdataframe(model, results, :TotalDamages, :total_damages_percap_peryear_percent)
+                #CSV.write("../results/bytimexcountry-$x$z-$y-$TP-$persistence.csv", df[(df.time .>= 2010) .& (df.time .<= 2100), :])
 
                 # Export country-level temperatures
-                df = simdataframe(model, results, :PatternScaling, :T_country)
-                CSV.write("../results/bytimexcountry2-$x$z-$y-$TP-$persistence.csv", df[(df.time .>= 2010) .& (df.time .<= 2100), :])
+                #df = simdataframe(model, results, :PatternScaling, :T_country)
+                #CSV.write("../results/bytimexcountry2-$x$z-$y-$TP-$persistence.csv", df[(df.time .>= 2010) .& (df.time .<= 2100), :])
 
                 ### Calculate the SC-CO2 in MC mode
                 ## Miniloop over pulse year
                 sccresults = DataFrame(pulse_year=Int64[], scc=Float64[], scch4=Float64[])
                 allsccresults = DataFrame(pulse_year=Int64[], country=Float64[], scco2=Float64[], trialnum=Float64[])
                 allscch4results = DataFrame(pulse_year=Int64[], country=Float64[], scch4=Float64[], trialnum=Float64[])
-                for yy in 2020:10:2100
+                for yy in 2020:10:2020
                     if TP == "TPs"
                         subscc = calculate_scc_full_mc(model,
                                                        1000, # MC reps
@@ -208,7 +232,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                                        false, # prtp
                                                        yy, # pulse year
                                                        10.0, # pulse size
-                                                       1.02; calc_nationals=calc_nationals) # EMUC
+                                                       1.05; calc_nationals=calc_nationals) # EMUC
 
                         subscch4 = calculate_scch4_full_mc(model,
                                                         1000, # MC reps
@@ -226,7 +250,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                                         false, # prtp
                                                         yy, # pulse year
                                                         0.06, # pulse size
-                                                        1.02; calc_nationals=calc_nationals) # EMUC
+                                                        1.05; calc_nationals=calc_nationals) # EMUC
                     elseif TP=="NoOMH"
                         subscc = calculate_scc_full_mc(model,
                                                         1000, # MC reps
@@ -236,7 +260,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                                         "none", # WAIS
                                                         "Distribution", # SAF
                                                         true, # ais_used
-                                                        true, # ism_used
+                                                        true, # ism_used33
                                                         false, # omh_used
                                                         true, # amoc_used
                                                         false, # persist
@@ -244,7 +268,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                                         false, # prtp
                                                         yy, # pulse year
                                                         10.0, # pulse size
-                                                        1.02; calc_nationals=calc_nationals) # EMUC
+                                                        1.05; calc_nationals=calc_nationals) # EMUC
 
                         subscch4 = calculate_scch4_full_mc(model,
                                                         1000, # MC reps
@@ -262,7 +286,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                                         false, # prtp
                                                         yy, # pulse year
                                                         0.06, # pulse size
-                                                        1.02; calc_nationals=calc_nationals) # EMUC
+                                                        1.05; calc_nationals=calc_nationals) # EMUC 
 
                     else
                         subscc = calculate_scc_full_mc(model,
@@ -281,7 +305,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                                        false, # prtp
                                                        yy, # pulse year
                                                        10.0, # pulse size
-                                                       1.02; calc_nationals=calc_nationals) # EMUC
+                                                       1.05; calc_nationals=calc_nationals) # EMUC
 
                         subscch4 = calculate_scch4_full_mc(model,
                                                            1000, # MC reps
@@ -299,7 +323,7 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                                                            false, # prtp
                                                            yy, # pulse year
                                                            0.06, # pulse size
-                                                           1.02; calc_nationals=calc_nationals) # EMUC
+                                                           1.05; calc_nationals=calc_nationals) # EMUC
                     end
 
                     #Ensure results write correctly even if an MC draw crashes
@@ -327,10 +351,10 @@ for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
                     sccresults = vcat(sccresults, DataFrame(pulse_year=yy, scc=scc, scch4=scch4))
                 end
 
-                CSV.write("../results/sccs-$x$z-$y-$TP-$persistence.csv", sccresults)
+                CSV.write("../results/sccs-$x$z-$y-$TP-$persistence-retest.csv", sccresults)#=REMOVE SUFFIX AFTERWARDS=#
                 if calc_nationals
-                    CSV.write("../results/natsccs-$x$z-$y-$TP-$persistence.csv", allsccresults)
-                    CSV.write("../results/natscch4s-$x$z-$y-$TP-$persistence.csv", allscch4results)
+                    CSV.write("../results/natsccs-$x$z-$y-$TP-$persistence-retest.csv", allsccresults)#=REMOVE  SUFFIX AFTERWARDS=#
+                    CSV.write("../results/natscch4s-$x$z-$y-$TP-$persistence-retest.csv", allscch4results)#=REMOVE  SUFFIX AFTERWARDS=#
                 end
             end
         end

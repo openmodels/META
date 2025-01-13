@@ -6,7 +6,7 @@ META 2021 is an advanced integrated assessment model (SC-IAM), designed as a mod
 META 2021 is introduced in; **Dietz, Rising, Stoerk, and Wagner (2021): "Economic impacts of tipping points in the climate system", PNAS, 118(34), e2103081118.** [https://doi.org/10.1073/pnas.2103081118]
 
 Scientific documentation for the current version of META is available
-as [a PDF](https://docs.google.com/viewer?url=https://raw.githubusercontent.com/openmodels/META/master/docs.pdf).
+as [a PDF](https://raw.githubusercontent.com/openmodels/META/master/docs.pdf).
 
 See that paper and its supplementary information for further
 details. Please cite the paper when using META in your research.

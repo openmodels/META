@@ -5,12 +5,14 @@ include("../src/montecarlo.jl")
 ## Non-Monte Carlo SCC calculation
 
 function calculate_scc(model::Model, pulse_year::Int64, pulse_size::Float64, emuc::Float64)
+    update_param!(model, :Utility_EMUC, emuc); run(model)
     mm = calculate_scc_setup(model, pulse_year, pulse_size)
     run(mm)
     calculate_scc_marginal(mm, pulse_year, emuc)
 end
 
 function calculate_scc_national(model::Model, pulse_year::Int64, pulse_size::Float64, emuc::Float64)
+    update_param!(model, :Utility_EMUC, emuc); run(model)
     mm = calculate_scc_setup(model, pulse_year, pulse_size)
     run(mm)
     calculate_scc_marginal_national(mm, pulse_year, emuc)
@@ -83,6 +85,7 @@ end
 ## Monte Carlo SCC calculations
 
 function calculate_scc_base_mc(model::Model, trials::Int64, persist_dist::Bool, emuc_dist::Bool, prtp_dist::Bool, pulse_year::Int64, pulse_size::Float64, emuc::Float64; calc_nationals::Bool=true)
+    update_param!(model, :Utility_EMUC, emuc); run(model)
     mm = calculate_scc_setup(model, pulse_year, pulse_size)
 
     function setsim_base_scc(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame, ii::Int64)
@@ -117,6 +120,7 @@ if false
 end
 
 function calculate_scc_full_mc(model::Model, trials::Int64, pcf_calib::String, amazon_calib::String, gis_calib::String, wais_calib::String, saf_calib::String, ais_dist::Bool, ism_used::Bool, omh_used::Bool, amoc_used::Bool, persist_dist::Bool, emuc_dist::Bool, prtp_dist::Bool, pulse_year::Int64, pulse_size::Float64, emuc::Float64; calc_nationals::Bool=true)
+    update_param!(model, :Utility_EMUC, emuc); run(model)
     mm = calculate_scc_setup(model, pulse_year, pulse_size)
 
     function setsim_full_scc(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame, ii::Int64, ism_used::Bool, omh_used::Bool, amoc_used::Bool, amazon_calib::String, wais_calib::String, ais_dist::Bool, saf_calib::String)

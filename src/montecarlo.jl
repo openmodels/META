@@ -53,7 +53,7 @@ function sim_base(model::Union{Model, MarginalModel}, trials::Int64, persist_dis
                                                     "large_constrained_parameter_files"),
                                   delete_downloaded_data=false,
                                   other_mc_set=(inst, ii) -> setsim(inst, draws, ii),
-                                  other_mc_get=(inst) -> getsim(inst, draws, save_rvs=save_rvs), throwex=throwex)
+                                  other_mc_get=(inst, ii) -> getsim(inst, draws, ii, save_rvs=save_rvs), throwex=throwex)
     sim()
 end
 
@@ -97,7 +97,7 @@ function setsim_base(inst::Union{ModelInstance, MarginalInstance}, draws::DataFr
     update_param!(inst, :Consumption_slruniforms, rand(Uniform(0, 1), dim_count(model, :country)))
 end
 
-function getsim_base(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame; save_rvs::Bool=true)
+function getsim_base(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame, ii::Int64; save_rvs::Bool=true)
     ##Set up results capture
     mcres = Dict{Symbol, Any}()
 
@@ -105,6 +105,7 @@ function getsim_base(inst::Union{ModelInstance, MarginalInstance}, draws::DataFr
     mcres[:SLRModel_SLR] = inst[:SLRModel, :SLR]
     mcres[:PatternScaling_T_country] = inst[:PatternScaling, :T_country]
     mcres[:TemperatureConverter_T_AT] = inst[:TemperatureConverter, :T_AT]
+    mcres[:temperature_T] = inst[:temperature, :T]
 
     ##Economic results
     mcres[:TotalDamages_total_damages_global_peryear_percent] = inst[:TotalDamages, :total_damages_global_peryear_percent] #Population-weighted global change in consumption due to climate damages (in % of counterfactual consumption per capita)
@@ -115,8 +116,10 @@ function getsim_base(inst::Union{ModelInstance, MarginalInstance}, draws::DataFr
     ##Store number of MC iteration
     if save_rvs
         for jj in 2:ncol(draws)
-            mcres[Symbol(names(draws)[jj])] = draws[!, jj]
+            mcres[Symbol(names(draws)[jj])] = draws[ii, jj]
         end
+        mcres[:Consumption_beta1] = inst[:Consumption, :beta1]
+        mcres[:Consumption_beta2] = inst[:Consumption, :beta2]
     end
 
     mcres
@@ -134,13 +137,14 @@ function sim_full(model::Union{Model, MarginalModel}, trials::Int64, pcf_calib::
             end
         end
     end
+    run(model) # ensure we can use getdataframe later
 
     sim = create_fair_monte_carlo(model, trials; end_year=2200,
                                   data_dir=joinpath(dirname(pathof(MimiFAIRv2)), "..", "data",
                                                     "large_constrained_parameter_files"),
                                   delete_downloaded_data=false,
                                   other_mc_set=(inst, ii) -> setsim(inst, draws, ii, ism_used, omh_used, amoc_used, amazon_calib, wais_calib, ais_dist, saf_calib),
-                                  other_mc_get=(inst) -> getsim(inst, draws, save_rvs=save_rvs), throwex=throwex)
+                                  other_mc_get=(inst, ii) -> getsim(inst, draws, ii, save_rvs=save_rvs), throwex=throwex)
     sim()
 end
 
@@ -311,8 +315,8 @@ function setsim_full(inst::Union{ModelInstance, MarginalInstance}, draws::DataFr
     end
 end
 
-function getsim_full(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame; save_rvs::Bool=true)
-    mcres = getsim_base(inst, draws, save_rvs=save_rvs)
+function getsim_full(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame, ii::Int64; save_rvs::Bool=true)
+    mcres = getsim_base(inst, draws, ii, save_rvs=save_rvs)
     if has_comp(inst, :AMOC)
         mcres[:I_AMOC] = inst[:AMOC, :I_AMOC]
     end
@@ -346,32 +350,31 @@ function simdataframe(model::Union{Model, MarginalModel}, results::Dict{Symbol, 
 
         return df
     else
-        return simdataframe(model, convert(Vector{Dict{Symbol, Any}}, results[:other]), comp, name)
+        return simdataframe(model, convert(Vector{Union{Dict{Symbol, Any}, Nothing}}, results[:other]), comp, name)
     end
 end
 
-function simdataframe(model::Union{Model, MarginalModel}, results::Vector{Dict{Symbol, Any}}, comp::Symbol, name::Symbol)
+function simdataframe(model::Union{Model, MarginalModel}, results::Vector{Union{Dict{Symbol, Any}, Nothing}}, comp::Symbol, name::Symbol)
     key = Symbol("$(comp)_$(name)")
     if results[1][key] isa Number
         df = DataFrame(trialnum=1:length(results))
-        df[!, name] = [results[ii][key] for ii in 1:length(results)]
+        df[!, name] = [(isnothing(results[ii]) ? missing : results[ii][key]) for ii in 1:length(results)]
     else
         dfbase = getdataframe(model, comp, name)
-        df = nothing
+        alldf = []
         for ii in 1:length(results)
             mcdf = dfbase[!, :]
-            if isa(results[ii][key], Vector)
+            if isnothing(results[ii])
+                mcdf[!, name] .= missing
+            elseif isa(results[ii][key], Vector)
                 mcdf[!, name] = results[ii][key]
             else
                 mcdf[!, name] = vec(transpose(results[ii][key]))
             end
             mcdf.trialnum .= ii
-            if df == nothing
-                df = mcdf
-            else
-                df = vcat(df, mcdf)
-            end
+            push!(alldf, mcdf)
         end
+        df = vcat(alldf...)
     end
     df
 end

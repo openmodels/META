@@ -106,8 +106,8 @@ for (x,y) in [("CP-", "SSP2")#=("NP-", "SSP3"), ("1.5-", "SSP1")=#]
                 #scch4 = calculate_scch4(model,2020,0.06,1.05)
                 #println(scc, scch4)
 
-                function get_nonscc_results(inst, draws; save_rvs)
-                    mcres = getsim_full(inst, draws; save_rvs=save_rvs)
+                function get_nonscc_results(inst, draws, ii; save_rvs)
+                    mcres = getsim_full(inst, draws, ii; save_rvs=save_rvs)
                     bgeres = calculate_bge(inst)
                     mcres[:bge] = bgeres
                     #mcres[:GISModel_VGIS] = inst[:GISModel, :VGIS]
@@ -328,18 +328,18 @@ for (x,y) in [("CP-", "SSP2")#=("NP-", "SSP3"), ("1.5-", "SSP1")=#]
 
                     #Ensure results write correctly even if an MC draw crashes
                     if calc_nationals
-                        allscc = simdataframe(model, subscc, :other, :scco2)
+                        allscc = simdataframe(model, subscc, :other, :nationalscc)
                         scc = allscc.scco2[allscc.country .== "global"]
                         allscc.pulse_year .= yy
                         allsccresults = vcat(allsccresults, allscc)
 
-                        allscch4 = simdataframe(model, subscch4, :other, :scch4)
+                        allscch4 = simdataframe(model, subscch4, :other, :nationalscch4)
                         scch4 = allscch4.scch4[allscch4.country .== "global"]
                         allscch4.pulse_year .= yy
                         allscch4results = vcat(allscch4results, allscch4)
                     else
-                        scc=subscc[:other]
-                        scch4=subscch4[:other]
+                        scc = [(isnothing(entry) ? missing : entry[:globalscc]) for entry in subscc[:other]]
+                        scch4 = [(isnothing(entry) ? missing : entry[:globalscch4]) for entry in subscch4[:other]]
                     end
 
                     if length(scc) < length(scch4)

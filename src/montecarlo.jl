@@ -10,6 +10,12 @@ include("../src/lib/MimiFAIR_monte_carlo.jl")
 
 import Mimi.ModelInstance, Mimi.has_comp, Mimi.set_param!
 
+has_parameter(m::Model, name::Symbol) = has_parameter(m.md, name)
+has_parameter(m::MarginalModel, name::Symbol) = has_parameter(m.base.md, name)
+has_parameter(mi::ModelInstance, name::Symbol) = has_parameter(mi.md, name)
+has_parameter(mi::MarginalInstance, name::Symbol) = has_parameter(mi.base.md, name)
+has_comp(m::MarginalModel, name::Symbol) = has_comp(m.base.md, name)
+
 aisgcms = CSV.read("../data/Basal_melt_models.csv", DataFrame)
 aisresponse_EAIS = CSV.read("../data/Response functions - EAIS.csv", DataFrame)
 aisresponse_Ross = CSV.read("../data/Response functions - Ross.csv", DataFrame)
@@ -94,7 +100,7 @@ function setsim_base(inst::Union{ModelInstance, MarginalInstance}, draws::DataFr
     update_param!(inst, :Consumption_beta1, beta1)
     update_param!(inst, :Consumption_beta2, beta2)
 
-    update_param!(inst, :Consumption_slruniforms, rand(Uniform(0, 1), dim_count(model, :country)))
+    update_param!(inst, :Consumption_slruniforms, rand(Uniform(0, 1), dim_count(inst, :country)))
 end
 
 function getsim_base(inst::Union{ModelInstance, MarginalInstance}, draws::DataFrame, ii::Int64; save_rvs::Bool=true)

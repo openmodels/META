@@ -119,6 +119,8 @@ function getsim_extra(inst, results)
     end
 end
 
+model = full_model() # Provide for global calls to model
+
 for TP in ["TPs", "NoOMH"]
     model = full_model(;
                        rcp = "CP-Base", # Concatenate correct scenario-variant name

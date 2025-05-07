@@ -106,7 +106,26 @@ for (x,y) in [("CP-", "SSP2")#=, ("NP-", "SSP3"), ("1.5-", "SSP1")=#]
                 #scch4 = calculate_scch4(model,2020,0.06,1.05)
                 #println(scc, scch4)
 
-                function get_nonscc_results(inst, draws, ii; save_rvs)
+                function get_nonscc_results_TPs(inst, draws, ii; save_rvs)
+                    mcres = getsim_full(inst, draws, ii; save_rvs=save_rvs)
+                    #bgeres = calculate_bge(inst)
+                    #mcres[:bge] = bgeres
+                    mcres[:GISModel_VGIS] = inst[:GISModel, :VGIS]
+                    mcres[:OMH_I_OMH] = inst[:OMH, :I_OMH]
+                    mcres[:ISMModel_mNINO3pt4] = inst[:ISMModel, :mNINO3pt4]
+                    mcres[:AmazonDieback_I_AMAZ] = inst[:AmazonDieback, :I_AMAZ]
+                    mcres[:AMOC_I_AMOC] = inst[:AMOC, :I_AMOC]
+                    mcres[:AISmodel_totalSLR_Ross] = inst[:AISmodel, :totalSLR_Ross]
+                    mcres[:AISmodel_totalSLR_Amundsen] = inst[:AISmodel, :totalSLR_Amundsen]
+                    mcres[:AISmodel_totalSLR_Weddell] = inst[:AISmodel, :totalSLR_Weddell]
+                    mcres[:AISmodel_totalSLR_Peninsula] = inst[:AISmodel, :totalSLR_Peninsula]
+                    mcres[:AISmodel_totalSLR_EAIS] = inst[:AISmodel, :totalSLR_EAIS]
+                    mcres[:PCFModel_PF_extent] = inst[:PCFModel, :PF_extent]
+
+                    mcres
+                end
+                
+                function get_nonscc_results_NoOMH(inst, draws, ii; save_rvs)
                     mcres = getsim_full(inst, draws, ii; save_rvs=save_rvs)
                     #bgeres = calculate_bge(inst)
                     #mcres[:bge] = bgeres
@@ -124,7 +143,14 @@ for (x,y) in [("CP-", "SSP2")#=, ("NP-", "SSP3"), ("1.5-", "SSP1")=#]
 
                     mcres
                 end
-
+                
+                function get_nonscc_results_NoTPs(inst, draws, ii; save_rvs)
+                    mcres = getsim_full(inst, draws, ii; save_rvs=save_rvs)
+                    #bgeres = calculate_bge(inst)
+                    #mcres[:bge] = bgeres
+                    mcres
+                end
+                
                 ### Run the model in MC mode
                 if TP == "TPs"
                     results = sim_full(model, 1000,
@@ -141,7 +167,7 @@ for (x,y) in [("CP-", "SSP2")#=, ("NP-", "SSP3"), ("1.5-", "SSP1")=#]
                                        false, # emuc
                                        false; # prtp
                                        save_rvs=true,
-                                       getsim=get_nonscc_results)
+                                       getsim=get_nonscc_results_TPs)
                 elseif TP == "NoOMH"
                     results = sim_full(model, 1000,
                                         "Fit of Hope and Schaefer (2016)", # PCF
@@ -157,9 +183,9 @@ for (x,y) in [("CP-", "SSP2")#=, ("NP-", "SSP3"), ("1.5-", "SSP1")=#]
                                         false, # emuc
                                         false; # prtp
                                         save_rvs=true,
-                                        getsim=get_nonscc_results)
+                                        getsim=get_nonscc_results_NoOMH)
                 else
-                    results = sim_full(model, 1000,
+                    results = sim_full(model, 10,
                                        "none", # PCF
                                        "none", # AMAZ
                                        "none", # GIS
@@ -173,7 +199,7 @@ for (x,y) in [("CP-", "SSP2")#=, ("NP-", "SSP3"), ("1.5-", "SSP1")=#]
                                        false, # emuc
                                        false; # prtp
                                        save_rvs=true,
-                                       getsim=get_nonscc_results)
+                                       getsim=get_nonscc_results_NoTPs)
                 end
                 run(model) # model is overwritten in some cases
 

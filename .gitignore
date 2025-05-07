@@ -1164,3 +1164,514 @@ src/ResultsFinal_October 2023 - BACKUP.jl
 src/ResultsFinal_October 2023_Different MC seeds.jl
 src/ResultsFinal_October 2023.jl
 src/ResultsFinal_October 2023.jl
+results/placeholder
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-1.5-Base-SSP1-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-1.5-Base-SSP1-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-1.5-Base-SSP1-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-1.5-Base-SSP1-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-1.5-Base-SSP1-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-1.5-Base-SSP1-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-1.5-GMP-HighCH4-SSP1-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-1.5-GMP-HighCH4-SSP1-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-1.5-GMP-HighCH4-SSP1-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-1.5-GMP-HighCH4-SSP1-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-1.5-GMP-HighCH4-SSP1-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-1.5-GMP-HighCH4-SSP1-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-1.5-GMP-LowCH4-SSP1-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-1.5-GMP-LowCH4-SSP1-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-1.5-GMP-LowCH4-SSP1-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-1.5-GMP-LowCH4-SSP1-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-1.5-GMP-LowCH4-SSP1-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-1.5-GMP-LowCH4-SSP1-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-1.5-GMP-SSP1-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-1.5-GMP-SSP1-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-1.5-GMP-SSP1-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-1.5-GMP-SSP1-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-1.5-GMP-SSP1-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-1.5-GMP-SSP1-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-CP-Base-SSP2-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-CP-Base-SSP2-NoOMH-high-test.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-CP-Base-SSP2-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-CP-Base-SSP2-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-CP-Base-SSP2-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-CP-Base-SSP2-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-CP-GMP-HighCH4-SSP2-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-CP-GMP-HighCH4-SSP2-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-CP-GMP-HighCH4-SSP2-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-CP-GMP-HighCH4-SSP2-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-CP-GMP-HighCH4-SSP2-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-CP-GMP-HighCH4-SSP2-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-CP-GMP-LowCH4-SSP2-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-CP-GMP-LowCH4-SSP2-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-CP-GMP-LowCH4-SSP2-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-CP-GMP-LowCH4-SSP2-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-CP-GMP-LowCH4-SSP2-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-CP-GMP-LowCH4-SSP2-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-CP-GMP-SSP2-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-CP-GMP-SSP2-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-CP-GMP-SSP2-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-CP-GMP-SSP2-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-CP-GMP-SSP2-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-CP-GMP-SSP2-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-NP-Base-SSP3-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-NP-Base-SSP3-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-NP-Base-SSP3-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-NP-Base-SSP3-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-NP-Base-SSP3-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-NP-Base-SSP3-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-NP-GMP-HighCH4-SSP3-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-NP-GMP-HighCH4-SSP3-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-NP-GMP-HighCH4-SSP3-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-NP-GMP-HighCH4-SSP3-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-NP-GMP-HighCH4-SSP3-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-NP-GMP-HighCH4-SSP3-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-NP-GMP-LowCH4-SSP3-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-NP-GMP-LowCH4-SSP3-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-NP-GMP-LowCH4-SSP3-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-NP-GMP-LowCH4-SSP3-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-NP-GMP-LowCH4-SSP3-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-NP-GMP-LowCH4-SSP3-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-NP-GMP-SSP3-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-NP-GMP-SSP3-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-NP-GMP-SSP3-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-NP-GMP-SSP3-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-NP-GMP-SSP3-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bge-NP-GMP-SSP3-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-1.5-Base-SSP1-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-1.5-Base-SSP1-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-1.5-Base-SSP1-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-1.5-Base-SSP1-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-1.5-Base-SSP1-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-1.5-Base-SSP1-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-1.5-GMP-HighCH4-SSP1-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-1.5-GMP-HighCH4-SSP1-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-1.5-GMP-HighCH4-SSP1-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-1.5-GMP-HighCH4-SSP1-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-1.5-GMP-HighCH4-SSP1-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-1.5-GMP-HighCH4-SSP1-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-1.5-GMP-LowCH4-SSP1-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-1.5-GMP-LowCH4-SSP1-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-1.5-GMP-LowCH4-SSP1-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-1.5-GMP-LowCH4-SSP1-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-1.5-GMP-LowCH4-SSP1-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-1.5-GMP-LowCH4-SSP1-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-1.5-GMP-SSP1-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-1.5-GMP-SSP1-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-1.5-GMP-SSP1-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-1.5-GMP-SSP1-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-1.5-GMP-SSP1-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-1.5-GMP-SSP1-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-CP-Base-SSP2-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-CP-Base-SSP2-NoOMH-high-test.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-CP-Base-SSP2-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-CP-Base-SSP2-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-CP-Base-SSP2-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-CP-Base-SSP2-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-CP-GMP-HighCH4-SSP2-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-CP-GMP-HighCH4-SSP2-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-CP-GMP-HighCH4-SSP2-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-CP-GMP-HighCH4-SSP2-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-CP-GMP-HighCH4-SSP2-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-CP-GMP-HighCH4-SSP2-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-CP-GMP-LowCH4-SSP2-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-CP-GMP-LowCH4-SSP2-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-CP-GMP-LowCH4-SSP2-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-CP-GMP-LowCH4-SSP2-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-CP-GMP-LowCH4-SSP2-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-CP-GMP-LowCH4-SSP2-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-CP-GMP-SSP2-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-CP-GMP-SSP2-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-CP-GMP-SSP2-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-CP-GMP-SSP2-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-CP-GMP-SSP2-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-CP-GMP-SSP2-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-NP-Base-SSP3-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-NP-Base-SSP3-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-NP-Base-SSP3-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-NP-Base-SSP3-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-NP-Base-SSP3-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-NP-Base-SSP3-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-NP-GMP-HighCH4-SSP3-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-NP-GMP-HighCH4-SSP3-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-NP-GMP-HighCH4-SSP3-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-NP-GMP-HighCH4-SSP3-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-NP-GMP-HighCH4-SSP3-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-NP-GMP-HighCH4-SSP3-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-NP-GMP-LowCH4-SSP3-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-NP-GMP-LowCH4-SSP3-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-NP-GMP-LowCH4-SSP3-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-NP-GMP-LowCH4-SSP3-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-NP-GMP-LowCH4-SSP3-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-NP-GMP-LowCH4-SSP3-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-NP-GMP-SSP3-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-NP-GMP-SSP3-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-NP-GMP-SSP3-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-NP-GMP-SSP3-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-NP-GMP-SSP3-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytime-NP-GMP-SSP3-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-1.5-Base-SSP1-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-1.5-Base-SSP1-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-1.5-Base-SSP1-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-1.5-Base-SSP1-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-1.5-Base-SSP1-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-1.5-Base-SSP1-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-1.5-GMP-HighCH4-SSP1-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-1.5-GMP-HighCH4-SSP1-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-1.5-GMP-HighCH4-SSP1-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-1.5-GMP-HighCH4-SSP1-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-1.5-GMP-HighCH4-SSP1-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-1.5-GMP-HighCH4-SSP1-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-1.5-GMP-LowCH4-SSP1-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-1.5-GMP-LowCH4-SSP1-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-1.5-GMP-LowCH4-SSP1-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-1.5-GMP-LowCH4-SSP1-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-1.5-GMP-LowCH4-SSP1-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-1.5-GMP-LowCH4-SSP1-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-1.5-GMP-SSP1-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-1.5-GMP-SSP1-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-1.5-GMP-SSP1-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-1.5-GMP-SSP1-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-1.5-GMP-SSP1-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-1.5-GMP-SSP1-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-CP-Base-SSP2-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-CP-Base-SSP2-NoOMH-high-test.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-CP-Base-SSP2-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-CP-Base-SSP2-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-CP-Base-SSP2-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-CP-Base-SSP2-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-CP-GMP-HighCH4-SSP2-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-CP-GMP-HighCH4-SSP2-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-CP-GMP-HighCH4-SSP2-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-CP-GMP-HighCH4-SSP2-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-CP-GMP-HighCH4-SSP2-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-CP-GMP-HighCH4-SSP2-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-CP-GMP-LowCH4-SSP2-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-CP-GMP-LowCH4-SSP2-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-CP-GMP-LowCH4-SSP2-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-CP-GMP-LowCH4-SSP2-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-CP-GMP-LowCH4-SSP2-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-CP-GMP-LowCH4-SSP2-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-CP-GMP-SSP2-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-CP-GMP-SSP2-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-CP-GMP-SSP2-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-CP-GMP-SSP2-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-CP-GMP-SSP2-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-CP-GMP-SSP2-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-NP-Base-SSP3-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-NP-Base-SSP3-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-NP-Base-SSP3-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-NP-Base-SSP3-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-NP-Base-SSP3-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-NP-Base-SSP3-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-NP-GMP-HighCH4-SSP3-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-NP-GMP-HighCH4-SSP3-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-NP-GMP-HighCH4-SSP3-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-NP-GMP-HighCH4-SSP3-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-NP-GMP-HighCH4-SSP3-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-NP-GMP-HighCH4-SSP3-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-NP-GMP-LowCH4-SSP3-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-NP-GMP-LowCH4-SSP3-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-NP-GMP-LowCH4-SSP3-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-NP-GMP-LowCH4-SSP3-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-NP-GMP-LowCH4-SSP3-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-NP-GMP-LowCH4-SSP3-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-NP-GMP-SSP3-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-NP-GMP-SSP3-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-NP-GMP-SSP3-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-NP-GMP-SSP3-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-NP-GMP-SSP3-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry-NP-GMP-SSP3-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-1.5-Base-SSP1-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-1.5-Base-SSP1-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-1.5-Base-SSP1-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-1.5-Base-SSP1-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-1.5-Base-SSP1-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-1.5-Base-SSP1-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-1.5-GMP-HighCH4-SSP1-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-1.5-GMP-HighCH4-SSP1-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-1.5-GMP-HighCH4-SSP1-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-1.5-GMP-HighCH4-SSP1-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-1.5-GMP-HighCH4-SSP1-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-1.5-GMP-HighCH4-SSP1-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-1.5-GMP-LowCH4-SSP1-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-1.5-GMP-LowCH4-SSP1-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-1.5-GMP-LowCH4-SSP1-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-1.5-GMP-LowCH4-SSP1-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-1.5-GMP-LowCH4-SSP1-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-1.5-GMP-LowCH4-SSP1-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-1.5-GMP-SSP1-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-1.5-GMP-SSP1-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-1.5-GMP-SSP1-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-1.5-GMP-SSP1-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-1.5-GMP-SSP1-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-1.5-GMP-SSP1-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-CP-Base-SSP2-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-CP-Base-SSP2-NoOMH-high-test.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-CP-Base-SSP2-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-CP-Base-SSP2-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-CP-Base-SSP2-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-CP-Base-SSP2-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-CP-GMP-HighCH4-SSP2-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-CP-GMP-HighCH4-SSP2-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-CP-GMP-HighCH4-SSP2-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-CP-GMP-HighCH4-SSP2-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-CP-GMP-HighCH4-SSP2-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-CP-GMP-HighCH4-SSP2-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-CP-GMP-LowCH4-SSP2-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-CP-GMP-LowCH4-SSP2-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-CP-GMP-LowCH4-SSP2-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-CP-GMP-LowCH4-SSP2-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-CP-GMP-LowCH4-SSP2-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-CP-GMP-LowCH4-SSP2-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-CP-GMP-SSP2-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-CP-GMP-SSP2-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-CP-GMP-SSP2-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-CP-GMP-SSP2-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-CP-GMP-SSP2-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-CP-GMP-SSP2-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-NP-Base-SSP3-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-NP-Base-SSP3-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-NP-Base-SSP3-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-NP-Base-SSP3-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-NP-Base-SSP3-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-NP-Base-SSP3-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-NP-GMP-HighCH4-SSP3-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-NP-GMP-HighCH4-SSP3-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-NP-GMP-HighCH4-SSP3-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-NP-GMP-HighCH4-SSP3-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-NP-GMP-HighCH4-SSP3-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-NP-GMP-HighCH4-SSP3-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-NP-GMP-LowCH4-SSP3-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-NP-GMP-LowCH4-SSP3-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-NP-GMP-LowCH4-SSP3-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-NP-GMP-LowCH4-SSP3-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-NP-GMP-LowCH4-SSP3-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-NP-GMP-LowCH4-SSP3-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-NP-GMP-SSP3-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-NP-GMP-SSP3-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-NP-GMP-SSP3-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-NP-GMP-SSP3-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-NP-GMP-SSP3-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/bytimexcountry2-NP-GMP-SSP3-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-1.5-Base-SSP1-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-1.5-Base-SSP1-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-1.5-Base-SSP1-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-1.5-Base-SSP1-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-1.5-Base-SSP1-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-1.5-Base-SSP1-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-1.5-GMP-HighCH4-SSP1-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-1.5-GMP-HighCH4-SSP1-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-1.5-GMP-HighCH4-SSP1-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-1.5-GMP-HighCH4-SSP1-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-1.5-GMP-HighCH4-SSP1-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-1.5-GMP-HighCH4-SSP1-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-1.5-GMP-LowCH4-SSP1-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-1.5-GMP-LowCH4-SSP1-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-1.5-GMP-LowCH4-SSP1-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-1.5-GMP-LowCH4-SSP1-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-1.5-GMP-LowCH4-SSP1-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-1.5-GMP-LowCH4-SSP1-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-1.5-GMP-SSP1-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-1.5-GMP-SSP1-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-1.5-GMP-SSP1-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-1.5-GMP-SSP1-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-1.5-GMP-SSP1-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-1.5-GMP-SSP1-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-Base-SSP2-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-Base-SSP2-NoOMH-high--Oct2024.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-Base-SSP2-NoOMH-high--Oct2024globalconsumptionnormalization.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-Base-SSP2-NoOMH-high-10000MC.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-Base-SSP2-NoOMH-high-2605202.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-Base-SSP2-NoOMH-high-10505746.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-Base-SSP2-NoOMH-high-12580252.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-Base-SSP2-NoOMH-high-17254536.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-Base-SSP2-NoOMH-high-21201384.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-Base-SSP2-NoOMH-high-24582649.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-Base-SSP2-NoOMH-high-26052023.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-Base-SSP2-NoOMH-high-53973576.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-Base-SSP2-NoOMH-high-65649168.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-Base-SSP2-NoOMH-high-76300249.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-Base-SSP2-NoOMH-high-79399005.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-Base-SSP2-NoOMH-high-87497631.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-Base-SSP2-NoOMH-high-EMUC15PRPT001.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-Base-SSP2-NoOMH-high-nonmarketoff.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-Base-SSP2-NoOMH-high-retest.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-Base-SSP2-NoOMH-high-test.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-Base-SSP2-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-Base-SSP2-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-Base-SSP2-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-Base-SSP2-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-Base-SSP2-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-GMP-HighCH4-SSP2-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-GMP-HighCH4-SSP2-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-GMP-HighCH4-SSP2-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-GMP-HighCH4-SSP2-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-GMP-HighCH4-SSP2-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-GMP-HighCH4-SSP2-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-GMP-LowCH4-SSP2-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-GMP-LowCH4-SSP2-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-GMP-LowCH4-SSP2-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-GMP-LowCH4-SSP2-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-GMP-LowCH4-SSP2-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-GMP-LowCH4-SSP2-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-GMP-SSP2-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-GMP-SSP2-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-GMP-SSP2-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-GMP-SSP2-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-GMP-SSP2-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-CP-GMP-SSP2-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-NP-Base-SSP3-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-NP-Base-SSP3-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-NP-Base-SSP3-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-NP-Base-SSP3-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-NP-Base-SSP3-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-NP-Base-SSP3-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-NP-GMP-HighCH4-SSP3-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-NP-GMP-HighCH4-SSP3-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-NP-GMP-HighCH4-SSP3-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-NP-GMP-HighCH4-SSP3-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-NP-GMP-HighCH4-SSP3-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-NP-GMP-HighCH4-SSP3-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-NP-GMP-LowCH4-SSP3-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-NP-GMP-LowCH4-SSP3-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-NP-GMP-LowCH4-SSP3-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-NP-GMP-LowCH4-SSP3-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-NP-GMP-LowCH4-SSP3-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-NP-GMP-LowCH4-SSP3-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-NP-GMP-SSP3-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-NP-GMP-SSP3-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-NP-GMP-SSP3-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-NP-GMP-SSP3-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-NP-GMP-SSP3-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natscch4s-NP-GMP-SSP3-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-1.5-Base-SSP1-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-1.5-Base-SSP1-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-1.5-Base-SSP1-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-1.5-Base-SSP1-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-1.5-Base-SSP1-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-1.5-Base-SSP1-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-1.5-GMP-HighCH4-SSP1-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-1.5-GMP-HighCH4-SSP1-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-1.5-GMP-HighCH4-SSP1-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-1.5-GMP-HighCH4-SSP1-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-1.5-GMP-HighCH4-SSP1-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-1.5-GMP-HighCH4-SSP1-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-1.5-GMP-LowCH4-SSP1-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-1.5-GMP-LowCH4-SSP1-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-1.5-GMP-LowCH4-SSP1-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-1.5-GMP-LowCH4-SSP1-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-1.5-GMP-LowCH4-SSP1-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-1.5-GMP-LowCH4-SSP1-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-1.5-GMP-SSP1-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-1.5-GMP-SSP1-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-1.5-GMP-SSP1-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-1.5-GMP-SSP1-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-1.5-GMP-SSP1-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-1.5-GMP-SSP1-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-CP-Base-SSP2-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-CP-Base-SSP2-NoOMH-high-10000MC.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-CP-Base-SSP2-NoOMH-high-2605202.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-CP-Base-SSP2-NoOMH-high-10505746.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-CP-Base-SSP2-NoOMH-high-12580252.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-CP-Base-SSP2-NoOMH-high-17254536.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-CP-Base-SSP2-NoOMH-high-21201384.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-CP-Base-SSP2-NoOMH-high-24582649.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-CP-Base-SSP2-NoOMH-high-26052023.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-CP-Base-SSP2-NoOMH-high-53973576.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-CP-Base-SSP2-NoOMH-high-65649168.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-CP-Base-SSP2-NoOMH-high-76300249.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-CP-Base-SSP2-NoOMH-high-79399005.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-CP-Base-SSP2-NoOMH-high-87497631.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-CP-Base-SSP2-NoOMH-high-EMUC15PRPT001.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-CP-Base-SSP2-NoOMH-high-nonmarketoff.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-CP-Base-SSP2-NoOMH-high-Oct2024.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-CP-Base-SSP2-NoOMH-high-Oct2024globalconsumptionnormalization.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-CP-Base-SSP2-NoOMH-high-retest.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-CP-Base-SSP2-NoOMH-high-test.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-CP-Base-SSP2-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-CP-Base-SSP2-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-CP-Base-SSP2-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-CP-Base-SSP2-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/natsccs-CP-Base-SSP2-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/placeholder
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/Result_Tests non-stochastic.jl
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/ResultsAERE.jl
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/ResultsFinal_May 2024 SC-X redo.jl
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/ResultsFinal_October 2023 - BACKUP.jl
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/ResultsFinal_October 2023_Different MC seeds.jl
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/ResultsFinal_October 2023.jl
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/ResultsSC-CH4_pulse_size_tests.jl
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/sccs-CP-Base-SSP2-NoOMH-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/sccs-CP-Base-SSP2-NoOMH-high-10000MC_2605202.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/sccs-CP-Base-SSP2-NoOMH-high-2605202.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/sccs-CP-Base-SSP2-NoOMH-high-10505746.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/sccs-CP-Base-SSP2-NoOMH-high-12580252.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/sccs-CP-Base-SSP2-NoOMH-high-17254536.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/sccs-CP-Base-SSP2-NoOMH-high-21201384.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/sccs-CP-Base-SSP2-NoOMH-high-24582649.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/sccs-CP-Base-SSP2-NoOMH-high-53973576.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/sccs-CP-Base-SSP2-NoOMH-high-65649168.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/sccs-CP-Base-SSP2-NoOMH-high-76300249.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/sccs-CP-Base-SSP2-NoOMH-high-79399005.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/sccs-CP-Base-SSP2-NoOMH-high-87497631.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/sccs-CP-Base-SSP2-NoOMH-high-EMUC15PRPT001.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/sccs-CP-Base-SSP2-NoOMH-high-nonmarketoff.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/sccs-CP-Base-SSP2-NoOMH-high-Oct2024.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/sccs-CP-Base-SSP2-NoOMH-high-Oct2024globalconsumptionnormalization.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/sccs-CP-Base-SSP2-NoOMH-high-retest.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/sccs-CP-Base-SSP2-NoTPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/sccs-CP-Base-SSP2-NoTPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/sccs-CP-Base-SSP2-TPs-default.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/sccs-CP-Base-SSP2-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/TPs_bytime-CP-Base-SSP2-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/TPs_bytime-CP-Base-SSP2-TPs-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/TPs_bytime-CP-GMP-SSP2-NoOMH-high.csv
+results/Backup final paper results_Move back up to 'results' subfolder to run Stata code on these/TPs_bytime-CP-GMP-SSP2-TPs-high.csv
+results/bytime-1.5-Base-SSP1-NoOMH-high-26052023.csv
+results/bytime-1.5-GMP-HighCH4-SSP1-NoOMH-high-26052023.csv
+results/bytime-1.5-GMP-LowCH4-SSP1-NoOMH-high-26052023.csv
+results/bytime-1.5-GMP-SSP1-NoOMH-high-26052023.csv
+results/bytime-CP-Base-SSP2-NoOMH-high-26052023.csv
+results/bytime-CP-GMP-HighCH4-SSP2-NoOMH-high-26052023.csv
+results/bytime-CP-GMP-LowCH4-SSP2-NoOMH-high-26052023.csv
+results/bytime-CP-GMP-SSP2-NoOMH-high-26052023.csv
+results/bytime-NP-Base-SSP3-NoOMH-high-26052023.csv
+results/bytime-NP-GMP-HighCH4-SSP3-NoOMH-high-26052023.csv
+results/bytime-NP-GMP-LowCH4-SSP3-NoOMH-high-26052023.csv
+results/bytime-NP-GMP-SSP3-NoOMH-high-26052023.csv
+results/bytimexcountry-1.5-Base-SSP1-NoOMH-high-26052023.csv
+results/bytimexcountry-1.5-GMP-HighCH4-SSP1-NoOMH-high-26052023.csv
+results/bytimexcountry-1.5-GMP-LowCH4-SSP1-NoOMH-high-26052023.csv
+results/bytimexcountry-1.5-GMP-SSP1-NoOMH-high-26052023.csv
+results/bytimexcountry-CP-Base-SSP2-NoOMH-high-26052023.csv
+results/bytimexcountry-CP-GMP-HighCH4-SSP2-NoOMH-high-26052023.csv
+results/bytimexcountry-CP-GMP-LowCH4-SSP2-NoOMH-high-26052023.csv
+results/bytimexcountry-CP-GMP-SSP2-NoOMH-high-26052023.csv
+results/bytimexcountry-NP-Base-SSP3-NoOMH-high-26052023.csv
+results/bytimexcountry-NP-GMP-HighCH4-SSP3-NoOMH-high-26052023.csv
+results/bytimexcountry-NP-GMP-LowCH4-SSP3-NoOMH-high-26052023.csv
+results/bytimexcountry-NP-GMP-SSP3-NoOMH-high-26052023.csv
+results/bytimexcountry2-1.5-Base-SSP1-NoOMH-high-26052023.csv
+results/bytimexcountry2-1.5-GMP-HighCH4-SSP1-NoOMH-high-26052023.csv
+results/bytimexcountry2-1.5-GMP-LowCH4-SSP1-NoOMH-high-26052023.csv
+results/bytimexcountry2-1.5-GMP-SSP1-NoOMH-high-26052023.csv
+results/bytimexcountry2-CP-Base-SSP2-NoOMH-high-26052023.csv
+results/bytimexcountry2-CP-GMP-HighCH4-SSP2-NoOMH-high-26052023.csv
+results/bytimexcountry2-CP-GMP-LowCH4-SSP2-NoOMH-high-26052023.csv
+results/bytimexcountry2-CP-GMP-SSP2-NoOMH-high-26052023.csv
+results/bytimexcountry2-NP-Base-SSP3-NoOMH-high-26052023.csv
+results/bytimexcountry2-NP-GMP-HighCH4-SSP3-NoOMH-high-26052023.csv
+results/bytimexcountry2-NP-GMP-LowCH4-SSP3-NoOMH-high-26052023.csv
+results/bytimexcountry2-NP-GMP-SSP3-NoOMH-high-26052023.csv
+results/TPs_bytime-1.5-Base-SSP1-NoOMH-high-26052023.csv
+results/TPs_bytime-1.5-GMP-HighCH4-SSP1-NoOMH-high-26052023.csv
+results/TPs_bytime-1.5-GMP-LowCH4-SSP1-NoOMH-high-26052023.csv
+results/TPs_bytime-1.5-GMP-SSP1-NoOMH-high-26052023.csv
+results/TPs_bytime-CP-Base-SSP2-NoOMH-high-26052023.csv
+results/TPs_bytime-CP-GMP-HighCH4-SSP2-NoOMH-high-26052023.csv
+results/TPs_bytime-CP-GMP-LowCH4-SSP2-NoOMH-high-26052023.csv
+results/TPs_bytime-CP-GMP-SSP2-NoOMH-high-26052023.csv
+results/TPs_bytime-NP-Base-SSP3-NoOMH-high-26052023.csv
+results/TPs_bytime-NP-GMP-HighCH4-SSP3-NoOMH-high-26052023.csv
+results/TPs_bytime-NP-GMP-LowCH4-SSP3-NoOMH-high-26052023.csv
+results/TPs_bytime-NP-GMP-SSP3-NoOMH-high-26052023.csv

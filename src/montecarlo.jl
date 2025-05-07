@@ -340,7 +340,7 @@ function simdataframe(model::Union{Model, MarginalModel}, results::Dict{Symbol, 
     if comp == :FAIR
         return results[name]
     elseif comp == :other
-        @assert isa(results[:other][1], DataFrame) "simdataframe(..., :other) is not defined for $(typeof(scch4s[:other][1]))"
+        @assert isa(results[:other][1], DataFrame) "simdataframe(..., :other) is not defined for $(typeof(results[:other][1]))"
 
         ## combine all dataframes together
         df = nothing

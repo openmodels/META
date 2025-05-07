@@ -48,7 +48,7 @@ for (x,y) in [("CP-", "SSP2")#=, ("NP-", "SSP3"), ("1.5-", "SSP1")=#]
                                           ais = "AIS",
                                           ism = "Value",
                                           amoc = "IPSL",
-                                          nonmarketdamage = true) 
+                                          nonmarketdamage = true)
             elseif TP == "NoOMH"
                 global model = full_model(;
                                           rcp = x*z, # Concatenate correct scenario-variant name
@@ -106,8 +106,8 @@ for (x,y) in [("CP-", "SSP2")#=, ("NP-", "SSP3"), ("1.5-", "SSP1")=#]
                 #scch4 = calculate_scch4(model,2020,0.06,1.05)
                 #println(scc, scch4)
 
-                function get_nonscc_results(inst, draws; save_rvs)
-                    mcres = getsim_full(inst, draws; save_rvs=save_rvs)
+                function get_nonscc_results(inst, draws, ii; save_rvs)
+                    mcres = getsim_full(inst, draws, ii; save_rvs=save_rvs)
                     #bgeres = calculate_bge(inst)
                     #mcres[:bge] = bgeres
                     mcres[:GISModel_VGIS] = inst[:GISModel, :VGIS]
@@ -124,7 +124,7 @@ for (x,y) in [("CP-", "SSP2")#=, ("NP-", "SSP3"), ("1.5-", "SSP1")=#]
 
                     mcres
                 end
-                
+
                 ### Run the model in MC mode
                 if TP == "TPs"
                     results = sim_full(model, 1000,
@@ -195,7 +195,7 @@ for (x,y) in [("CP-", "SSP2")#=, ("NP-", "SSP3"), ("1.5-", "SSP1")=#]
                     df[!, names(subdf)[2]] = subdf[!, 2]
                 end
                 CSV.write("../results/bytime-$x$z-$y-$TP-$persistence-26052023.csv", df[(df.time .>= 2010) .& (df.time .<= 2100), :])
-                
+
 
                 #Export TP indicators if NoOMH run
                 if TP == "NoOMH"
@@ -209,14 +209,14 @@ for (x,y) in [("CP-", "SSP2")#=, ("NP-", "SSP3"), ("1.5-", "SSP1")=#]
                 else
                     println("$TP: No TP results to export")
                 end
-                
+
                 #Export country-level damages
                 df = simdataframe(model, results, :TotalDamages, :total_damages_percap_peryear_percent)
                 CSV.write("../results/bytimexcountry-$x$z-$y-$TP-$persistence-26052023.csv", df[(df.time .>= 2010) .& (df.time .<= 2100), :])
-              
+
                 #Export country-level temperatures
                 df = simdataframe(model, results, :PatternScaling, :T_country)
-                CSV.write("../results/bytimexcountry2-$x$z-$y-$TP-$persistence-26052023.csv", df[(df.time .>= 2010) .& (df.time .<= 2100), :])              
+                CSV.write("../results/bytimexcountry2-$x$z-$y-$TP-$persistence-26052023.csv", df[(df.time .>= 2010) .& (df.time .<= 2100), :])
             end
         end
     end

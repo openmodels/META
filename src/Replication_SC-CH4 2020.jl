@@ -47,7 +47,7 @@ for (x,y) in [("CP-", "SSP2")#=("NP-", "SSP3"), ("1.5-", "SSP1")=#]
                                           ais = "AIS",
                                           ism = "Value",
                                           amoc = "IPSL",
-                                          nonmarketdamage = true) 
+                                          nonmarketdamage = true)
             elseif TP == "NoOMH"
                 global model = full_model(;
                                           rcp = x*z, # Concatenate correct scenario-variant name
@@ -182,7 +182,7 @@ for (x,y) in [("CP-", "SSP2")#=("NP-", "SSP3"), ("1.5-", "SSP1")=#]
                                                         false, # prtp
                                                         yy, # pulse year
                                                         0.06, # pulse size
-                                                        1.05; calc_nationals=calc_nationals) # EMUC 
+                                                        1.05; calc_nationals=calc_nationals) # EMUC
 
                     else
                         subscc = calculate_scc_full_mc(model,
@@ -224,12 +224,12 @@ for (x,y) in [("CP-", "SSP2")#=("NP-", "SSP3"), ("1.5-", "SSP1")=#]
 
                     #Ensure results write correctly even if an MC draw crashes
                     if calc_nationals
-                        allscc = simdataframe(model, subscc, :other, :scco2)
+                        allscc = simdataframe(model, subscc, :other, :nationalscc)
                         scc = allscc.scco2[allscc.country .== "global"]
                         allscc.pulse_year .= yy
                         allsccresults = vcat(allsccresults, allscc)
 
-                        allscch4 = simdataframe(model, subscch4, :other, :scch4)
+                        allscch4 = simdataframe(model, subscch4, :other, :nationalscch4)
                         scch4 = allscch4.scch4[allscch4.country .== "global"]
                         allscch4.pulse_year .= yy
                         allscch4results = vcat(allscch4results, allscch4)

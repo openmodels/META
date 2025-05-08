@@ -25,11 +25,11 @@ include("../src/bge.jl")
 calc_nationals = true
 
 # Scenarios
-for (x,y) in [("CP-", "SSP2")#=, ("NP-", "SSP3"), ("1.5-", "SSP1")=#]
-    for z in ["Base"#=, "GMP", "GMP-LowCH4", "GMP-HighCH4"=#]
+for (x,y) in [("CP-", "SSP2"), ("NP-", "SSP3"), ("1.5-", "SSP1")]
+    for z in ["Base", "GMP", "GMP-LowCH4", "GMP-HighCH4"]
 
         # TP configurations
-        for TP in ["NoTPs",#="TPs","NoOMH"=#]
+        for TP in ["NoTPs",#="TPs",=#"NoOMH"]
             if TP == "TPs"
                 global model = full_model(;
                                           rcp = x*z, # Concatenate correct scenario-variant name
@@ -185,7 +185,7 @@ for (x,y) in [("CP-", "SSP2")#=, ("NP-", "SSP3"), ("1.5-", "SSP1")=#]
                                         save_rvs=true,
                                         getsim=get_nonscc_results_NoOMH)
                 else
-                    results = sim_full(model, 10,
+                    results = sim_full(model, 1000,
                                        "none", # PCF
                                        "none", # AMAZ
                                        "none", # GIS

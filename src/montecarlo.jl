@@ -344,7 +344,7 @@ function simdataframe(model::Union{Model, MarginalModel}, results::Dict{Symbol, 
         if isa(results[:other][1], DataFrame)
             getii = ii -> results[:other][ii]
         elseif isa(results[:other][1][name], DataFrame)
-            getii = ii -> results[:other][ii][name]
+            getii = ii -> (results[:other][ii] == nothing ? nothing : results[:other][ii][name])
         else
             @assert isa(results[:other][1], DataFrame) "simdataframe(..., :other) is not defined for $(typeof(results[:other][1]))"
         end
@@ -352,7 +352,11 @@ function simdataframe(model::Union{Model, MarginalModel}, results::Dict{Symbol, 
         ## combine all dataframes together
         df = nothing
         for ii in 1:length(results[:other])
-            mcdf = copy(getii(ii))
+            values = getii(ii)
+            if values == nothing
+                continue
+            end
+            mcdf = copy(values)
             mcdf.trialnum .= ii
             if df == nothing
                 df = mcdf

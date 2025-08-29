@@ -118,6 +118,11 @@ function getsim_base(inst::Union{ModelInstance, MarginalInstance}, draws::DataFr
     # mcres[:total_damages_equiv_conspc_equity] = inst[:TotalDamages, :total_damages_equiv_conspc_equity] #Equity-weighted global equivalent change in consumption due to climate damages (in % of counterfactual consumption per capita)
     mcres[:TotalDamages_total_damages_percap_peryear_percent] = inst[:TotalDamages, :total_damages_percap_peryear_percent] #Annual % loss in per capita consumption due to climate damages. All years, can later pick 2030 and 2050 snapshots.
     #BGE, SC-CO2 and SC-CH4 grabbed from post-compile scripts.
+    # Including non-market damages
+    mcres[:TotalDamages_total_damages_full_global_peryear] = inst[:TotalDamages, :total_damages_full_global_peryear]
+    mcres[:TotalDamages_total_damages_full_global_peryear_percent] = inst[:TotalDamages, :total_damages_full_global_peryear_percent]
+    mcres[:TotalDamages_total_damages_full_percap_peryear_percent] = inst[:TotalDamages, :total_damages_full_percap_peryear_percent]
+
 
     ##Store number of MC iteration
     if save_rvs

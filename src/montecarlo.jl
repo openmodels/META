@@ -200,11 +200,11 @@ function presim_full(trials::Int64, pcf_calib::String, amazon_calib::String, gis
     # Permafrost
 
     if pcf_calib == "Kessler probabilistic"
-        draws.PCFModel_propCH4 = rand(Normal(0.023, 0.006), trials)
-        draws.PCFModel_beta_PF = rand(Normal(0.172, 0.0261), trials)
-        draws.PCFModel_C_PF = rand(Normal(1035, 76.53), trials)
-        draws.PCFModel_propPassive = rand(Normal(0.4, 0.055), trials)
-        draws.PCFModel_tau = rand(Normal(70, 30), trials)
+        draws.PCFModel_propCH4     = rand(truncated(Normal(0.023, 0.006), 0.0, 1.0), trials) 
+        draws.PCFModel_beta_PF     = rand(truncated(Normal(0.172, 0.0261), 0.0, 1.0), trials)
+        draws.PCFModel_C_PF        = rand(truncated(Normal(1035, 76.53), 1.0, Inf), trials)
+        draws.PCFModel_propPassive = rand(truncated(Normal(0.4, 0.055), 0.0, 1.0), trials)
+        draws.PCFModel_tau         = rand(truncated(Normal(70, 30), 1.0, Inf), trials)
     else
         rand(Normal(0.023, 0.006), trials)
         rand(Normal(0.172, 0.0261), trials)

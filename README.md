@@ -1,19 +1,19 @@
-# META 2021
+# META
 The Model for Economic Tipping point Analysis
 
-META 2021 is an advanced integrated assessment model (SC-IAM), designed as a model-based meta-analysis of the effects of tipping points on the social cost of carbon (SCC). The model simulates greenhouse gas emissions, temperature and sea-level rise, and market and non-market damages at the country level, and the effects of eight climate tipping points that have been studied in the climate economics literature.
+META is an advanced, social-cost integrated assessment model. It was originally designed to carry out a model-based meta-analysis of the effects of tipping points on the economic costs of climate change, although it can be run without tipping points. It is particularly suited to estimating the social cost of carbon (SCCO2) and the social cost of other greenhouse gases like methane (SCCH4). The model simulates greenhouse gas emissions, temperature and sea-level rise, and market and non-market damages at the country level, as well as the effects of eight climate tipping points that have been studied in the climate economics literature.
 
-META 2021 is introduced in; **Dietz, Rising, Stoerk, and Wagner (2021): "Economic impacts of tipping points in the climate system", PNAS, 118(34), e2103081118.** [https://doi.org/10.1073/pnas.2103081118]
+META was introduced in Dietz, S., Rising, J., Stoerk, T. and Wagner, G., 2021. Economic impacts of tipping points in the climate system. Proceedings of the National Academy of Sciences, 118(34), p.e2103081118. [https://doi.org/10.1073/pnas.2103081118]. This paper used the 2021 version of the model, which is available at https://github.com/openmodels/META-2021/.
 
-Scientific documentation for the current version of META is available
-as [a PDF](https://raw.githubusercontent.com/openmodels/META/master/docs.pdf).
+META has been updated gradually to produce the analysis for new papers. A new Antarctic Ice Sheet module was added in Dietz, S. and Koninx, F., 2022. Economic impacts of melting of the Antarctic Ice Sheet. Nature Communications, 13(1), p.5819.
 
-See that paper and its supplementary information for further
-details. Please cite the paper when using META in your research.
+The current version of META was used in **Stoerk, T., Rising, J., Shindell, D. and Dietz, S., 2025. Global methane action pays for itself at least six times over. Science, 390(6772), p.eadu7392.** The model is fully described in the Supplementary Information of this paper.
 
 This version of the model is implemented in Mimi
 [https://www.mimiframework.org/], an integrated assessment modeling
-framework developed in Julia [https://julialang.org/]. The model code consistent with the Dietz et al. (2021) paper is available at https://github.com/openmodels/META-2021/, in both Excel and Mimi formats.
+framework developed in Julia [https://julialang.org/]. The model code consistent with the Dietz et al. (2021) paper is available in both Excel and Mimi formats.
+
+Please cite the paper corresponding to the META version you are using.
 
 ## Directories in the repository
 
@@ -37,7 +37,7 @@ The following directories are used for the Mimi model:
  
  The full model is constructed using `full_model(...)`, defined in
  `src/MimiMETA.jl`. The `full_model` function can be called with no
- arguments, to use the default construction, or override the defaults
+ arguments to use the default construction, otherwise override the defaults
  with the following arguments:
  
   - `rcp`: Emissions scenario; one of RCP3-PD/2.6, RCP4.5 (default), RCP6, or RCP8.5.
@@ -46,15 +46,15 @@ The following directories are used for the Mimi model:
     pointestimate (default), low, or high.
   - `slrdamage`: Sea-level rise damages; one of none, distribution,
     mode (default), low, or high.
-  - `nonmarketdamage`: Non-market damages; May be false (to not use,
+  - `nonmarketdamage`: Non-market damages; may be false (to not use,
     default) or true.
-  - `saf`: Surface albedo feedback calibration; May be false (to not
+  - `saf`: Surface albedo feedback calibration; may be false (to not
     use) or Distribution mean (default)
-  - `pcf`: Permafrost carbon feedback calibration; May be false (to not
+  - `pcf`: Permafrost carbon feedback calibration; may be false (to not
     use) or one of Fit of Hope and Schaefer (2016), Kessler central
     value, Kessler 2.5%, Kessler 97.5%, Fit of Hope and Schaefer (2016)
     (default), or Fit of Yumashev et al. (2019).
-  - `omh`: Ocean methane hydrates calibration; May be false (to not
+  - `omh`: Ocean methane hydrates calibration; may be false (to not
     use) or one of Whiteman et al. beta 20 years (default), Whiteman
     et al. uniform 10 years, "Whiteman et al. triangular, mode 10%, 10
     years", Whiteman et al. beta 10 years, "Ceronsky et al. (2011),
@@ -63,21 +63,19 @@ The following directories are used for the Mimi model:
     Whiteman et al. beta 20 years, Whiteman et al. beta 30 years,
     Whiteman et al. uniform 20 years, or "Whiteman et al. triangular,
     mode 10%, 20 years".
-  - `amaz`: Amazon dieback calibration; May be false (to not use) or
+  - `amaz`: Amazon dieback calibration; may be false (to not use) or
     one of Cai et al. central value (default), Cai et al. long, or Cai
     et al. short.
   - `gis`: Greenland icesheet calibration; May be false (to not use)
     or one of Nordhaus central value (default), Robinson, Non-linear
     equilibrium function, Ice/SLR low, or Ice/SLR high.
   - `ais`: (West) Antarctic icesheet calibration; May be "AIS"
-    (default, based on Dietz & Koninx (2022)
-    [https://www.nature.com/articles/s41467-022-33406-6]) or "WAIS"
-    (as implemented in Dietz et al. (2022)) or "none" (not used).
-  - `ism`: Indian summer monsoon calibration; May be false (to not
+    (default), "WAIS" (as implemented in Dietz et al., 2022) or "none" (not used).
+  - `ism`: Indian summer monsoon calibration; may be false (to not
     use) or Value (default).
   - `amoc`: Atlantic meridional overturning circulation; May be false
     (to not use) or one of Hadley, BCM, IPSL (default), or HADCM.
-  - `interaction`: Tipping point interactions; May be false (to not
+  - `interaction`: Tipping point interactions; may be false (to not
     use) or true (default).
 
 There is also a `base_model` function which includes only the
@@ -185,5 +183,5 @@ include("../src/scc.jl")
 benchmark = CSV.read("../data/benchmark/ExcelMETA-alltp.csv", DataFrame)
 model = full_model()
 preset_fill(rr) = preset_fill_tp(model, benchmark, rr)
-calculate_scc_mc(model, preset_fill, nrow(benchmark), 2020, 10., 1.5) # Runs 500 MC reps.
+calculate_scc_mc(model, preset_fill, nrow(benchmark), 2020, 10., 1.05) # Runs 500 MC reps; ensure the value of `emuc` corresponds with the value of the same parameter in the component/module `utility.jl`.
 ```

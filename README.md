@@ -31,7 +31,7 @@ The following directories are used for the Mimi model:
  
  Please note that all code is designed to be run with the working
  directory set to a subdirectory of the repository (e.g., `src` or you
- can create a subdirectory `analysis`). Installation time for META on a standard desktop computer should be in the hours, while the speed of results production depends on the number of Monte Carlo draws. Monte Carlo sample sizes of 1,000 likely take hours, while sample sizes of 10,000 and beyond likely take days to compute on a standard desktop computer.
+ can create a subdirectory `analysis`). Installation time for META on a standard desktop computer should be in the hours, while the speed of results production depends on the number of Monte Carlo draws. Monte Carlo sample sizes of 1,000 likely take around 15 minutes per run for a single calculation (such as the global SC-CO2 in any one given pulse year). Computing time can be expected to increase to hours and possibly days on a standard laptop once all computations and larger Monte Carlo sample sizes of 10,000 and beyond required for a full research project are run.
  
 ### 1. Running the full deterministic model
  

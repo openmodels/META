@@ -6,7 +6,7 @@ include("../src/bge.jl")
 
 # Scenarios
 
-for rcp in ["RCP4.5", "RCP3-PD/2.6", "RCP6", "NP-Base", "CP-Base", "1.5-Base"]
+for rcp in ["RCP4.5", "RCP3-PD/2.6", "RCP6"] #, "NP-Base", "CP-Base", "1.5-Base"]
     for TP in ["NoTPs", "NoOMH"]
         if TP == "NoOMH"
             global model = full_model(;
@@ -99,7 +99,10 @@ for rcp in ["RCP4.5", "RCP3-PD/2.6", "RCP6", "NP-Base", "CP-Base", "1.5-Base"]
 
         #Export country-level damages
         df = simdataframe(model, results, :TotalDamages, :total_damages_percap_peryear_percent)
-        CSV.write("../results/bytimexcountry-SSP2-$rcpfile-$TP-damages.csv", df[(df.time .>= 2010) .& (df.time .<= 2100), :])
+        CSV.write("../results/bytimexcountry-SSP2-$rcpfile-$TP-damages-mktd.csv", df[(df.time .>= 2010) .& (df.time .<= 2100), :])
+
+        df = simdataframe(model, results, :TotalDamages, :total_damages_full_percap_peryear_percent)
+        CSV.write("../results/bytimexcountry-SSP2-$rcpfile-$TP-damages-full.csv", df[(df.time .>= 2010) .& (df.time .<= 2100), :])
 
         #Export country-level temperatures
         df = simdataframe(model, results, :PatternScaling, :T_country)

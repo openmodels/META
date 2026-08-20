@@ -200,7 +200,7 @@ function presim_full(trials::Int64, pcf_calib::String, amazon_calib::String, gis
     # Permafrost
 
     if pcf_calib == "Kessler probabilistic"
-        draws.PCFModel_propCH4     = rand(truncated(Normal(0.023, 0.006), 0.0, 1.0), trials) 
+        draws.PCFModel_propCH4     = rand(truncated(Normal(0.023, 0.006), 0.0, 1.0), trials)
         draws.PCFModel_beta_PF     = rand(truncated(Normal(0.172, 0.0261), 0.0, 1.0), trials)
         draws.PCFModel_C_PF        = rand(truncated(Normal(1035, 76.53), 1.0, Inf), trials)
         draws.PCFModel_propPassive = rand(truncated(Normal(0.4, 0.055), 0.0, 1.0), trials)
@@ -246,6 +246,8 @@ function presim_full(trials::Int64, pcf_calib::String, amazon_calib::String, gis
         rand(TriangularDist(-1, 1, 0), trials)
         rand(TriangularDist(10, 55, 20), trials)
     end
+
+    draws = presim_mckay(draws)
 
     draws
 end
@@ -340,6 +342,29 @@ function getsim_full(inst::Union{ModelInstance, MarginalInstance}, draws::DataFr
 
     mcres
 end
+
+function presim_mckay(draws::DataFrame, params::DataFrame)
+    draws = DataFrame(mc=1:trials)
+    tp_threshold = Vector{Vector{Float64}}(undef, trials)
+    tp_timescale = Vector{Vector{Float64}}(undef, trials)
+    tp_max_dGMST = Vector{Vector{Float64}}(undef, trials)
+    tp_feedback_per_C = Vector{Vector{Float64}}(undef, trials)
+
+    for ii in 1:trials
+        d = draw_tp_vectors(params)
+        tp_threshold[ii] = d.threshold
+        tp_timescale[ii] = d.timescale
+        tp_max_dGMST[ii] = d.max_dGMST
+        tp_feedback_per_C[ii] = d.feedback_per_C
+    end
+
+    draws.TPModel_threshold = tp_threshold
+    draws.TPModel_timescale = tp_timescale
+    draws.TPModel_max_dGMST = tp_max_dGMST
+    draws.TPModel_feedback_per_C = tp_feedback_per_C
+    draws
+end
+
 
 function simdataframe(model::Union{Model, MarginalModel}, results::Dict{Symbol, Array}, comp::Symbol, name::Symbol)
     if comp == :FAIR

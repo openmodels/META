@@ -2,8 +2,8 @@ using Statistics
 
 ## Historical socioeconomics
 
-gdppcs = CSV.read("../data/GDPpc.csv", DataFrame)
-pops = CSV.read("../data/Population.csv", DataFrame)
+gdppcs = CSV.read("../data/GDPpc.csv", DataFrame, ntasks=1)
+pops = CSV.read("../data/Population.csv", DataFrame, ntasks=1)
 
 function getgdppc(iso, year)
     index = findfirst(gdppcs.ISO .== iso)
